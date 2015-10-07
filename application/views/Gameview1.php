@@ -17,19 +17,33 @@
 
 <div class="col-xs-6 col-md-4"> <form>
         <div class="form-group">
-
             <label for="GameName">Naam van de Game :</label>
-            <input type="text" class="form-control" id="GameName" placeholder="GameName" required>
+            <input type="text" class="form-control" id="GameName" placeholder="Naam van je game" required>
         </div>
+
         <div class="form-group">
             <label for="GameDatum">Datum:</label>
-            <input type="date" class="form-control" id="GameDate" placeholder="GameDate" required>
+            <input type="date" class="form-control" id="GameDate" placeholder="Datum van je game" required>
         </div>
+
         <div class="form-group">
-            <label for="Deelnemers">Aantal Deelnemers</label>
-            <input type="text" class="form-control" id="Participants" placeholder="Participants" required>
+            <label for="GameTime">Tijd : </label>
+            <input type="text" class="form-control" id="GameTime" placeholder="Exacte starttijd van je game" required>
         </div>
+
+        <div class="form-group">
+            <label for="Locatie">Locatie : </label>
+            <input type="text" class="form-control" id="Location" placeholder="De locatie" required>
+        </div>
+
+        <label> Welke soort game? </label>
+        <select class="form-control">
+            <option>FreeGame</option>
+            <option>Tournament</option>
+        </select>
+        </br>
         <button type="submit" name="CreateGame" class="btn btn-default">Create Game</button>
+
     </form>
 </div>
 
