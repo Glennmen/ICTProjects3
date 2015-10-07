@@ -18,7 +18,7 @@
 
 
 <div class="col-xs-6 col-md-4"> <form>
-
+<p> lla</p>
         <div class="form-group">
             <label for="GameName">Naam van de Game :</label>
             <input type="text" class="form-control" id="GameName" placeholder="GameName" required>
