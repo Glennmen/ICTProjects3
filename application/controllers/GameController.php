@@ -13,7 +13,7 @@ class GameController extends CI_Controller{
         
         if(isset($_POST['CreateGame'])){
             if($this->form_validation->run()==FALSE){
-                $this->load->view('gameView1');  
+                $this->load->view('gameView1');
             }else{
               $aGameData = [
                   'name' => $this->input->post('gameName'),
