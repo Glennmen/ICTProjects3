@@ -9,6 +9,8 @@ class Game_model extends CI_Model {
     
     public function GameToevoegen($aData)
     {
+        $this->load->database();
+        
         $this->db->insert('game', $aData);
     }
 }

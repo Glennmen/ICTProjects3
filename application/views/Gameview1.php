@@ -17,7 +17,7 @@
     <?php echo validation_errors()?>
 
 <div class="col-xs-6 col-md-4"> 
-    <form action="index.php/GameController" method="post">
+    <form action="GameController" method="post">
         <div class="form-group">
             <label for="GameName">Naam van de Game :</label>
             <input type="text" class="form-control" id="GameName" name="gameName" placeholder="Naam van je game">

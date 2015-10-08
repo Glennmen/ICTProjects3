@@ -23,6 +23,9 @@ class GameController extends CI_Controller{
                   'type' => $this->input->post('type') 
               ];
               
+              $this->load->model('Game_model');
+              $this->Game_model->GameToevoegen($aGameData);
+              
               $this->load->view('gameView1');
             }
         }else{
