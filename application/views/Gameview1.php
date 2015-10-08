@@ -14,36 +14,37 @@
 </head>
 <body>
 
+    <?php echo validation_errors()?>
 
-<div class="col-xs-6 col-md-4"> <form>
+<div class="col-xs-6 col-md-4"> 
+    <form action="index.php/GameController" method="post">
         <div class="form-group">
             <label for="GameName">Naam van de Game :</label>
-            <input type="text" class="form-control" id="GameName" placeholder="Naam van je game" required>
+            <input type="text" class="form-control" id="GameName" name="gameName" placeholder="Naam van je game">
         </div>
 
         <div class="form-group">
             <label for="GameDatum">Datum:</label>
-            <input type="date" class="form-control" id="GameDate" placeholder="Datum van je game" required>
+            <input type="date" class="form-control" id="GameDate" name="gameDate" placeholder="Datum van je game">
         </div>
 
         <div class="form-group">
             <label for="GameTime">Tijd : </label>
-            <input type="text" class="form-control" id="GameTime" placeholder="Exacte starttijd van je game" required>
+            <input type="text" class="form-control" id="GameTime" name="gameTime" placeholder="Exacte starttijd van je game">
         </div>
 
         <div class="form-group">
             <label for="Locatie">Locatie : </label>
-            <input type="text" class="form-control" id="Location" placeholder="De locatie" required>
+            <input type="text" class="form-control" id="Location" name="location" placeholder="De locatie">
         </div>
 
         <label> Welke soort game? </label>
-        <select class="form-control">
+        <select class="form-control" id="Type" name="type">
             <option>FreeGame</option>
             <option>Tournament</option>
         </select>
         </br>
         <button type="submit" name="CreateGame" class="btn btn-default">Create Game</button>
-
     </form>
 </div>
 
