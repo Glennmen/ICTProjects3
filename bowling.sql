@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Genereertijd: 07 okt 2015 om 12:18
+-- Genereertijd: 09 okt 2015 om 08:59
 -- Serverversie: 5.6.11
 -- PHP-versie: 5.5.3
 
@@ -31,12 +31,20 @@ USE `bowling`;
 CREATE TABLE IF NOT EXISTS `game` (
   `Game_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Tournooi_ID` int(11) NOT NULL,
+  `Name` text NOT NULL,
   `Datum` date NOT NULL,
   `Tijd` time NOT NULL,
   `Locatie_ID` int(11) NOT NULL,
   PRIMARY KEY (`Game_ID`),
   UNIQUE KEY `Game_ID` (`Game_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Gegevens worden uitgevoerd voor tabel `game`
+--
+
+INSERT INTO `game` (`Game_ID`, `Tournooi_ID`, `Name`, `Datum`, `Tijd`, `Locatie_ID`) VALUES
+(1, 0, '', '0000-00-00', '00:00:00', 0);
 
 -- --------------------------------------------------------
 
