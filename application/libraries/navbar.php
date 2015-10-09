@@ -19,8 +19,9 @@ class Navbar {
                 <!-- Nav links -->
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav">
-			<li><a href="'.base_url("GameController").'">GameController</a></li>
-                        <li><a href="'.base_url("ScoreController").'">ScoreController</a></li>
+                            <li><a href="'.base_url("GameController").'">GameController</a></li>
+                            <li><a href="'.base_url("ScoreController").'">ScoreController</a></li>
+                            <li><a href="'.base_url("ProgressController").'">ProgressController</a></li>
 			</ul>
 		</div>
 	</div>
