@@ -9,7 +9,9 @@
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
+    <script src="localhost/ICTProjects3/assets/js/jquery.maskedinput.js"/>
     <title> GamePagina </title>
 </head>
 <body>
@@ -25,7 +27,7 @@
 
         <div class="form-group">
             <label for="GameDatum">Datum:</label>
-            <input type="date" class="form-control" id="GameDate" name="gameDate" placeholder="Datum van je game">
+            <input type="date" class="form-control" id="GameDate" name="gameDate" placeholder="09/10/2015">
         </div>
 
         <div class="form-group">
