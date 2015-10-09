@@ -19,17 +19,17 @@ and open the template in the editor.
     <form action="ScoreController" method="post">
         <div class="form-group">
             <label for="Score">Totaal behaalde score:</label>
-            <input type="text" class="form-control" id="ScoreTotaal" name="scoreTotaal" placeholder="Totale score">
+            <input type="text" class="form-control" id="ScoreTotaal" name="scoreTotaal" value="<?php echo set_value('scoreTotaal'); ?>" placeholder="Totale score">
         </div>
 
         <div class="form-group">
             <label for="Strikes">Aantal strikes:</label>
-            <input type="text" class="form-control" id="ScoreStrikes" name="scoreStrikes" placeholder="Aantal strikes">
+            <input type="text" class="form-control" id="ScoreStrikes" name="scoreStrikes" value="<?php echo set_value('scoreStrikes'); ?>" placeholder="Aantal strikes">
         </div>
 
         <div class="form-group">
             <label for="Spares">Aantal spares:</label>
-            <input type="text" class="form-control" id="ScoreSpares" name="scoreSpares" placeholder="Aantal spares">
+            <input type="text" class="form-control" id="ScoreSpares" name="scoreSpares" value="<?php echo set_value('scoreSpares'); ?>" placeholder="Aantal spares">
         </div>
         
         </br>
