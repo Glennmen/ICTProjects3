@@ -10,8 +10,14 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"/>
-    <script src="localhost/ICTProjects3/assets/js/jquery.maskedinput.js"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
+    <script>
+          jQuery(function($){
+             $("#GameDate").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
+             $("#GameTime").mask("99:99",{placeholder:"hh:mm"});
+    });
+    </script>
     <title> GamePagina </title>
 </head>
 <body>
@@ -27,7 +33,7 @@
 
         <div class="form-group">
             <label for="GameDatum">Datum:</label>
-            <input type="date" class="form-control" id="GameDate" name="gameDate" placeholder="09/10/2015">
+            <input type="date" class="form-control" id="GameDate" name="gameDate" placeholder="Datum">
         </div>
 
         <div class="form-group">
