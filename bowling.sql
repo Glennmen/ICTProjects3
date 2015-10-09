@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4.1
+-- version 4.2.7.1
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Genereertijd: 09 okt 2015 om 08:59
--- Serverversie: 5.6.11
--- PHP-versie: 5.5.3
+-- Gegenereerd op: 09 okt 2015 om 09:22
+-- Serverversie: 5.6.20
+-- PHP-versie: 5.5.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,23 +28,15 @@ USE `bowling`;
 -- Tabelstructuur voor tabel `game`
 --
 
+DROP TABLE IF EXISTS `game`;
 CREATE TABLE IF NOT EXISTS `game` (
-  `Game_ID` int(11) NOT NULL AUTO_INCREMENT,
+`Game_ID` int(11) NOT NULL,
   `Tournooi_ID` int(11) NOT NULL,
   `Name` text NOT NULL,
-  `Datum` date NOT NULL,
-  `Tijd` time NOT NULL,
-  `Locatie_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Game_ID`),
-  UNIQUE KEY `Game_ID` (`Game_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Gegevens worden uitgevoerd voor tabel `game`
---
-
-INSERT INTO `game` (`Game_ID`, `Tournooi_ID`, `Name`, `Datum`, `Tijd`, `Locatie_ID`) VALUES
-(1, 0, '', '0000-00-00', '00:00:00', 0);
+  `Datum` text NOT NULL,
+  `Tijd` text NOT NULL,
+  `Locatie_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -52,11 +44,11 @@ INSERT INTO `game` (`Game_ID`, `Tournooi_ID`, `Name`, `Datum`, `Tijd`, `Locatie_
 -- Tabelstructuur voor tabel `locatie`
 --
 
+DROP TABLE IF EXISTS `locatie`;
 CREATE TABLE IF NOT EXISTS `locatie` (
   `Locatie_ID` int(11) NOT NULL,
   `Adres` text NOT NULL,
-  `Zaal_naam` text NOT NULL,
-  UNIQUE KEY `Locatie_ID` (`Locatie_ID`)
+  `Zaal_naam` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -65,11 +57,11 @@ CREATE TABLE IF NOT EXISTS `locatie` (
 -- Tabelstructuur voor tabel `persoon`
 --
 
+DROP TABLE IF EXISTS `persoon`;
 CREATE TABLE IF NOT EXISTS `persoon` (
   `Google_ID` int(11) NOT NULL,
   `Fnaam` text NOT NULL,
-  `Vnaam` text NOT NULL,
-  PRIMARY KEY (`Google_ID`)
+  `Vnaam` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -78,14 +70,14 @@ CREATE TABLE IF NOT EXISTS `persoon` (
 -- Tabelstructuur voor tabel `score`
 --
 
+DROP TABLE IF EXISTS `score`;
 CREATE TABLE IF NOT EXISTS `score` (
   `Score_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL,
   `Google_ID` int(11) NOT NULL,
   `Totaal` int(11) NOT NULL,
   `Strikes` int(11) NOT NULL,
-  `Spare` int(11) NOT NULL,
-  PRIMARY KEY (`Score_ID`)
+  `Spare` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -94,15 +86,58 @@ CREATE TABLE IF NOT EXISTS `score` (
 -- Tabelstructuur voor tabel `tounament`
 --
 
+DROP TABLE IF EXISTS `tounament`;
 CREATE TABLE IF NOT EXISTS `tounament` (
   `Toernooi_ID` int(11) NOT NULL,
   `Eigenaar_ID` int(11) NOT NULL,
   `Begin_Datum` date NOT NULL,
   `Eind_Datum` date NOT NULL,
-  `Naam` text,
-  PRIMARY KEY (`Toernooi_ID`)
+  `Naam` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Indexen voor geëxporteerde tabellen
+--
+
+--
+-- Indexen voor tabel `game`
+--
+ALTER TABLE `game`
+ ADD PRIMARY KEY (`Game_ID`), ADD UNIQUE KEY `Game_ID` (`Game_ID`);
+
+--
+-- Indexen voor tabel `locatie`
+--
+ALTER TABLE `locatie`
+ ADD UNIQUE KEY `Locatie_ID` (`Locatie_ID`);
+
+--
+-- Indexen voor tabel `persoon`
+--
+ALTER TABLE `persoon`
+ ADD PRIMARY KEY (`Google_ID`);
+
+--
+-- Indexen voor tabel `score`
+--
+ALTER TABLE `score`
+ ADD PRIMARY KEY (`Score_ID`);
+
+--
+-- Indexen voor tabel `tounament`
+--
+ALTER TABLE `tounament`
+ ADD PRIMARY KEY (`Toernooi_ID`);
+
+--
+-- AUTO_INCREMENT voor geëxporteerde tabellen
+--
+
+--
+-- AUTO_INCREMENT voor een tabel `game`
+--
+ALTER TABLE `game`
+MODIFY `Game_ID` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
