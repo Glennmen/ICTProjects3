@@ -1,5 +1,9 @@
 <resources>
-    <string name="app_name">MobieleAppBowling</string>
+    <string name="app_name">Mobiele BowlingApp</string>
     <string name="action_settings">Settings</string>
     <string name="testTextView">Tom heeft ebola</string>
+    <string name="TotaleScore">Totale score:</string>
+    <string name="totaleStrikes">Aantal strikes:</string>
+    <string name="totaleSpares">Aantal spares:</string>
+    <string name="submitScoreButtonText">Submit</string>
 </resources>

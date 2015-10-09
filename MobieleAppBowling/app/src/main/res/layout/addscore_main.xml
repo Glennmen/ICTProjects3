@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+
+
+    <TextView   android:text="@string/TotaleScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/totaleScoreTextView"
+                android:textSize="20sp"
+                android:padding="10dp"
+                />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTotaleScore"
+        android:ems="3"
+        android:layout_toRightOf="@id/totaleScoreTextView"
+        android:layout_marginLeft="5dp"
+        android:inputType="numberDecimal"
+        />
+
+
+    <TextView   android:text="@string/totaleStrikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totaalStrikesTextView"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_below="@id/totaleScoreTextView"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="3"
+        android:id="@+id/editAantalStrikes"
+        android:layout_below="@id/totaleScoreTextView"
+        android:layout_toRightOf="@id/totaalStrikesTextView"
+        android:layout_alignLeft="@id/editTotaleScore"
+        android:inputType="numberDecimal"/>
+
+    <TextView   android:text="@string/totaleSpares"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/totaalSparesTextView"
+        android:textSize="20sp"
+        android:padding="10dp"
+        android:layout_below="@id/totaalStrikesTextView"/>
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="3"
+        android:id="@+id/editAantalspares"
+        android:layout_below="@id/editAantalStrikes"
+        android:layout_toRightOf="@id/totaalSparesTextView"
+        android:layout_alignLeft="@id/editTotaleScore"
+        android:inputType="numberDecimal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/submitScoreButton"
+        android:layout_below="@id/totaalSparesTextView"
+        android:text="@string/submitScoreButtonText"/>
+
+
+
+
+
+
+    </RelativeLayout>
