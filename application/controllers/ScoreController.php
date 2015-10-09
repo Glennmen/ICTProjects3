@@ -15,7 +15,7 @@ class ScoreController extends CI_Controller {
     
         if(isset($_POST['UploadScore'])){
             if ($this->form_validation->run() == FALSE) {
-                $this->load->view('insert_view');
+                $this->load->view('ScoreView');
             }
             else {
                 $aScoreData =[
@@ -26,13 +26,13 @@ class ScoreController extends CI_Controller {
                     'Strikes' => $this->input->post('scoreSpares'),
                     'Spare' => $this->input->post('scoreStrikes')
                 ];
-            }
+            
 
             $this->load->model('Score_model');
             $this->Score_model->ScoreToevoegen($aScoreData);
 
             $this->load->view('ScoreView');
-        }
+        }}
         else{
             $this->load->view('ScoreView');
         }
