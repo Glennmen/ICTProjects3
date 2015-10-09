@@ -16,11 +16,11 @@ class GameController extends CI_Controller{
                 $this->load->view('gameView1');
             }else{
               $aGameData = [
-                  'name' => $this->input->post('gameName'),
-                  'date' => $this->input->post('gameDate'),
-                  'time' => $this->input->post('gameTime'),
-                  'location' => $this->input->post('location'),
-                  'type' => $this->input->post('type') 
+                  'naam' => $this->input->post('gameName'),
+                  'datum' => $this->input->post('gameDate'),
+                  'tijd' => $this->input->post('gameTime'),
+                  'locatie' => $this->input->post('location'),
+                  'tournooi_id' => $this->input->post('type') 
               ];
               
               $this->load->model('Game_model');

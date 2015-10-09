@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 09 okt 2015 om 09:22
+-- Gegenereerd op: 09 okt 2015 om 10:03
 -- Serverversie: 5.6.20
 -- PHP-versie: 5.5.15
 
@@ -32,24 +32,11 @@ DROP TABLE IF EXISTS `game`;
 CREATE TABLE IF NOT EXISTS `game` (
 `Game_ID` int(11) NOT NULL,
   `Tournooi_ID` int(11) NOT NULL,
-  `Name` text NOT NULL,
+  `Naam` text NOT NULL,
   `Datum` text NOT NULL,
   `Tijd` text NOT NULL,
-  `Locatie_ID` int(11) NOT NULL
+  `Locatie` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Tabelstructuur voor tabel `locatie`
---
-
-DROP TABLE IF EXISTS `locatie`;
-CREATE TABLE IF NOT EXISTS `locatie` (
-  `Locatie_ID` int(11) NOT NULL,
-  `Adres` text NOT NULL,
-  `Zaal_naam` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -104,12 +91,6 @@ CREATE TABLE IF NOT EXISTS `tounament` (
 --
 ALTER TABLE `game`
  ADD PRIMARY KEY (`Game_ID`), ADD UNIQUE KEY `Game_ID` (`Game_ID`);
-
---
--- Indexen voor tabel `locatie`
---
-ALTER TABLE `locatie`
- ADD UNIQUE KEY `Locatie_ID` (`Locatie_ID`);
 
 --
 -- Indexen voor tabel `persoon`
