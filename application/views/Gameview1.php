@@ -21,6 +21,8 @@
     <title> GamePagina </title>
 </head>
 <body>
+    
+    <?php echo $nav ?>
 
     <?php echo validation_errors()?>
 

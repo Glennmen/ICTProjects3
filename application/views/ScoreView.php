@@ -10,6 +10,8 @@ and open the template in the editor.
     <title> ScorePagina </title>
 </head>
 <body>
+    
+    <?php echo $nav ?>
 
     <?php echo validation_errors()?>
 

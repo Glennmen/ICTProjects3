@@ -4,7 +4,8 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 class ScoreController extends CI_Controller {
     public function index(){
         
-        //$this->load->library('form_validation');
+        $this->load->library('navbar');
+        $data['nav'] = $this->navbar->get_navbar();
         
         $this->form_validation->set_rules('scoreID','scoreId', 'required');
         $this->form_validation->set_rules('googleID','googleId', 'required');
@@ -15,7 +16,7 @@ class ScoreController extends CI_Controller {
     
         if(isset($_POST['UploadScore'])){
             if ($this->form_validation->run() == FALSE) {
-                $this->load->view('ScoreView');
+                $this->load->view('ScoreView', $data);
             }
             else {
                 $aScoreData =[
@@ -31,10 +32,10 @@ class ScoreController extends CI_Controller {
             $this->load->model('Score_model');
             $this->Score_model->ScoreToevoegen($aScoreData);
 
-            $this->load->view('ScoreView');
+            $this->load->view('ScoreView', $data);
         }}
         else{
-            $this->load->view('ScoreView');
+            $this->load->view('ScoreView', $data);
         }
         
     }
