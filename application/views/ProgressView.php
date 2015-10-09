@@ -10,6 +10,7 @@ and open the template in the editor.
     <title> ScorePagina </title>
 </head>
 <body>
+    <?php echo $nav ?>
 
     <?php echo validation_errors()?>
 
@@ -17,27 +18,21 @@ and open the template in the editor.
     <table> 
         <tr><th>GameNr</th><th>Totaal</th><th>Strikes</th><th>Sparées</th></tr>
             <?php
-                $this->load->model('Progress_model');
-                $aProgressData = $this->Progress_model->StatistiekenOphalen(1);
                 if($aProgressData != null){
-                    foreach($aProgressRow as $aProgressData){
-                        $sContent =  "<tr><td>".$aProgressRow->GameID."</td>";
+                    foreach($aProgressData->result() as $aProgressRow){
+                        $sContent =  "<tr><td>".$aProgressRow->Game_ID."</td>";
                         $sContent .=  "<td>".$aProgressRow->Totaal."</td>";
                         $sContent .=  "<td>".$aProgressRow->Strikes."</td>";
-                        $sContent .=  "<td>".$aProgressRow->Spares."</td></tr>";
+                        $sContent .=  "<td>".$aProgressRow->Spare."</td></tr>";
                         echo $sContent;
                     }
                 }
                 else{
-                    echo '<tr><td colspan="4">Geen data beschikbaar</td><td></td></tr>';
+                    echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
                 }
             ?>
     </table>
 </div>
-
-<form>
-
-</form>
 
 
 </body>
