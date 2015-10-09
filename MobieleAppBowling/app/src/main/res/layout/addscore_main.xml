@@ -8,7 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
-
     <TextView   android:text="@string/TotaleScore"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +32,8 @@
         android:id="@+id/totaalStrikesTextView"
         android:textSize="20sp"
         android:padding="10dp"
-        android:layout_below="@id/totaleScoreTextView"/>
+        android:layout_below="@id/totaleScoreTextView"
+        android:layout_alignLeft="@id/totaleScoreTextView"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,7 +50,8 @@
         android:id="@+id/totaalSparesTextView"
         android:textSize="20sp"
         android:padding="10dp"
-        android:layout_below="@id/totaalStrikesTextView"/>
+        android:layout_below="@id/totaalStrikesTextView"
+        android:layout_alignLeft="@id/totaalStrikesTextView"/>
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +67,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/submitScoreButton"
         android:layout_below="@id/totaalSparesTextView"
-        android:text="@string/submitScoreButtonText"/>
+        android:text="@string/submitScoreButtonText"
+        />
 
 
 
