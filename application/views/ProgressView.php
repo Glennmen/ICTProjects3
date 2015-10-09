@@ -15,7 +15,7 @@ and open the template in the editor.
     <?php echo validation_errors()?>
 
 <div class="col-xs-6 col-md-4"> 
-    <table> 
+    <table class="table"> 
         <tr><th>GameNr</th><th>Totaal</th><th>Strikes</th><th>Sparées</th></tr>
             <?php
                 if($aProgressData != null){
