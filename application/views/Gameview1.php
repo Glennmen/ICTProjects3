@@ -40,8 +40,8 @@
 
         <label> Welke soort game? </label>
         <select class="form-control" id="Type" name="type">
-            <option>FreeGame</option>
-            <option>Tournament</option>
+            <option value="0">FreeGame</option>
+            <option value="1">Tournament</option>
         </select>
         </br>
         <button type="submit" name="CreateGame" class="btn btn-default">Create Game</button>
