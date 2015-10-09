@@ -6,12 +6,9 @@ class ScoreController extends CI_Controller {
         
         //$this->load->library('form_validation');
         
-        $this->form_validation->set_rules('scoreID','scoreId', 'required');
-        $this->form_validation->set_rules('googleID','googleId', 'required');
-        $this->form_validation->set_rules('gameID','gameId', 'required');
         $this->form_validation->set_rules('scoreTotaal','Totaal','required');
-        $this->form_validation->set_rules('scoreSpares','spares','numeric');
-        $this->form_validation->set_rules('scoreStrikes','strikes','numeric');
+        $this->form_validation->set_rules('scoreSpares','spares');
+        $this->form_validation->set_rules('scoreStrikes','strikes');
     
         if(isset($_POST['UploadScore'])){
             if ($this->form_validation->run() == FALSE) {
@@ -19,20 +16,19 @@ class ScoreController extends CI_Controller {
             }
             else {
                 $aScoreData =[
-                    'Score_ID' => $this->input->post('scoreID'),
-                    'Game_ID' => $this->input->post('gameID'),
-                    'Google_ID' => $this->input->post('googleID'),
+                    'Game_ID' => 5, //moet nog gekoppeld worden
+                    //'Google_ID' => $this->input->post('googleID'),
                     'Totaal' => $this->input->post('scoreTotaal'),
                     'Strikes' => $this->input->post('scoreSpares'),
                     'Spare' => $this->input->post('scoreStrikes')
                 ];
-            
 
             $this->load->model('Score_model');
             $this->Score_model->ScoreToevoegen($aScoreData);
 
             $this->load->view('ScoreView');
-        }}
+            }
+        }
         else{
             $this->load->view('ScoreView');
         }
