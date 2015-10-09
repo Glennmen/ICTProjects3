@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Machine: 127.0.0.1
--- Gegenereerd op: 09 okt 2015 om 10:03
+-- Gegenereerd op: 09 okt 2015 om 11:05
 -- Serverversie: 5.6.20
 -- PHP-versie: 5.5.15
 
@@ -33,10 +33,18 @@ CREATE TABLE IF NOT EXISTS `game` (
 `Game_ID` int(11) NOT NULL,
   `Tournooi_ID` int(11) NOT NULL,
   `Naam` text NOT NULL,
-  `Datum` text NOT NULL,
-  `Tijd` text NOT NULL,
+  `Datum` date NOT NULL,
+  `Tijd` time NOT NULL,
   `Locatie` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `game`
+--
+
+INSERT INTO `game` (`Game_ID`, `Tournooi_ID`, `Naam`, `Datum`, `Tijd`, `Locatie`) VALUES
+(1, 0, 'test', '0000-00-00', '21:30:00', 'test'),
+(2, 0, 'test', '0000-00-00', '21:30:00', 'test');
 
 -- --------------------------------------------------------
 
@@ -59,13 +67,13 @@ CREATE TABLE IF NOT EXISTS `persoon` (
 
 DROP TABLE IF EXISTS `score`;
 CREATE TABLE IF NOT EXISTS `score` (
-  `Score_ID` int(11) NOT NULL,
+`Score_ID` int(11) NOT NULL,
   `Game_ID` int(11) NOT NULL,
   `Google_ID` int(11) NOT NULL,
   `Totaal` int(11) NOT NULL,
   `Strikes` int(11) NOT NULL,
   `Spare` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -118,7 +126,12 @@ ALTER TABLE `tounament`
 -- AUTO_INCREMENT voor een tabel `game`
 --
 ALTER TABLE `game`
-MODIFY `Game_ID` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `Game_ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT voor een tabel `score`
+--
+ALTER TABLE `score`
+MODIFY `Score_ID` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
