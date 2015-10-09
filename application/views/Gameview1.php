@@ -28,22 +28,22 @@
     <form action="GameController" method="post">
         <div class="form-group">
             <label for="GameName">Naam van de Game :</label>
-            <input type="text" class="form-control" id="GameName" name="gameName" placeholder="Naam van je game">
+            <input type="text" class="form-control" id="GameName" name="gameName" value="<?php echo set_value('gameName'); ?>" placeholder="Naam van je game">
         </div>
 
         <div class="form-group">
             <label for="GameDatum">Datum:</label>
-            <input type="date" class="form-control" id="GameDate" name="gameDate" placeholder="Datum">
+            <input type="date" class="form-control" id="GameDate" name="gameDate" value="<?php echo set_value('gameDate'); ?>" placeholder="Datum">
         </div>
 
         <div class="form-group">
             <label for="GameTime">Tijd : </label>
-            <input type="text" class="form-control" id="GameTime" name="gameTime" placeholder="Exacte starttijd van je game">
+            <input type="text" class="form-control" id="GameTime" name="gameTime" value="<?php echo set_value('gameTime'); ?>" placeholder="Exacte starttijd van je game">
         </div>
 
         <div class="form-group">
             <label for="Locatie">Locatie : </label>
-            <input type="text" class="form-control" id="Location" name="location" placeholder="De locatie">
+            <input type="text" class="form-control" id="Location" name="location" value="<?php echo set_value('location'); ?>" placeholder="De locatie">
         </div>
 
         <label> Welke soort game? </label>
