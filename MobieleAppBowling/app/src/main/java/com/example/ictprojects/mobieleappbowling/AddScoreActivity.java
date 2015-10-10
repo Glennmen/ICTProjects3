@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,8 +17,13 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONObject;
+import android.util.Log;
+import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * Created by Tom on 9/10/2015.
@@ -31,6 +37,7 @@ public class AddScoreActivity extends AppCompatActivity
     EditText editAantalspares;
     TextView isConnected;
     Button submitScoreButton;
+    ScoreData score;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,28 +72,121 @@ public class AddScoreActivity extends AppCompatActivity
             else
                 return false; 
     }
-    public static String POST(String url,ScoreData score){
+    public static String POST(Integer url,ScoreData score){ //url veranderd
         InputStream inputStream = null;
         String result = "";
         try{
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(url);
+            HttpPost httpPost = new HttpPost(String.valueOf(url));
             String json = "";
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.accumulate("score", score.getTotaleScore());
+            jsonObject.accumulate("aantalStrikes",score.getAantalStrikes());
+            jsonObject.accumulate("aantalSpares",score.getAantalSpares());
+
+            json = jsonObject.toString();
+            StringEntity se = new StringEntity(json);
+            httpPost.setEntity(se);
+
+            httpPost.setHeader("Accept","application/json");
+            httpPost.setHeader("Content-type","application/json");
+
+            HttpResponse httpResponse = httpClient.execute(httpPost);
+            inputStream = httpResponse.getEntity().getContent();
+
+            if(inputStream != null)
+            {
+                result = convertInputStreamToString(inputStream);
+            }
+            else
+            {
+                result = "Did not work!";
+            }
         }
         catch(Exception e)
         {
+            Log.d("Inputstream",e.getLocalizedMessage());
 
         }
 
+        return result;
 
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
+        switch(view.getId()){
+            case R.id.submitScoreButton:
+                if(!validate())
+                    Toast.makeText(getBaseContext(),"Enter some data!",Toast.LENGTH_LONG).show();
+                    new HttpAsyncTask().execute("http://hmkcode.appspot.com/jsonservlet");
+                break;
+        }
+
+    }
+
+    // heb hier iets moeten veranderen. Extra klasse en geen override. Ik weet niet als dit juist is! Team Bilbo
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        protected String doInBackground(Integer... urls) {
+
+            score = new ScoreData();
+
+
+            score.setTotaleScore(Integer.parseInt(editTotaleScore.getText().toString()));
+            score.setAantalStrikes(Integer.parseInt(editAantalStrikes.getText().toString()));
+            score.setAantalSpares(Integer.parseInt(editAantalspares.getText().toString()));
+
+            return POST(urls[0],score);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return null;
+        }
+
+        /*private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+                @Override
+                protected int doInBackground(Integer... urls){
+
+                    score = new ScoreData();
+
+
+                    score.setTotaleScore(Integer.parseInt(editTotaleScore.getText().toString()));
+                    score.setAantalStrikes(Integer.parseInt(editAantalStrikes.getText().toString()));
+                    score.setAantalSpares(Integer.parseInt(editAantalspares.getText().toString()));
+
+                    return POST(urls[0],score);
+
+                }*/
+        @Override
+        protected void onPostExecute(String result) {
+            Toast.makeText(getBaseContext(),"Data Sent!",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private boolean validate(){
+        if(editTotaleScore.getText().toString().trim().equals(""))
+            return false;
+        else if(editAantalStrikes.getText().toString().trim().equals(""))
+            return false;
+        else if(editAantalspares.getText().toString().trim().equals(""))
+            return false;
+        else
+            return true;
+    }
+
+    private static String convertInputStreamToString(InputStream inputStream) throws IOException{
+        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader((inputStream)));
+        String line = "";
+        String result = "" ;
+        while ((line = bufferedReader.readLine()) != null)
+            result += line;
+
+        inputStream.close();;
+        return result;
     }
 
 }
