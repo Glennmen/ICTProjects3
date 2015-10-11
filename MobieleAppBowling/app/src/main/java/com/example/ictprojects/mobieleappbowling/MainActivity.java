@@ -25,12 +25,11 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        OnClickButtonListener();
 
 
 
 
-
+        scorePageButton = (Button) findViewById(R.id.scorePageButton);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -66,16 +65,16 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-/*@Override
+@Override
     public void onClick(View v) {
     int id = v.getId();
 
     if (id == R.id.scorePageButton) {
         startActivity(new Intent(this, AddScoreActivity.class));
     }
-}*/
+}
 
-    public void OnClickButtonListener() {
+    /*public void OnClickButtonListener() {
        scorePageButton = (Button) findViewById(R.id.scorePageButton);
         scorePageButton.setOnClickListener(
                     new View.OnClickListener() {
@@ -85,5 +84,5 @@ public class MainActivity extends AppCompatActivity
                             }
                     }
         );
-    }
+    }*/
 }
