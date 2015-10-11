@@ -10,15 +10,27 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener{
 
+
+
+    Button scorePageButton;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        OnClickButtonListener();
+
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -54,13 +66,24 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+/*@Override
     public void onClick(View v) {
-        int id = v.getId();
+    int id = v.getId();
 
-        if(id == R.id.scorePageButton)
-        {
-            startActivity(new Intent(this, AddScoreActivity.class));
-        }
+    if (id == R.id.scorePageButton) {
+        startActivity(new Intent(this, AddScoreActivity.class));
+    }
+}*/
+
+    public void OnClickButtonListener() {
+       scorePageButton = (Button) findViewById(R.id.scorePageButton);
+        scorePageButton.setOnClickListener(
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(AddScoreActivity.class));
+                            }
+                    }
+        );
     }
 }
