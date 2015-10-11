@@ -54,11 +54,11 @@ public class AddScoreActivity extends AppCompatActivity
         if(isConnected())
         {
             isConnected.setBackgroundColor(0xFF00CC00);
-            isConnected.setText("Proficiat , je hebt ebo");
+            isConnected.setText("Connected");
         }
         else
         {
-            isConnected.setText("Jammer , jij hebt ebol");
+            isConnected.setText("No connection");
         }
 
         submitScoreButton.setOnClickListener(this);

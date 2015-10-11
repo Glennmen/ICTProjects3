@@ -26,8 +26,21 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:showIn="@layout/activity_main" tools:context=".MainActivity">
 
-        <TextView android:text="Shitfaces!" android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/welkomTextView"
+            android:text="@string/welkomText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"/>
+
+        <Button
+            android:id="@+id/scorePageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/scorePageButton"
+            android:layout_below="@+id/welkomTextView"
+            android:layout_alignLeft="@+id/welkomTextView"/>
+
         </RelativeLayout>
   <!--  <include layout="@layout/content_main" />-->
 
@@ -35,12 +48,5 @@
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
         android:src="@android:drawable/ic_dialog_email" />
-
-    <TextView
-       android:id="@+id/testTextView"
-       android:name="@string/testTextView"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_gravity="top|end"/>
 
 </android.support.design.widget.CoordinatorLayout>
