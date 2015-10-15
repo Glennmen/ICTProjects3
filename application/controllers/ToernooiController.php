@@ -10,7 +10,8 @@ class ToernooiController extends CI_Controller{
         $data['nav'] = $this->navbar->get_navbar();
         
         $this->form_validation->set_rules('ToernooiName', 'Name','required');
-        $this->form_validation->set_rules('ToernooiDate', 'Date','required');
+        $this->form_validation->set_rules('ToernooiStartDate', 'StartDate','required');
+        $this->form_validation->set_rules('ToernooiEndDate', 'EndDate','required');
         $this->form_validation->set_rules('location', 'location','required');
         
         if(isset($_POST['CreateToernooi'])){
@@ -19,7 +20,8 @@ class ToernooiController extends CI_Controller{
             }else{
               $aToernooiData = [
                   'naam' => $this->input->post('ToernooiName'),
-                  'datum' => $this->input->post('ToernooiDate'),
+                  'startDatum' => $this->input->post('ToernooiStartDate'),
+                  'eindDatum' => $this->input->post('ToernooiEndDate'),
                   'locatie' => $this->input->post('location'),
                   'tournooi_id' => $this->input->post('type') 
               ];
