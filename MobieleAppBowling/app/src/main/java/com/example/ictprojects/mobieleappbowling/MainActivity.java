@@ -1,5 +1,6 @@
 package com.example.ictprojects.mobieleappbowling;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener{
-
+        implements View.OnClickListener {
 
 
     Button scorePageButton;
@@ -25,8 +25,6 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         scorePageButton = (Button) findViewById(R.id.scorePageButton);
@@ -67,24 +65,18 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-@Override
-    public void onClick(View v) {
-    int id = v.getId();
 
-    if (id == R.id.scorePageButton) {
-        startActivity(new Intent(this, AddScoreActivity.class));
+    @Override
+    public void onClick(View view) {
+
+        switch (view.getId()) {
+            case R.id.scorePageButton:
+                startActivity(new Intent(MainActivity.this, AddScoreActivity.class
+                ));
+        }
     }
 }
 
-    /*public void OnClickButtonListener() {
-       scorePageButton = (Button) findViewById(R.id.scorePageButton);
-        scorePageButton.setOnClickListener(
-                    new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            startActivity(new Intent(AddScoreActivity.class));
-                            }
-                    }
-        );
-    }*/
-}
+
+
+
