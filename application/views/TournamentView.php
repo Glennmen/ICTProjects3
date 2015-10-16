@@ -13,7 +13,6 @@
 <body>
     
     <?php echo $nav ?>
-
     <?php echo validation_errors()?>
 
 <div class="col-xs-6 col-md-4"> 
