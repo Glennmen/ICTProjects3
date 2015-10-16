@@ -1,8 +1,14 @@
 <?php
+class TournamentList_model extends CI_Model {
+    
+    public function AllTournaments($googleID)
+    {
+        $this->load->database();
+        
+        $aData =$this->db->query("SELECT * FROM tournament WHERE Toernooi_ID =
+                                    (SELECT tournooiID FROM deelnemerstournooi WHERE accepted=1 and googleID=".$googleID.")");
+        return $aData;
+    }
+}
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+?>
