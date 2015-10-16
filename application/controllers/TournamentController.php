@@ -2,7 +2,7 @@
 if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 
-class ToernooiController extends CI_Controller{
+class TournamentController extends CI_Controller{
     
     public function index(){
         
@@ -14,11 +14,11 @@ class ToernooiController extends CI_Controller{
         $this->form_validation->set_rules('tournamentEndDate', 'EndDate','required');
         $this->form_validation->set_rules('location', 'location','required');
         
-        if(isset($_POST['CreateToernooi'])){
+        if(isset($_POST['CreateTournament'])){
             if($this->form_validation->run()==FALSE){
-                $this->load->view('ToernooiView', $data);
+                $this->load->view('TournamentView', $data);
             }else{
-              $aToernooiData = [
+              $aTournamentData = [
                   'naam' => $this->input->post('tournamentName'),
                   'startDatum' => $this->input->post('tournamentStartDate'),
                   'eindDatum' => $this->input->post('tournamentEndDate'),
@@ -26,8 +26,8 @@ class ToernooiController extends CI_Controller{
                   'tournooi_id' => $this->input->post('type') 
               ];
               
-              $this->load->model('Toernooi_model');
-              $this->Toernooi_model->ToernooiToevoegen($aToernooiData);
+              $this->load->model('Tournament_model');
+              $this->Tournament_model->TournamentToevoegen($aTournamentData);
               
               $this->load->view('TournamentView', $data);
             }
