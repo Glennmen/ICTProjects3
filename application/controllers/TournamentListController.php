@@ -6,8 +6,14 @@ class TournamentListController extends CI_Controller {
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         
-        $data['aTournamentListData'] = $this->view_list();
-        $this->load->view('TournamentListView', $data);
+        if(isset($_POST['SelectTournament'])){
+            $this->load->view('gameView1', $data);
+        }
+        else
+        {
+            $data['aTournamentListData'] = $this->view_list();
+            $this->load->view('TournamentListView', $data);
+        }
     }
     
     public function view_list(){
