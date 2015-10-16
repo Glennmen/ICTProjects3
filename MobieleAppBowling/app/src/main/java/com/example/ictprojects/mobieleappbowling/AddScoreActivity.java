@@ -38,6 +38,10 @@ public class AddScoreActivity extends AppCompatActivity
     TextView isConnected;
     Button submitScoreButton;
     ScoreData score;
+    String TotaleScore;
+    String AantalStrikes;
+    String AantalSpares;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,11 +123,15 @@ public class AddScoreActivity extends AppCompatActivity
     @Override
     public void onClick(View view) {
 
+        TotaleScore = editTotaleScore.getText().toString();
+        AantalStrikes = editAantalStrikes.getText().toString();
+        AantalSpares = editAantalspares.getText().toString();
+
         switch(view.getId()){
             case R.id.submitScoreButton:
                 if(!validate())
                     Toast.makeText(getBaseContext(),"Enter some data!",Toast.LENGTH_LONG).show();
-                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/ScoreController");
+                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/ScoreController.php");
                 break;
         }
 
@@ -136,12 +144,10 @@ public class AddScoreActivity extends AppCompatActivity
         protected String doInBackground(String... urls) {
 
             score = new ScoreData();
-            score.setTotaleScore((editTotaleScore.getText().toString()));
 
-
-            score.setTotaleScore(editTotaleScore.getText().toString());
-            score.setAantalStrikes(editAantalStrikes.getText().toString());
-            score.setAantalSpares(editAantalspares.getText().toString());
+            score.setTotaleScore(TotaleScore);
+            score.setAantalStrikes(AantalStrikes);
+            score.setAantalSpares(AantalSpares);
 
             return POST(urls[0],score);
         }

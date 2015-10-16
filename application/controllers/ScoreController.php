@@ -37,9 +37,17 @@ class ScoreController extends CI_Controller {
             $this->load->view('ScoreView', $data);
         }
 
+        if (isset($_POST['json']))
+        {
+            $aJson = $_POST['json'];
+            $aScoreData = json_decode($aJson, true);
 
+            $this->load->model('Score_model');
+            $this->Score_model->ScoreToevoegen($aScoreData);
 
-        if (isset($_POST['scoreTotaal']) && isset($_POST['scoreStrikes']) && isset($_POST['scoreSpares']) && isset($_POST['Game_ID']) && isset($_POST['Google_ID']))
+        }
+
+       /* if (isset($_POST['scoreTotaal']) && isset($_POST['scoreStrikes']) && isset($_POST['scoreSpares']) && isset($_POST['Game_ID']) && isset($_POST['Google_ID']))
         {
             $aScoreData =[
                 //'Game_ID' => $this->input->post('gameID'),
@@ -53,7 +61,7 @@ class ScoreController extends CI_Controller {
 
             $this->load->model('Score_model');
             $this->Score_model->ScoreToevoegen($aScoreData);
-        }
+        }*/
         
     }
 }
