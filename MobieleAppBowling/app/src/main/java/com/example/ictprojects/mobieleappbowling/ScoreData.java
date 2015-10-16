@@ -8,6 +8,9 @@ public class ScoreData {
     private int totaleScore;
     private int aantalStrikes;
     private int aantalSpares;
+    private int Score_ID;
+    private int Game_ID;
+    private int Google_ID;
     //private int gameName;
 
     public int getTotaleScore() {
