@@ -19,7 +19,8 @@ and open the template in the editor.
                 <th>Toernooi ID</th>
                 <th>Toernooi naam</th>
                 <th>Begin datum</th>
-                <th>Eind datum</th>                
+                <th>Eind datum</th>
+                <th>Eigenaar</th>
             </tr>
             
             <?php
@@ -29,6 +30,7 @@ and open the template in the editor.
                         $sContent .=  "<td>".$aTournamentListRow->Naam."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Begin_Datum."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Eind_Datum."</td></tr>";
+                        $sContent .=  "<td>".$aTournamentListRow->Eigenaar_ID."</td></tr>";
                         echo $sContent;
                     }
                 }
