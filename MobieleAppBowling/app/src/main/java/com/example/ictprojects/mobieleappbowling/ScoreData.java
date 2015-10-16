@@ -5,35 +5,35 @@ package com.example.ictprojects.mobieleappbowling;
  */
 public class ScoreData {
 
-    private int totaleScore;
-    private int aantalStrikes;
-    private int aantalSpares;
-    private int Score_ID;
-    private int Game_ID;
-    private int Google_ID;
+    private String totaleScore;
+    private String aantalStrikes;
+    private String aantalSpares;
+    //private int Score_ID;
+    //private int Game_ID;
+    //private int Google_ID;
     //private int gameName;
 
-    public int getTotaleScore() {
+    public String getTotaleScore() {
         return totaleScore;
     }
 
-    public void setTotaleScore(int totaleScore) {
+    public void setTotaleScore(String totaleScore) {
         this.totaleScore = totaleScore;
     }
 
-    public int getAantalStrikes() {
+    public String getAantalStrikes() {
         return aantalStrikes;
     }
 
-    public void setAantalStrikes(int aantalStrikes) {
+    public void setAantalStrikes(String aantalStrikes) {
         this.aantalStrikes = aantalStrikes;
     }
 
-    public int getAantalSpares() {
+    public String getAantalSpares() {
         return aantalSpares;
     }
 
-    public void setAantalSpares(int aantalSpares) {
+    public void setAantalSpares(String aantalSpares) {
         this.aantalSpares = aantalSpares;
     }
 }

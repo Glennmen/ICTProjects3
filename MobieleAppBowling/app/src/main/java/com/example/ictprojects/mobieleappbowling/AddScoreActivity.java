@@ -72,7 +72,7 @@ public class AddScoreActivity extends AppCompatActivity
             else
                 return false; 
     }
-    public static String POST(Integer url,ScoreData score){ //url veranderd
+    public static String POST(String url,ScoreData score){ //url veranderd
         InputStream inputStream = null;
         String result = "";
         try{
@@ -132,22 +132,24 @@ public class AddScoreActivity extends AppCompatActivity
     // heb hier iets moeten veranderen. Extra klasse en geen override. Ik weet niet als dit juist is! Team Bilbo
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        protected String doInBackground(Integer... urls) {
+        @Override
+        protected String doInBackground(String... urls) {
 
             score = new ScoreData();
+            score.setTotaleScore((editTotaleScore.getText().toString()));
 
 
-            score.setTotaleScore(Integer.parseInt(editTotaleScore.getText().toString()));
-            score.setAantalStrikes(Integer.parseInt(editAantalStrikes.getText().toString()));
-            score.setAantalSpares(Integer.parseInt(editAantalspares.getText().toString()));
+            score.setTotaleScore(editTotaleScore.getText().toString());
+            score.setAantalStrikes(editAantalStrikes.getText().toString());
+            score.setAantalSpares(editAantalspares.getText().toString());
 
             return POST(urls[0],score);
         }
 
-        @Override
-        protected String doInBackground(String... params) {
-            return null;
-        }
+        //@Override
+        //protected String doInBackground(String... params) {
+          //  return null;
+        //}
 
         /*private class HttpAsyncTask extends AsyncTask<String, Void, String> {
                 @Override
