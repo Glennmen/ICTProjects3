@@ -22,7 +22,7 @@ class Navbar {
                             <li><a href="'.base_url("GameController").'">GameController</a></li>
                             <li><a href="'.base_url("ScoreController").'">ScoreController</a></li>
                             <li><a href="'.base_url("ProgressController").'">ProgressController</a></li>
-                            <li><a href="'.base_url("ToernooiController").'">ToernooiController</a></li>
+                            <li><a href="'.base_url("TournamentController").'">TournamentController</a></li>
 			</ul>
 		</div>
 	</div>

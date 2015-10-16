@@ -18,10 +18,10 @@ class TournamentController extends CI_Controller{
                 $this->load->view('TournamentView', $data);
             }else{
               $aTournamentData = [
-                  'naam' => $this->input->post('tournamentName'),
-                  'startDatum' => $this->input->post('tournamentStartDate'),
-                  'eindDatum' => $this->input->post('tournamentEndDate'),
-                  'eigenaar_ID' => 1,
+                  'Naam' => $this->input->post('tournamentName'),
+                  'Begin_Datum' => $this->input->post('tournamentStartDate'),
+                  'Eind_Datum' => $this->input->post('tournamentEndDate'),
+                  'Eigenaar_ID' => 1,
               ];
               
               $this->load->model('Tournament_model');

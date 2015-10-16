@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.css"/>
     <title> ScorePagina </title>
 </head>
 <body>

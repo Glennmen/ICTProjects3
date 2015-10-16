@@ -1,7 +1,14 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.css"/>
     <title> ToernooiPagina </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
+    <script>
+          jQuery(function($){
+             $("#TournamentStartDate").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
+             $("#TournamentEndDate").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
+    });</script>
 </head>
 <body>
     
@@ -10,7 +17,7 @@
     <?php echo validation_errors()?>
 
 <div class="col-xs-6 col-md-4"> 
-    <form action="ToernooiController" method="post">
+    <form action="TournamentController" method="post">
         <div class="form-group">
             <label for="TournamentName">Toernooi naam:</label>
             <input type="text" class="form-control" id="TournamentName" name="tournamentName" value="<?php echo set_value('tournamentName'); ?>" placeholder="Naam van toernooi">
@@ -27,7 +34,7 @@
         </div>
         
         </br>
-        <button type="submit" name="CreateToernooi" class="btn btn-default">Maak toernooi aan</button>
+        <button type="submit" name="CreateTournament" class="btn btn-default">Maak toernooi aan</button>
     </form>
 </div>
 </body>
