@@ -38,8 +38,7 @@ and open the template in the editor.
                     echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
                 }
             ?>
-        </table>
-        
+        </table>        
             <form action="MyTournamentController" method="post">
                 <button type="submit" name="SelectTournament" class="btn btn-default">Selecteer toernooi</button>
             </form>
