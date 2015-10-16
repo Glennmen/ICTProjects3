@@ -26,11 +26,6 @@
             <input type="date" class="form-control" id="TournamentEndDate" name="tournamentEndDate" value="<?php echo set_value('tournamentEndDate'); ?>" placeholder="Einddatum">
         </div>
         
-        <div class="form-group">
-            <label for="TournamentLocation">Toernooi locatie:</label>
-            <input type="text" class="form-control" id="location" name="location" value="<?php echo set_value('location'); ?>" placeholder="Locatie waar toernooi plaats vind">
-        </div>
-        
         </br>
         <button type="submit" name="CreateToernooi" class="btn btn-default">Maak toernooi aan</button>
     </form>

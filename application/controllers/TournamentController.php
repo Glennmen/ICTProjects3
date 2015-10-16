@@ -12,7 +12,6 @@ class TournamentController extends CI_Controller{
         $this->form_validation->set_rules('tournamentName', 'Name','required');
         $this->form_validation->set_rules('tournamentStartDate', 'StartDate','required');
         $this->form_validation->set_rules('tournamentEndDate', 'EndDate','required');
-        $this->form_validation->set_rules('location', 'location','required');
         
         if(isset($_POST['CreateTournament'])){
             if($this->form_validation->run()==FALSE){
@@ -22,8 +21,7 @@ class TournamentController extends CI_Controller{
                   'naam' => $this->input->post('tournamentName'),
                   'startDatum' => $this->input->post('tournamentStartDate'),
                   'eindDatum' => $this->input->post('tournamentEndDate'),
-                  'locatie' => $this->input->post('location'),
-                  'tournooi_id' => $this->input->post('type') 
+                  'eigenaar_ID' => 1,
               ];
               
               $this->load->model('Tournament_model');
