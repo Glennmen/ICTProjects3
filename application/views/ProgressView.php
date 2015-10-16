@@ -16,7 +16,7 @@ and open the template in the editor.
 
 <div class="col-xs-6 col-md-4"> 
     <table class="table"> 
-        <tr><th>GameNr</th><th>Totaal</th><th>Strikes</th><th>Sparées</th></tr>
+        <tr><th>GameNr</th><th>Totaal</th><th>Strikes</th><th>Spares</th></tr>
             <?php
                 if($aProgressData != null){
                     foreach($aProgressData->result() as $aProgressRow){
