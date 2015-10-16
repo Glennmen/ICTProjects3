@@ -7,6 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.css"/>
         <title></title>
     </head>
     <body>
@@ -24,8 +25,8 @@ and open the template in the editor.
             </tr>
             
             <?php
-                if($aData != null){
-                    foreach($aData->result() as $aTournamentListRow){
+                if($aTournamentListData != null){
+                    foreach($aTournamentListData->result() as $aTournamentListRow){
                         $sContent =  "<tr><td>".$aTournamentListRow->Toernooi_ID."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Naam."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Begin_Datum."</td>";
