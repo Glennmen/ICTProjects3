@@ -37,7 +37,7 @@ class ScoreController extends CI_Controller {
             $this->load->view('ScoreView', $data);
         }
 
-        if (isset($_POST['json']))
+        if (isset($_POST['application/json']))
         {
             $aJson = $_POST['json'];
             $aScoreData = json_decode($aJson, true);

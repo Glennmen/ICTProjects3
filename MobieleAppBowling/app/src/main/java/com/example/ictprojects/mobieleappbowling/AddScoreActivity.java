@@ -85,9 +85,9 @@ public class AddScoreActivity extends AppCompatActivity
             String json = "";
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("scoreTotaal", score.getTotaleScore());
-            jsonObject.accumulate("scoreStrikes",score.getAantalStrikes());
-            jsonObject.accumulate("scoreSpares",score.getAantalSpares());
+            jsonObject.accumulate("Totaal", score.getTotaleScore());
+            jsonObject.accumulate("Strikes",score.getAantalStrikes());
+            jsonObject.accumulate("Spare",score.getAantalSpares());
             jsonObject.accumulate("Game_ID",3);
             jsonObject.accumulate("Google_ID",3);
 
@@ -131,7 +131,7 @@ public class AddScoreActivity extends AppCompatActivity
             case R.id.submitScoreButton:
                 if(!validate())
                     Toast.makeText(getBaseContext(),"Enter some data!",Toast.LENGTH_LONG).show();
-                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/ScoreController");
+                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/AddScore");
                 break;
         }
 
