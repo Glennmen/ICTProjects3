@@ -81,7 +81,7 @@ public class AddScoreActivity extends AppCompatActivity
         String result = "";
         try{
             HttpClient httpClient = new DefaultHttpClient();
-            HttpPost httpPost = new HttpPost(String.valueOf(url));
+            HttpPost httpPost = new HttpPost(url);
             String json = "";
 
             JSONObject jsonObject = new JSONObject();
@@ -112,7 +112,7 @@ public class AddScoreActivity extends AppCompatActivity
         }
         catch(Exception e)
         {
-            Log.d("Inputstream",e.getLocalizedMessage());
+            Log.d("Inputstream", e.getLocalizedMessage());
 
         }
 
@@ -131,7 +131,7 @@ public class AddScoreActivity extends AppCompatActivity
             case R.id.submitScoreButton:
                 if(!validate())
                     Toast.makeText(getBaseContext(),"Enter some data!",Toast.LENGTH_LONG).show();
-                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/ScoreController.php");
+                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/ScoreController");
                 break;
         }
 

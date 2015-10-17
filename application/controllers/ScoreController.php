@@ -46,8 +46,8 @@ class ScoreController extends CI_Controller {
             $this->Score_model->ScoreToevoegen($aScoreData);
 
         }
-
-       /* if (isset($_POST['scoreTotaal']) && isset($_POST['scoreStrikes']) && isset($_POST['scoreSpares']) && isset($_POST['Game_ID']) && isset($_POST['Google_ID']))
+/*
+       if (isset($_POST['scoreTotaal']) && isset($_POST['scoreStrikes']) && isset($_POST['scoreSpares']) && isset($_POST['Game_ID']) && isset($_POST['Google_ID']))
         {
             $aScoreData =[
                 //'Game_ID' => $this->input->post('gameID'),
