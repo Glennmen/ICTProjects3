@@ -38,10 +38,23 @@ class ScoreController extends CI_Controller {
         }
 
         $aMobileScoreData = json_decode(file_get_contents('php://input'),true);
+        $text = print_r($aMobileScoreData,true);
+        file_put_contents('coinbase.txt', $text);
 
         if($aMobileScoreData) {
+
+            $text = print_r($aMobileScoreData,true);
+            file_put_contents('coinbase2.txt', $text);
+
+            $aScoreData =[
+                'Game_ID' =>$this->input->post('Game_ID'),
+                'Google_ID' =>$this->input->post('Google_ID'),
+                'Totaal' => $this->input->post('Totaal'),
+                'Strikes' => $this->input->post('Spare'),
+                'Spare' => $this->input->post('Strikes')
+            ];
                 $this->load->model('Score_model');
-                $this->Score_model->ScoreToevoegen($aMobileScoreData);
+                $this->Score_model->ScoreToevoegen($aScoreData);
             }
         }
 
