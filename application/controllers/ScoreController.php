@@ -37,15 +37,15 @@ class ScoreController extends CI_Controller {
             $this->load->view('ScoreView', $data);
         }
 
-        if (isset($_POST['application/json']))
-        {
-            $aJson = $_POST['json'];
-            $aScoreData = json_decode($aJson, true);
+        $aMobileScoreData = json_decode(file_get_contents('php://input'),true);
 
-            $this->load->model('Score_model');
-            $this->Score_model->ScoreToevoegen($aScoreData);
-
+        if($aMobileScoreData) {
+                $this->load->model('Score_model');
+                $this->Score_model->ScoreToevoegen($aMobileScoreData);
+            }
         }
+
+
 /*
        if (isset($_POST['scoreTotaal']) && isset($_POST['scoreStrikes']) && isset($_POST['scoreSpares']) && isset($_POST['Game_ID']) && isset($_POST['Google_ID']))
         {
@@ -63,6 +63,6 @@ class ScoreController extends CI_Controller {
             $this->Score_model->ScoreToevoegen($aScoreData);
         }*/
         
-    }
+
 }
 

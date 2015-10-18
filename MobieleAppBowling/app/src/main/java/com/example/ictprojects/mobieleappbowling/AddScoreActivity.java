@@ -131,7 +131,7 @@ public class AddScoreActivity extends AppCompatActivity
             case R.id.submitScoreButton:
                 if(!validate())
                     Toast.makeText(getBaseContext(),"Enter some data!",Toast.LENGTH_LONG).show();
-                    new HttpAsyncTask().execute("http://localhost/ICTProjects3/ScoreController");
+                    new HttpAsyncTask().execute("http://localhost:63342/ICTProjects3/application/controllers/ScoreController.php");
                 break;
         }
 
