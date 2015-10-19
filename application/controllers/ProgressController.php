@@ -12,7 +12,7 @@ class ProgressController extends CI_Controller {
     
     public function view_table(){
         $this->load->model('Progress_model');
-        $result = $this->Progress_model->StatistiekenOphalen(2); //komt googleID
+        $result = $this->Progress_model->StatistiekenOphalen(3); //komt googleID
         if ($result != false) {
             return $result;
         }else{
