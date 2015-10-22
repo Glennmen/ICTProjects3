@@ -56,6 +56,8 @@ public class AddScoreActivity extends AppCompatActivity
         isConnected = (TextView) findViewById(R.id.isConnected);
 
         editTotaleScore.setFilters(new InputFilter[] {new InputFilterMinMax("0", "300")});
+        editAantalspares.setFilters(new InputFilter[] {new InputFilterMinMax("0", "10")});
+        editAantalStrikes.setFilters(new InputFilter[] {new InputFilterMinMax("0", "12")});
 
 
         if(isConnected())
