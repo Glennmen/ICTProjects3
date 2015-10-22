@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,6 +54,8 @@ public class AddScoreActivity extends AppCompatActivity
         editAantalspares = (EditText) findViewById(R.id.editAantalspares);
         submitScoreButton = (Button) findViewById(R.id.submitScoreButton);
         isConnected = (TextView) findViewById(R.id.isConnected);
+
+        editTotaleScore.setFilters(new InputFilter[] {new InputFilterMinMax("0", "300")});
 
 
         if(isConnected())
