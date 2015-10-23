@@ -12,7 +12,7 @@ class TournamentLinkListController extends CI_Controller {
         else
         {
             $data['aTournamentListData'] = $this->view_list();
-            $this->load->view('TournamentListView', $data);
+            $this->load->view('TournamentLinkListView', $data);
         }
     }
     
