@@ -10,9 +10,10 @@ class GameController extends CI_Controller{
         $data['nav'] = $this->navbar->get_navbar();
         
         $this->form_validation->set_rules('gameName', 'Name','required');
-        $this->form_validation->set_rules('gameDate', 'Date','required');
-        $this->form_validation->set_rules('gameTime', 'Time','required');
+        $this->form_validation->set_rules('gameDate', 'Date','required|callback_dateCheck');
+        $this->form_validation->set_rules('gameTime', 'Time','required|callback_timeCheck');
         $this->form_validation->set_rules('location', 'location','required');
+       
         
         if(isset($_POST['CreateGame'])){
             if($this->form_validation->run()==FALSE){
@@ -36,6 +37,23 @@ class GameController extends CI_Controller{
             $this->load->view('gameView1', $data);
         }
         
+    }
+    public function dateCheck($strDate){
+        
+        $date = new DateTime($strDate);
+        
+        $date->format('d/m/y');
+        
+       echo $day = date_format($date , 'd');
+       echo $month = date_format($date, 'm');
+       echo $year =date_format($date,'y');
+        
+        if(checkdate ( $month , $day , $year )){
+                
+        }
+        
+        $this->form_validation->set_message('dateCheck', 'Enter a valid date format');
+        return FALSE;
     }
     
 }
