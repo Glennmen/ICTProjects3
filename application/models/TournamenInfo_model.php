@@ -12,12 +12,14 @@ class TournamentInfo_model extends CI_Model {
     {
         $this->load->database();
         
+        biblo
+        
         $aGameData =$this->db->query("SELECT Game_ID FROM game WHERE Toernooi_ID =
                                     ".$tournamentID);
         $aScoreData = array();
         foreach($aGameData->result() as $aRow)
         {
-            $aScoreData .= $this->db->query("SELECT Totaal AND Google_ID FROM score WHERE Game_ID = ".$aRow); 
+            $aScoreData .= $this->db->query("SELECT Totaal, Google_ID FROM score WHERE Game_ID = ".$aRow); 
         }
     }
 }
