@@ -17,10 +17,15 @@ class TournamentController extends CI_Controller{
             if($this->form_validation->run()==FALSE){
                 $this->load->view('TournamentView', $data);
             }else{
+              
+              $startDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentStartDate'));               
+              $endDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentEndDate'));               
+
+                
               $aTournamentData = [
                   'Naam' => $this->input->post('tournamentName'),
-                  'Begin_Datum' => $this->input->post('tournamentStartDate'),
-                  'Eind_Datum' => $this->input->post('tournamentEndDate'),
+                  'Begin_Datum' => $startDate->format("Y-m-d"),
+                  'Eind_Datum' => $endDate->format("Y-m-d"),
                   'Eigenaar_ID' => 1,
               ];
               
@@ -37,9 +42,6 @@ class TournamentController extends CI_Controller{
     }
     public function dateCheck($strDate){
         
-        $format ="d/m/y" ;
-        $publishDate = DateTime::createFromFormat('d/m/Y', $strDate);
-
         $values = explode("/", $strDate);
        
         if(checkdate ( $values[1] , $values[0] , $values[2] )){

@@ -23,9 +23,12 @@ class GameController extends CI_Controller{
             if($this->form_validation->run()==FALSE){
                 $this->load->view('gameView1', $data);
             }else{
+                
+            $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));               
+            
               $aGameData = [
                   'naam' => $this->input->post('gameName'),
-                  'datum' => $this->input->post('gameDate'),
+                  'datum' => $Date->format("Y-m-d"),
                   'tijd' => $this->input->post('gameTime'),
                   'locatie' => $this->input->post('location'),
                   'tournooi_id' => $this->input->post('type') 
@@ -43,9 +46,6 @@ class GameController extends CI_Controller{
     } 
     public function dateCheck($strDate){
         
-        $format ="d/m/y" ;
-        $publishDate = DateTime::createFromFormat('d/m/Y', $strDate);
-
         $values = explode("/", $strDate);
        
         if(checkdate ( $values[1] , $values[0] , $values[2] )){
@@ -58,9 +58,6 @@ class GameController extends CI_Controller{
     
     public function timeCheck($strTime){
         $values = explode(":", $strTime);
-        
-        echo $values[0];
-        echo $values[1];
         
         if($values[0] > 23 || $values[1] > 59){
             $this->form_validation->set_message('timeCheck', 'Enter a valid time ');
