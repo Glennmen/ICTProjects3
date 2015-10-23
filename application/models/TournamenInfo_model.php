@@ -17,7 +17,7 @@ class TournamentInfo_model extends CI_Model {
         $aScoreData = array();
         foreach($aGameData->result() as $aRow)
         {
-            $aScoreData .= $this->db->query("SELECT Totaal AND Google_ID FROM score WHERE Game_ID = ".$aRow);
+            $aScoreData .= $this->db->query("SELECT Totaal AND Google_ID FROM score WHERE Game_ID = ".$aRow); 
         }
     }
 }
