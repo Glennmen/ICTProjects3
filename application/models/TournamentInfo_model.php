@@ -15,13 +15,7 @@ class TournamentInfo_model extends CI_Model {
        //$aData = $this->db->query("SELECT Totaal,Google_ID,Strikes,Spare FROM score
         //                            INNER JOIN game ON score.GAME_ID = game.GAME_ID WHERE game.Tournooi_ID =".$tournamentID);
 
-        $asData = $this->db->query("SELECT * FROM tournament");
-
-        echo '<pre>';
-        print_r($asData);
-        echo '</pre>';
-
-
+        $asData = $this->db->query("SELECT * FROM Score WHERE Google_ID =2");
 
         //return $aData;
 

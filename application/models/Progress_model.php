@@ -6,6 +6,7 @@ class Progress_model extends CI_Model {
     {
         $this->load->database();  
         $aProgressData =$this->db->query("SELECT * FROM Score WHERE Google_ID =".$googleID );
+
         return $aProgressData;
     }
 }
