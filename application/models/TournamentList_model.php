@@ -5,10 +5,9 @@ class TournamentList_model extends CI_Model {
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT * FROM tournament WHERE Toernooi_ID =
-                                    (SELECT tournooiID FROM deelnemerstournooi WHERE accepted=1 and googleID=".$googleID.")");
+        $aData =$this->db->query("SELECT Toernooi_ID, Eigenaar_ID, Naam FROM tournament
+                                     INNER JOIN deelnemerstournooi ON tournament.Toernooi_ID = deelnemerstournooi.tournooiID WHERE accepted = 1 and googleID=".$googleID);
         return $aData;
     }
 }
-
 ?>
