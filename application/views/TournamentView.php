@@ -6,8 +6,8 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
     <script>
           jQuery(function($){
-             $("#TournamentStartDate").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
-             $("#TournamentEndDate").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
+             $("#TournamentStartDate").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
+             $("#TournamentEndDate").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
     });</script>
 </head>
 <body>
@@ -24,12 +24,12 @@
 
         <div class="form-group">
             <label for="StartDate">Toernooi begindatum:</label>
-            <input type="date" class="form-control" id="TournamentStartDate" name="tournamentStartDate" value="<?php echo set_value('tournamentStartDate'); ?>" placeholder="Begindatum">
+            <input type="text" class="form-control" id="TournamentStartDate" name="tournamentStartDate" value="<?php echo set_value('tournamentStartDate'); ?>" placeholder="Begindatum">
         </div>
 
         <div class="form-group">
             <label for="EndDate">Toernooi einddatum:</label>
-            <input type="date" class="form-control" id="TournamentEndDate" name="tournamentEndDate" value="<?php echo set_value('tournamentEndDate'); ?>" placeholder="Einddatum">
+            <input type="text" class="form-control" id="TournamentEndDate" name="tournamentEndDate" value="<?php echo set_value('tournamentEndDate'); ?>" placeholder="Einddatum">
         </div>
         
         </br>

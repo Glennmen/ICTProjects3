@@ -15,7 +15,7 @@
     <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery.maskedinput.js"></script>
     <script>
           jQuery(function($){
-             $("#GameDate").mask("99/99/9999",{placeholder:"mm/dd/yyyy"});
+             $("#GameDate").mask("99/99/9999",{placeholder:"dd/mm/yyyy"});
              $("#GameTime").mask("99:99",{placeholder:"hh:mm"});
     });
     </script>
@@ -36,7 +36,7 @@
 
         <div class="form-group">
             <label for="GameDatum">Datum:</label>
-            <input type="date" class="form-control" id="GameDate" name="gameDate" value="<?php echo set_value('gameDate'); ?>" placeholder="Datum">
+            <input type="text" class="form-control" id="GameDate" name="gameDate" value="<?php echo set_value('gameDate'); ?>" placeholder="Datum">
         </div>
 
         <div class="form-group">
