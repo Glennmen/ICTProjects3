@@ -24,8 +24,8 @@ and open the template in the editor.
                 <th>Eind datum</th>
                 <th>Eigenaar</th>
             </tr>
-            
-            <?php 
+
+            <?php
                 if($aTournamentListData != null){
                     foreach($aTournamentListData->result() as $aTournamentListRow){
                         $sContent =  "<tr><td>".$aTournamentListRow->Toernooi_ID."</td>";
