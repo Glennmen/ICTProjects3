@@ -40,20 +40,17 @@ class GameController extends CI_Controller{
     }
     public function dateCheck($strDate){
         
-        $date = new DateTime($strDate);
-        
-        $date->format('d/m/y');
-        
-       echo $day = date_format($date , 'd');
-       echo $month = date_format($date, 'm');
-       echo $year =date_format($date,'y');
-        
-        if(checkdate ( $month , $day , $year )){
-                
-        }
-        
-        $this->form_validation->set_message('dateCheck', 'Enter a valid date format');
-        return FALSE;
+        $format ="d/m/y" ;
+        $publishDate = DateTime::createFromFormat('d/m/Y', $strDate);
+
+        $values = explode("/", $strDate);
+       
+        if(checkdate ( $values[1] , $values[0] , $values[2] )){
+             return true;
+        }else{
+            $this->form_validation->set_message('dateCheck', 'Enter a valid date format');
+            return FALSE;
+        }   
     }
     
 }
