@@ -15,6 +15,7 @@ and open the template in the editor.
     <?php echo $nav ?>
 
     <?php echo validation_errors()?>
+        
         <table>
             <tr>
                 <th>Toernooi ID</th>
