@@ -6,6 +6,8 @@ class TournamentInfoController extends CI_Controller {
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
 
+        $this->load->model('TournamentInfo_model');
+        $this->TournamentInfo_model->AllParticipants(1);
 
         $this->load->view('TournamentInfoView',$data);
 
