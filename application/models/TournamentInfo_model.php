@@ -12,7 +12,8 @@ class TournamentInfo_model extends CI_Model {
     {
         $this->load->database();
 
-       $aData = $this->db->query("SELECT Vnaam, Fnaam, Google_ID FROM persoon");
+       $aData = $this->db->query("SELECT Vnaam, Fnaam FROM persoon
+               INNER JOIN deelnemerstournooi ON persoon.Google_ID = deelnemerstournooi.googleID WHERE tournooiID = ".$tournamentID);
        
        return $aData;
 

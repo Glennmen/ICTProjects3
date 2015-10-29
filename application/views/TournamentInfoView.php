@@ -25,7 +25,6 @@ and open the template in the editor.
                 foreach($aParticipants->result() as $aParticipantRow) {
                     $sContent = "<tr><td>".$aParticipantRow->Vnaam."</td>";
                     $sContent .= "<td>".$aParticipantRow->Fnaam."</td>";
-                    $sContent .= "<td>".$aParticipantRow->Google_ID."</td></tr>";
                     echo $sContent;      
                 }
             } else {
