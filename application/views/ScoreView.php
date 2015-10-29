@@ -45,26 +45,18 @@ and open the template in the editor.
         </div>
         
         <div class="form-group">
-        <select id="tourney" multiple class="form-control" style="display: none">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        <select id="tourney" name="Tourney" multiple class="form-control" style="display: none"  onchange="getGames()">
+
           </select>
         </div>
         
         <div class="form-group">
-        <select id="game" multiple class="form-control" style="display: none">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
+        <select id="game" name="Game" multiple class="form-control" style="display: none">
+
           </select>
         </div>
         
-        </br>
+        <br>
         <button type="submit" name="UploadScore" class="btn btn-default">Upload Score</button>
     </form>
 </div>

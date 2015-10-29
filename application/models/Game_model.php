@@ -12,11 +12,4 @@ class Game_model extends CI_Model {
         $this->load->database();
         $this->db->insert('game', $aData);
     }
-    
-    public function GameOphalen($googleID){
-        $this->load->database();
-        $aGameData = $this->db->query("SELECT * FROM game " );
-        
-        return $aGameData;
-    }
 }

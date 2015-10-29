@@ -66,12 +66,5 @@ class GameController extends CI_Controller{
             return true;   
         }
     }
-    
-    public function json(){
-        $this->load->model('Game_model');
-        $result = $this->Game_model->GameOphalen($this->input->post('GoogleID'));
-        
-        echo json_encode($result);
-    }
 }
 
