@@ -19,7 +19,7 @@ and open the template in the editor.
 <h1></h1>
 <div class="col-xs-6 col-md-4">
 <table class="table">
-    <tr><th>Deelnemers</th><th>Aantal gespeelde games</th><th>Gemiddelde score</th><th>Gemiddeld aantal strikes</th><th>Gemiddeld aantal spares</th></tr>
+    <tr><th>Voornaam</th><th>Achternaam</th><th>Aantal gespeelde games</th><th>Gemiddelde score</th><th>Gemiddeld aantal strikes</th><th>Gemiddeld aantal spares</th></tr>
         <?php
             if($aParticipants != NULL) {
                 foreach($aParticipants->result() as $aParticipantRow) {
@@ -27,7 +27,17 @@ and open the template in the editor.
                     $sContent .= "<td>".$aParticipantRow->Fnaam."</td>";
                     echo $sContent;      
                 }
-            } else {
+            } 
+            if($aScore != null)
+            {
+                foreach ($aScore->result() as $aScoreRow) {
+                    $sContent = "<tr><td>".$aScoreRow->Totaal."</td>";
+                    $sContent .= "<tr><td>".$aScoreRow->Strikes."</td>";
+                    $sContent .= "<tr><td>".$aScoreRow->Spare."</td></tr>";
+                    echo $sContent;
+                }
+            }
+            else {
                 echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
             }
         ?>
