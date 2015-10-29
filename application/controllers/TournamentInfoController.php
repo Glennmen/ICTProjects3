@@ -6,21 +6,19 @@ class TournamentInfoController extends CI_Controller {
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
 
-        $this->load->model('TournamentInfo_model');
-        $this->TournamentInfo_model->AllParticipants(1);
-
+        $data['aParticipants'] = $this->view_table();
         $this->load->view('TournamentInfoView',$data);
 
     }
 
-    /*public function view_list(){
-        $this->load->model('TournamentList_model');
-        $result = $this->TournamentList_model->AllTournaments(1); //komt googleID
+    public function view_table() {
+        $this->load->model('TournamentInfo_model');
+        $result = $this->TournamentInfo_model->AllParticipants(1);
         if ($result != false) {
             return $result;
-        }else{
+        } else {
             return null;
         }
-    }*/
+    }
 }
 ?>

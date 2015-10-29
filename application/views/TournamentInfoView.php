@@ -17,20 +17,31 @@ and open the template in the editor.
 <?php echo validation_errors()?>
 
 <h1></h1>
-
-<table class=".table-bordered">
-    <tr>
+<div class="col-xs-6 col-md-4">
+<table class="table">
+    <tr><th>Deelnemers</th><th>Aantal gespeelde games</th><th>Gemiddelde score</th><th>Gemiddeld aantal strikes</th><th>Gemiddeld aantal spares</th></tr>
+        <?php
+            if($aParticipants != NULL) {
+                foreach($aParticipants->result() as $aParticipantRow) {
+                    $sContent = "<tr><td>".$aParticipantRow->Vnaam."</td>";
+                    $sContent .= "<td>".$aParticipantRow->Fnaam."</td>";
+                    $sContent .= "<td>".$aParticipantRow->Google_ID."</td></tr>";
+                    echo $sContent;      
+                }
+            } else {
+                echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
+            }
+        ?>
+   <!-- <tr>
         <th>Deelnemers</th>
         <th>Aantal gespeelde games</th>
         <th>Gemiddelde score</th>
         <th>Gemiddeld aantal strikes</th>
         <th>Gemiddeld aantal spares</th>
     </tr>
+   -->
 
 </table>
-<form action="MyTournamentController" method="post">
-    <button type="submit" name="SelectTournament" class="btn btn-default">Selecteer toernooi</button>
-</form>
 </div>
 </body>
 </html>
