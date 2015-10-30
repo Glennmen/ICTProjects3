@@ -22,6 +22,7 @@ and open the template in the editor.
                 <th>Begin datum</th>
                 <th>Eind datum</th>
                 <th>Eigenaar</th>
+                <th>Status</th>
                 <th>Accept</th>
                 <th>Decline</th>
             </tr>
@@ -34,9 +35,9 @@ and open the template in the editor.
                         $sContent .=  "<td>".$aTournamentListRow->Begin_Datum."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Eind_Datum."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Eigenaar_ID."</td>";
-                        $sContent .=  "<form action='AcceptedController' method='post'>";
-                        $sContent .=  "<td><button type = 'submit' name = 'Accept".$aTournamentListRow->Toernooi_ID."'>Accept</button></td>";
-                        $sContent .=  "<td><button type = 'submit' name = 'Decline".$aTournamentListRow->Toernooi_ID."'>Decline</button></td>";
+                        $sContent .=  "<form action='InvitesController' method='post'>";
+                        $sContent .=  "<td><button type = 'submit' name ='Accept' value = '".$aTournamentListRow->Toernooi_ID."'>Accept</button></td>";
+                        $sContent .=  "<td><button type = 'submit' name ='Decline' value = '".$aTournamentListRow->Toernooi_ID."'>Decline</button></td>";
                         $sContent .=  "</form></tr>";
                         echo $sContent;
                     }
@@ -46,9 +47,6 @@ and open the template in the editor.
                 }
             ?>
         </table>        
-            <form action="MyTournamentController" method="post">
-                <button type="submit" name="SelectTournament" class="btn btn-default">Selecteer toernooi</button>
-            </form>
         </div>
     </body>
 </html>

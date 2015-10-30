@@ -5,18 +5,20 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 class InvitesController extends CI_Controller{
     
     public function index(){
-        $googleID = 1;
+        $googleID = 2;
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         
         if(isset($_POST['Accept'])){
             $this->load->model('Invites_model');
+            $toernooiID = $_POST['Accept'];
             $this->Invites_model->Accepted($googleID,$toernooiID);
             
             $data['aTournamentListData'] = $this->view_list();
             $this->load->view('InvitesView', $data);
         }else if(isset($_POST['Decline'])){
             $this->load->model('Invites_model');
+            $toernooiID = $_POST['Decline'];
             $this->Invites_model->Declined($googleID,$toernooiID);
             
             $data['aTournamentListData'] = $this->view_list();
