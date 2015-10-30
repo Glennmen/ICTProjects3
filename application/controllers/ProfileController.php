@@ -9,9 +9,9 @@ class ProfileController extends CI_Controller{
       //  $data = $this->Profile_model->GetProfile(2);
         $data['nav'] = $this->navbar->get_navbar();   
          
-    $this->form_validation->set_rules('Anaam','Achternaam','required');    
-    $this->form_validation->set_rules('Vnaam','Voornaam','required');    
-   
+    $this->form_validation->set_rules('Last_Name','Achternaam','required');    
+    $this->form_validation->set_rules('First_Name','Voornaam','required');    
+    $this->form_validation->set_rules('Email', 'Email', 'valid_email');
     
     if (isset($_POST['UpdateProfile'])) {
             if ($this->form_validation->run() == FALSE) {
