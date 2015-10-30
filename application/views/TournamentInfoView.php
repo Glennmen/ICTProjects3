@@ -25,10 +25,10 @@ and open the template in the editor.
                 foreach($aParticipants->result() as $aParticipantRow) {
                     $sContent = "<tr><td>".$aParticipantRow->Vnaam."</td>";
                     $sContent .= "<td>".$aParticipantRow->Fnaam."</td>";
-                    $sContent .= "<td></td>";
-                    $sContent .= "<td>".$aParticipantRow->Totaal."</td>";
-                    $sContent .= "<td>".$aParticipantRow->Strikes."</td>";
-                    $sContent .= "<td>".$aParticipantRow->Spare."</td>";
+                    $sContent .= "<td>".$aParticipantRow->aantalGames."</td>";
+                    $sContent .= "<td>".round($aParticipantRow->gemTotaal, 1)."</td>";
+                    $sContent .= "<td>".round($aParticipantRow->gemStrikes, 1)."</td>";
+                    $sContent .= "<td>".round($aParticipantRow->gemSpare, 1)."</td>";
                     echo $sContent;      
                 }
             } 

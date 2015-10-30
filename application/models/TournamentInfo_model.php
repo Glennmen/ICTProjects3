@@ -12,10 +12,11 @@ class TournamentInfo_model extends CI_Model {
     {
         $this->load->database();
        
-        $aData = $this->db->query("SELECT persoon.Google_ID, persoon.Vnaam, persoon.Fnaam, score.Totaal, score.Strikes, score.Spare
+        $aData = $this->db->query("SELECT COUNT(persoon.Google_ID) AS aantalGames, persoon.Vnaam, persoon.Fnaam, AVG(score.Totaal) AS gemTotaal, AVG(score.Strikes) AS gemStrikes, AVG(score.Spare) AS gemSpare
                 FROM persoon INNER JOIN score ON score.Google_ID = persoon.Google_ID
                 INNER JOIN game ON game.Game_ID = score.Game_ID
-                INNER JOIN tournament ON tournament.Toernooi_ID = game.Tournooi_ID WHERE tournament.Toernooi_ID = ".$tournamentID);
+                INNER JOIN tournament ON tournament.Toernooi_ID = game.Tournooi_ID WHERE tournament.Toernooi_ID = ".$tournamentID.
+                " GROUP BY persoon.Fnaam");
         
        return $aData;
     }
