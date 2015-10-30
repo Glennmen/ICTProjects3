@@ -24,6 +24,7 @@ class Navbar {
                             <li><a href="'.base_url("ProgressController").'">ProgressController</a></li>
                             <li><a href="'.base_url("TournamentController").'">TournamentController</a></li>
                             <li><a href="'.base_url("TournamentListController").'">TournamentListController</a></li>
+                            <li><a href="'.base_url("TournamentLinkListController").'">TournamentLinkListController</a></li>
                             <li><a href="'.base_url("TournamentInfoController").'">TournamentInfoController</a></li>
                             <li><a href="'.base_url("InvitesController").'">InvitesController</a></li>
                             <li><a href="'.base_url("ProfileController").'">ProfileController</a></li>    
