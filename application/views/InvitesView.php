@@ -22,7 +22,6 @@ and open the template in the editor.
                 <th>Begin datum</th>
                 <th>Eind datum</th>
                 <th>Eigenaar</th>
-                <th>Status</th>
                 <th>Accept</th>
                 <th>Decline</th>
             </tr>

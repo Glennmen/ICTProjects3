@@ -1,7 +1,7 @@
 <?php
 if(!defined('BASEPATH'))exit('No direct acces allowed');
 
-
+//
 class InvitesController extends CI_Controller{
     
     public function index(){
