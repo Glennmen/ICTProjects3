@@ -7,7 +7,7 @@ class TournamentInfoController extends CI_Controller {
         $data['nav'] = $this->navbar->get_navbar();
 
         $data['aParticipants'] = $this->view_participants();
-        $data['aScore'] = $this->view_score();
+        //$data['aScore'] = $this->view_score();
         $this->load->view('TournamentInfoView',$data);
 
     }
@@ -15,16 +15,6 @@ class TournamentInfoController extends CI_Controller {
     public function view_participants() {
         $this->load->model('TournamentInfo_model');
         $result = $this->TournamentInfo_model->AllParticipants(1);
-        if ($result != false) {
-            return $result;
-        } else {
-            return null;
-        }
-    }
-    
-    public function view_score() {
-        $this->load->model('TournamentInfo_model');
-        $result = $this->TournamentInfo_model->ScoreParticipants(1);
         if ($result != false) {
             return $result;
         } else {
