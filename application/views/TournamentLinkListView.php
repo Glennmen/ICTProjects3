@@ -8,7 +8,7 @@
     
     <?php echo $nav ?>
     <?php echo validation_errors()?>
-        <form action="MyTournamentController" method="post">
+        <form action="TournamentInfoController" method="post">
             <select name="tournaments" size="5" style="width: 300px">
             <?php 
                 if($aTournamentListData != null){
