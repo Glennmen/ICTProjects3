@@ -23,8 +23,8 @@ and open the template in the editor.
         <?php
             if($aParticipants != NULL) {
                 foreach($aParticipants->result() as $aParticipantRow) {
-                    $sContent = "<tr><td>".$aParticipantRow->Vnaam."</td>";
-                    $sContent .= "<td>".$aParticipantRow->Fnaam."</td>";
+                    $sContent = "<tr><td>".$aParticipantRow->Last_Name."</td>";
+                    $sContent .= "<td>".$aParticipantRow->First_Name."</td>";
                     $sContent .= "<td>".$aParticipantRow->aantalGames."</td>";
                     $sContent .= "<td>".round($aParticipantRow->gemTotaal, 1)."</td>";
                     $sContent .= "<td>".round($aParticipantRow->gemStrikes, 1)."</td>";

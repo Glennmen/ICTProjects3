@@ -5,8 +5,8 @@ class TournamentList_model extends CI_Model {
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT Toernooi_ID, Eigenaar_ID, Begin_Datum, Eind_Datum, Naam FROM tournament
-                                    INNER JOIN deelnemerstournooi ON tournament.Toernooi_ID = deelnemerstournooi.tournooiID WHERE accepted = 1 and googleID=".$googleID);
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE participants_tournament.Google_ID=".$googleID);
         
         
        return $aData;
@@ -15,32 +15,24 @@ class TournamentList_model extends CI_Model {
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT Toernooi_ID, Eigenaar_ID, Begin_Datum, Eind_Datum, Naam FROM tournament
-                                    INNER JOIN deelnemerstournooi ON tournament.Toernooi_ID = deelnemerstournooi.tournooiID WHERE accepted = 0 and googleID=".$googleID);
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
         return $aData;
     }
     public function AllAcceptedTournaments($googleID)
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT Toernooi_ID, Eigenaar_ID, Begin_Datum, Eind_Datum, Naam FROM tournament
-                                    INNER JOIN deelnemerstournooi ON tournament.Toernooi_ID = deelnemerstournooi.tournooiID WHERE accepted = 1 and googleID=".$googleID);
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 1 AND participants_tournament.Google_ID=".$googleID);
         return $aData;
     }
     public function AllDeclinedTournaments($googleID)
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT Toernooi_ID, Eigenaar_ID, Begin_Datum, Eind_Datum, Naam FROM tournament
-                                    INNER JOIN deelnemerstournooi ON tournament.Toernooi_ID = deelnemerstournooi.tournooiID WHERE accepted = 2 and googleID=".$googleID);
-        return $aData;
-    }
-    public function AllAnyTournaments($googleID)
-    {
-        $this->load->database();
-        
-        $aData =$this->db->query("SELECT Toernooi_ID, Eigenaar_ID, Begin_Datum, Eind_Datum, Naam FROM tournament
-                                    INNER JOIN deelnemerstournooi ON tournament.Toernooi_ID = deelnemerstournooi.tournooiID WHERE googleID=".$googleID);
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 2 AND participants_tournament.Google_ID=".$googleID);
         return $aData;
     }
 }

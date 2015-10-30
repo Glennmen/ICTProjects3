@@ -30,13 +30,13 @@ and open the template in the editor.
                 $sContent = null;
                 if($aTournamentListData != null){
                     foreach($aTournamentListData->result() as $aTournamentListRow){
-                        $sContent .=  "<tr><td>".$aTournamentListRow->Naam."</td>";
-                        $sContent .=  "<td>".$aTournamentListRow->Begin_Datum."</td>";
-                        $sContent .=  "<td>".$aTournamentListRow->Eind_Datum."</td>";
-                        $sContent .=  "<td>".$aTournamentListRow->Eigenaar_ID."</td>";
+                        $sContent .=  "<tr><td>".$aTournamentListRow->Tournament_Name."</td>";
+                        $sContent .=  "<td>".$aTournamentListRow->Start_Date."</td>";
+                        $sContent .=  "<td>".$aTournamentListRow->End_Date."</td>";
+                        $sContent .=  "<td>".$aTournamentListRow->Google_ID."</td>";
                         $sContent .=  "<form action='InvitesController' method='post'>";
-                        $sContent .=  "<td><button type = 'submit' name ='Accept' value = '".$aTournamentListRow->Toernooi_ID."'>Accept</button></td>";
-                        $sContent .=  "<td><button type = 'submit' name ='Decline' value = '".$aTournamentListRow->Toernooi_ID."'>Decline</button></td>";
+                        $sContent .=  "<td><button type = 'submit' name ='Accept' value = '".$aTournamentListRow->Tournament_ID."'>Accept</button></td>";
+                        $sContent .=  "<td><button type = 'submit' name ='Decline' value = '".$aTournamentListRow->Tournament_ID."'>Decline</button></td>";
                         $sContent .=  "</form></tr>";
                         echo $sContent;
                     }

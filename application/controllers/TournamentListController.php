@@ -18,7 +18,7 @@ class TournamentListController extends CI_Controller {
     
     public function view_list(){
         $this->load->model('TournamentList_model');
-        $result = $this->TournamentList_model->AllTournaments(1); //komt googleID
+        $result = $this->TournamentList_model->AllAcceptedTournaments(1); //komt googleID
         if ($result != false) {
             return $result;
         }else{

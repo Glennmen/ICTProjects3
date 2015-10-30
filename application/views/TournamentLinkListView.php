@@ -13,7 +13,7 @@
             <?php 
                 if($aTournamentListData != null){
                     foreach($aTournamentListData->result() as $aTournamentListRow){
-                        $sContent .= "<option value='".$aTournamentListRow->Eigenaar_ID."'>".$aTournamentListRow->Naam."</option>";
+                        $sContent .= "<option value='".$aTournamentListRow->Google_ID."'>".$aTournamentListRow->Tournament_Name."</option>";
                     }
                     echo $sContent;
                 }

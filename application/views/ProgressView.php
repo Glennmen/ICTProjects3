@@ -21,9 +21,9 @@ and open the template in the editor.
                 if($aProgressData != null){
                     foreach($aProgressData->result() as $aProgressRow){
                         $sContent =  "<tr><td>".$aProgressRow->Game_ID."</td>";
-                        $sContent .=  "<td>".$aProgressRow->Totaal."</td>";
+                        $sContent .=  "<td>".$aProgressRow->Total."</td>";
                         $sContent .=  "<td>".$aProgressRow->Strikes."</td>";
-                        $sContent .=  "<td>".$aProgressRow->Spare."</td></tr>";
+                        $sContent .=  "<td>".$aProgressRow->Spares."</td></tr>";
                         echo $sContent;
                     }
                 }

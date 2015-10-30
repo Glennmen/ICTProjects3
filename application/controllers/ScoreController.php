@@ -27,9 +27,9 @@ class ScoreController extends CI_Controller {
                 $aScoreData = [
                     'Game_ID' => $ID,
                     'Google_ID' => 2,
-                    'Totaal' => $this->input->post('scoreTotaal'),
-                    'Strikes' => $this->input->post('scoreSpares'),
-                    'Spare' => $this->input->post('scoreStrikes'),
+                    'Total' => $this->input->post('scoreTotaal'),
+                    'Strikes' => $this->input->post('scoreStrikes'),
+                    'Spares' => $this->input->post('scoreSpares'),
                 ];
 
 

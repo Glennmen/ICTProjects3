@@ -23,10 +23,10 @@ class TournamentController extends CI_Controller{
 
                 
               $aTournamentData = [
-                  'Naam' => $this->input->post('tournamentName'),
-                  'Begin_Datum' => $startDate->format("Y-m-d"),
-                  'Eind_Datum' => $endDate->format("Y-m-d"),
-                  'Eigenaar_ID' => 1,
+                  'Tournament_Name' => $this->input->post('tournamentName'),
+                  'Start_Date' => $startDate->format("Y-m-d"),
+                  'End_Date' => $endDate->format("Y-m-d"),
+                  'Google_ID' => 1,
               ];
               
               $this->load->model('Tournament_model');

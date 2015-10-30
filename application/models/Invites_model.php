@@ -6,7 +6,7 @@ class Invites_model extends CI_Model {
     {
         try{
             $this->load->database();  
-            $this->db->query("UPDATE deelnemerstournooi SET accepted = 1 WHERE googleID =".$googleID." AND tournooiID = ".$toernooiID);
+            $this->db->query("UPDATE participants_tournament SET Status = 1 WHERE Google_ID =".$googleID." AND Tournament_ID = ".$toernooiID);
             return true;
         }
         catch(Exception $e){
@@ -17,7 +17,7 @@ class Invites_model extends CI_Model {
     {
         try{
             $this->load->database();  
-            $this->db->query("UPDATE deelnemerstournooi SET accepted = 2 WHERE googleID =".$googleID." AND tournooiID = ".$toernooiID);
+            $this->db->query("UPDATE participants_tournament SET Status = 2 WHERE Google_ID =".$googleID." AND Tournament_ID = ".$toernooiID);
             return true;
         }
         catch(Exception $e){
