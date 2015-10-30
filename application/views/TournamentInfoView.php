@@ -25,31 +25,17 @@ and open the template in the editor.
                 foreach($aParticipants->result() as $aParticipantRow) {
                     $sContent = "<tr><td>".$aParticipantRow->Vnaam."</td>";
                     $sContent .= "<td>".$aParticipantRow->Fnaam."</td>";
+                    $sContent .= "<td>".$aParticipantRow->aantalGames."</td>";
+                    $sContent .= "<td>".round($aParticipantRow->gemTotaal, 1)."</td>";
+                    $sContent .= "<td>".round($aParticipantRow->gemStrikes, 1)."</td>";
+                    $sContent .= "<td>".round($aParticipantRow->gemSpare, 1)."</td>";
                     echo $sContent;      
                 }
             } 
-            if($aScore != null)
-            {
-                foreach ($aScore->result() as $aScoreRow) {
-                    $sContent = "<tr><td>".$aScoreRow->Totaal."</td>";
-                    $sContent .= "<tr><td>".$aScoreRow->Strikes."</td>";
-                    $sContent .= "<tr><td>".$aScoreRow->Spare."</td></tr>";
-                    echo $sContent;
-                }
-            }
             else {
                 echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
             }
         ?>
-   <!-- <tr>
-        <th>Deelnemers</th>
-        <th>Aantal gespeelde games</th>
-        <th>Gemiddelde score</th>
-        <th>Gemiddeld aantal strikes</th>
-        <th>Gemiddeld aantal spares</th>
-    </tr>
-   -->
-
 </table>
 </div>
 </body>
