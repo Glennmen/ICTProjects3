@@ -12,4 +12,11 @@ class Game_model extends CI_Model {
         $this->load->database();
         $this->db->insert('game', $aData);
     }
+    
+    public function TourneyOphalen($googleID){
+        $this->load->database();
+        $aGameData = $this->db->query("SELECT Naam, Toernooi_ID FROM deelnemerstournooi INNER JOIN tournament ON deelnemerstournooi.tournooiID=tournament.Toernooi_ID WHERE googleID=" .$googleID. " AND accepted=1");
+
+        return $aGameData->result();
+    }
 }

@@ -9,7 +9,7 @@ class GameController extends CI_Controller{
         $this->load->library('navbar');
         
         $data['nav'] = $this->navbar->get_navbar();
-        
+        $data['alert'] = "";
         
         
         $this->form_validation->set_rules('gameName', 'Name','required');
@@ -25,18 +25,26 @@ class GameController extends CI_Controller{
             }else{
                 
             $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));               
+            if ($this->input->post('type') == 'free') {
+                    $ID = 0;
+                }
+                else if ($this->input->post('type') == 'tourney') {
+                    $ID = $this->input->post('Tourney');
+                }
+            
             
               $aGameData = [
                   'naam' => $this->input->post('gameName'),
                   'datum' => $Date->format("Y-m-d"),
                   'tijd' => $this->input->post('gameTime'),
                   'locatie' => $this->input->post('location'),
-                  'tournooi_id' => $this->input->post('type') 
+                  'tournooi_id' => $ID 
               ];
               
               $this->load->model('Game_model');
               $this->Game_model->GameToevoegen($aGameData);
               
+              $data['alert'] = "<div class='alert alert-success' role='alert'>Game succesvol aangemaakt!</div>";
               $this->load->view('gameView1', $data);
             }
         }else{
@@ -65,6 +73,13 @@ class GameController extends CI_Controller{
         }else{
             return true;   
         }
+    }
+    
+    public function json(){
+        $this->load->model('Game_model');
+        $result = $this->Game_model->TourneyOphalen($this->input->post('GoogleID'));
+        
+        echo json_encode($result);
     }
 }
 
