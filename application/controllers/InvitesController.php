@@ -5,7 +5,7 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 class InvitesController extends CI_Controller{
     
     public function index(){
-        $googleID = 2;
+        $googleID = 1;
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         
@@ -31,7 +31,7 @@ class InvitesController extends CI_Controller{
     }
     public function view_list(){
         $this->load->model('TournamentList_model');
-        $result = $this->TournamentList_model->AllNotAcceptedTournaments(2); //komt googleID
+        $result = $this->TournamentList_model->AllNotAcceptedTournaments(1); //komt googleID
         if ($result != false) {
             return $result;
         }else{
