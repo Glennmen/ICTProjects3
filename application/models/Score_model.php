@@ -15,7 +15,7 @@ class Score_model extends CI_Model {
     
     public function GameOphalen($googleID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Naam, Datum, Game_ID FROM deelnemers INNER JOIN game ON deelnemers.GameId=game.Game_ID WHERE GoogleId=" .$googleID );
+        $aGameData = $this->db->query("SELECT Naam, Datum, Game_ID FROM deelnemers INNER JOIN game ON deelnemers.GameId=game.Game_ID WHERE GoogleId=" .$googleID);
 
         return $aGameData->result();
     }
@@ -23,6 +23,13 @@ class Score_model extends CI_Model {
     public function TourneyOphalen($googleID){
         $this->load->database();
         $aGameData = $this->db->query("SELECT Naam, Toernooi_ID FROM deelnemerstournooi INNER JOIN tournament ON deelnemerstournooi.tournooiID=tournament.Toernooi_ID WHERE googleID=" .$googleID. " AND accepted=1");
+
+        return $aGameData->result();
+    }
+    
+    public function GameTourneyOphalen($googleID, $tournooiID){
+        $this->load->database();
+        $aGameData = $this->db->query("SELECT Naam, Datum, Game_ID FROM deelnemerstournooi INNER JOIN game ON deelnemerstournooi.tournooiID=game.Tournooi_ID WHERE GoogleId=" .$googleID. " AND Tournooi_ID=".$tournooiID);
 
         return $aGameData->result();
     }

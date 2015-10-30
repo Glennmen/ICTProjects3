@@ -7,6 +7,7 @@ class ScoreController extends CI_Controller {
 
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
+        $data['alert'] = "";
 
 
         $this->form_validation->set_rules('scoreTotaal', 'Totaal', 'required|max_length[3]|less_than[301]|is_natural_no_zero');
@@ -35,6 +36,7 @@ class ScoreController extends CI_Controller {
                 $this->load->model('Score_model');
                 $this->Score_model->ScoreToevoegen($aScoreData);
 
+                $data['alert'] = "<div class='alert alert-success' role='alert'>Score succesvol toegevoegd!</div>";
                 $this->load->view('ScoreView', $data);
             }
         } else {
@@ -60,8 +62,11 @@ class ScoreController extends CI_Controller {
         if ($this->input->post('Type') == 'tourney') {
             $result = $this->Score_model->TourneyOphalen($this->input->post('GoogleID'));
         }
-        else {
+        else if ($this->input->post('Type') == 'free') {
             $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
+        }
+        else {
+            $result = $this->Score_model->GameTourneyOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
         }
         
         echo json_encode($result);

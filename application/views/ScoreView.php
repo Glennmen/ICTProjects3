@@ -17,6 +17,7 @@ and open the template in the editor.
     <h1>Score</h1>
     
     <?php echo validation_errors()?>
+    <?php echo $alert ?>
 
 <div class="col-xs-6 col-md-4"> 
     <form action="ScoreController" method="post">
@@ -44,26 +45,23 @@ and open the template in the editor.
             </label>
         </div>
         
-        <div class="form-group">
-        <select id="tourney" name="Tourney" multiple class="form-control" style="display: none"  onchange="getGames()">
+        <div class="form-group" style="display: none" id="tourneyDiv">
+        <label for="tourney" id="tourneyLabel"></label>
+        <select id="tourney" name="Tourney" multiple class="form-control"  onchange="getGames()">
 
           </select>
         </div>
         
-        <div class="form-group">
-        <select id="game" name="Game" multiple class="form-control" style="display: none">
+        <div class="form-group" style="display: none" id="gameDiv">
+        <label for="game" id="gameLabel"></label>
+        <select id="game" name="Game" multiple class="form-control" onchange="getGames2()">
 
           </select>
         </div>
-        
-        <br>
-        <button type="submit" name="UploadScore" class="btn btn-default">Upload Score</button>
+
+        <button type="submit" name="UploadScore" id="button" class="btn btn-default" disabled>Upload Score</button>
     </form>
 </div>
-
-<form>
-
-</form>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<?php echo base_url('assets/js/scorepaginaAjax.js'); ?>"></script>
