@@ -26,13 +26,13 @@
         
         <form action="ProfileController" method="post">
             <div class="form-group">
-            <label for="Anaam">Achternaam:</label>
-            <input type="text" class="form-control" id="Anaam" name="Anaam" value="<?php echo set_value('Anaam'); ?>" placeholder="Achternaam">
+            <label for="Last_Name">Achternaam:</label>
+            <input type="text" class="form-control" id="Last_Name" name="Last_Name" value="<?php echo set_value('Last_Name'); ?>" placeholder="Achternaam">
             </div>
             
             <div class="form-group">
-            <label for="Vnaam">Voornaam:</label>
-            <input type="text" class="form-control" id="Vnaam" name="Vnaam" value="<?php echo set_value('Vnaam'); ?>" placeholder="Voornaam">
+            <label for="First_Name">Voornaam:</label>
+            <input type="text" class="form-control" id="First_Name" name="First_Name" value="<?php echo set_value('First_Name'); ?>" placeholder="Voornaam">
             </div>
             
              <div class="form-group">

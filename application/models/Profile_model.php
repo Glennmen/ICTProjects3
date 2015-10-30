@@ -10,7 +10,7 @@ class Profile_model extends CI_Model {
     
     public function GetProfile($googleID){
         $this->load->database();
-        $aProfileData = $this->db->query("SELECT ANaam, VNaam, Email,Nickname,GSM FROM Persoon WHERE GoogleId=" .$googleID );
+        $aProfileData = $this->db->query("SELECT Last_Name, First_Name, Email,Nickname,GSM FROM Person WHERE Google_ID=" .$googleID );
 
         return $aProfileData->result();
     }

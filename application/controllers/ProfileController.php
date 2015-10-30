@@ -20,8 +20,8 @@ class ProfileController extends CI_Controller{
                 
                 $aProfileData = [
                     'Google_ID' => 2,
-                    'Anaam' => $this->input->post('Anaam'),
-                    'Vnaam' => $this->input->post('Vnaam'),
+                    'Last_Name' => $this->input->post('Last_Name'),
+                    'First_Name' => $this->input->post('First_Name'),
                     'Email' => $this->input->post('Email'),
                     'Nickname' => $this->input->post('Nickname'),
                     'GSM' => $this->input->post('GSM'),
