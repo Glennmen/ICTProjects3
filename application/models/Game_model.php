@@ -19,4 +19,13 @@ class Game_model extends CI_Model {
 
         return $aGameData->result();
     }
+    
+    public function allGames($googleID){
+        $this->load->database();
+        
+        $aData =$this->db->query("SELECT * FROM game
+                                    INNER JOIN participants ON game.Game_ID = participants.Game_ID WHERE participants.Google_ID=".$googleID);
+        return $aData->result();
+    
+    }
 }

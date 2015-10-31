@@ -40,5 +40,32 @@ public class JsonParser {
         return list;
     }
 
+    public ArrayList<GameObj> parseGameList(String stringObj){
+        ArrayList<GameObj> list = new ArrayList<GameObj>();
+        try{
+            JSONArray jsonArray = new JSONArray(stringObj);
+
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject obj = jsonArray.getJSONObject(i);
+
+                GameObj gameObj = new GameObj();
+
+                gameObj.setGoogle_ID(obj.getString("Google_ID"));
+                gameObj.setDate(obj.getString("Date"));
+                gameObj.setGame_ID(obj.getString("Game_ID"));
+                gameObj.setGame_Name(obj.getString("Game_Name"));
+                gameObj.setLocation(obj.getString("Location"));
+                gameObj.setTime(obj.getString("Time"));
+
+                list.add(gameObj);
+            }
+
+        }catch (Exception e){
+            Log.d("parser", e.toString());
+        }
+
+        return  list;
+    }
+
 
 }

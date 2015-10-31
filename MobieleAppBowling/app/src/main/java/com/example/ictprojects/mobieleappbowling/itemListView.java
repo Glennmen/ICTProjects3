@@ -65,7 +65,12 @@ public class itemListView extends AppCompatActivity
         itemList.setOnItemClickListener(this);                                                      //binding actions
 
         if(isConnected()){                                                                          //contacting server if the device is connected to a network
-            new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp");
+            if(caller.contentEquals("tournament")){
+                new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp");
+            }else if(caller.contentEquals("game")){
+                new HttpAsyncTask().execute("http://localhost/ICTProjects3/GameController/MobileApp");
+            }
+
         }
     }
 
@@ -85,49 +90,55 @@ public class itemListView extends AppCompatActivity
 
         @Override
         protected void onPostExecute(String result) {
+            ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
+            String title = null;
 
-            ArrayList<TournamentObj> list = parser.parseTournamentList(result);
+            if(caller.contentEquals("tournament")){
+                ArrayList<TournamentObj> list = parser.parseTournamentList(result);
+                title = "Tournaments";
+                for(TournamentObj obj: list){                                                        //looping trought the list of tournaments
+                    HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
+                    String combinedDate = obj.getStart_Date() + " - " + obj.getEnd_Date();              //containing the dates and name
+                    map.put("name",obj.getTournament_Name());
+                    map.put("date", combinedDate);
+
+                    data.add(map);
+                }
 
 
-            itemListView.this.updateDisplay(list);                                                      //after download update the display
+            }else if(caller.contentEquals("game")){
+                ArrayList<GameObj> list = parser.parseGameList(result);
+                title="Games";
+                for(GameObj obj: list){                                                        //looping trought the list of tournaments
+                    HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
+                    String combinedDate = obj.getDate() + "  " + obj.getTime();              //containing the dates and name
+                    map.put("name",obj.getGame_Name());
+                    map.put("date", combinedDate);
+
+                    data.add(map);
+                }
+            }
+
+            itemListView.this.updateDisplay(data, title);
         }
     }
 
-    public  void updateDisplay(ArrayList<TournamentObj> objList){
-        if(objList.isEmpty()){
+    public  void updateDisplay( ArrayList<HashMap<String,String>> data , String title){
+        if(data.isEmpty()){
                 titleTextView.setText("could not reach the server :(");
             return;
         }
 
-        ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
+        titleTextView.setText(title);                                                          //setting the Title
 
-        if(caller.contentEquals("tournament")){
-            titleTextView.setText("tournament list");
+        //recources for the list adapter
+        int resource = R.layout.listview_item;
+        String[] from = {"name" , "date"};
+        int[] to = {R.id.TournamentName,R.id.tournamentDates};
 
-            for(TournamentObj obj: objList){
-                HashMap<String,String> map =new HashMap<String,String>();
-                String combinedDate = obj.getStart_Date() + " - " + obj.getEnd_Date();
-                //String combinedDate = "tes";
-                map.put("name",obj.getTournament_Name());
-                map.put("date", combinedDate);
-
-                data.add(map);
-            }
-
-            //recources for the list adapter
-            int resource = R.layout.listview_item;
-            String[] from = {"name" , "date"};
-            int[] to = {R.id.TournamentName,R.id.tournamentDates};
-
-            //creating adapter
-            SimpleAdapter adapter = new SimpleAdapter(this,data,resource,from,to);
-            itemList.setAdapter(adapter);
-
-        }else if(caller.contentEquals("game")){
-            titleTextView.setText("game list");
-
-        }
-
+        //creating adapter
+        SimpleAdapter adapter = new SimpleAdapter(this,data,resource,from,to);
+        itemList.setAdapter(adapter);
     }
 
     @Override

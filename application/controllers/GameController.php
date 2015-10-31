@@ -82,5 +82,15 @@ class GameController extends CI_Controller{
         
         echo json_encode($result);
     }
+    
+    public function MobileApp(){
+         $this->load->model('Game_model');
+         
+        $aMobileData = json_decode(file_get_contents('php://input'),true);
+        
+        $result = $this->Game_model->allGames($aMobileData['Google_ID']);
+        
+        echo json_encode($result);
+    }
 }
 

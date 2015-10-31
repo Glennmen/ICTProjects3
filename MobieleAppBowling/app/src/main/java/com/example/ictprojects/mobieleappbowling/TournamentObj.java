@@ -10,12 +10,12 @@ import java.util.SimpleTimeZone;
  * Created by vincent on 31/10/2015.
  */
 public class TournamentObj {
-    private String End_Date;
-    private String Start_Date;
-    private String Google_ID;
-    private String Tournament_ID;
-    private String Tournament_Name;
-    private Integer Status;
+    private String End_Date = null;
+    private String Start_Date = null;
+    private String Google_ID = null;
+    private String Tournament_ID =null;
+    private String Tournament_Name = null;
+    private Integer Status = null;
 
     private SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
 
