@@ -10,4 +10,6 @@
     <string name="tournamentList">add tournament score</string>
     <string name="gameScore">add game score</string>
     <string name="items_title">List</string>
+    <string name="date">date</string>
+    <string name="name">name</string>
 </resources>

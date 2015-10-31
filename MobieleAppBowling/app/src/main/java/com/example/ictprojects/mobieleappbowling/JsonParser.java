@@ -1,0 +1,44 @@
+package com.example.ictprojects.mobieleappbowling;
+
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+/**
+ * Created by vincent on 31/10/2015.
+ */
+public class JsonParser {
+
+    public ArrayList<TournamentObj> parseTournamentList(String stringObj){
+
+        ArrayList<TournamentObj> list = new ArrayList<TournamentObj>();
+
+        try{
+            JSONArray jsonArray = new JSONArray(stringObj);
+
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject obj = jsonArray.getJSONObject(i);
+
+                TournamentObj tourObj = new TournamentObj();
+
+                tourObj.setGoogle_ID(obj.getString("Google_ID"));
+                tourObj.setTournament_ID(obj.getString("Tournament_ID"));
+                tourObj.setStart_Date(obj.getString("Start_Date"));
+                tourObj.setEnd_Date(obj.getString("End_Date"));
+                tourObj.setTournament_Name(obj.getString("Tournament_Name"));
+                tourObj.setStatus(obj.getInt("Status"));
+
+                list.add(tourObj);
+            }
+
+        }catch (Exception e){
+            Log.d("parser", e.toString());
+        }
+        return list;
+    }
+
+
+}

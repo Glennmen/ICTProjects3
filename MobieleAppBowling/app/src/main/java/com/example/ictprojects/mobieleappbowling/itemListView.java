@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,15 +30,21 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class itemListView extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
 
-
+    //global keys
     private String caller;
+
+    //view variables
     private ListView itemList;
     private TextView titleTextView;
+
+    //handlers
     private  ApiHandler api;
+    private  JsonParser parser;
 
 
     @Override
@@ -47,14 +54,17 @@ public class itemListView extends AppCompatActivity
 
         Intent intent = getIntent();
 
-        caller = intent.getStringExtra("Caller");
+        caller = intent.getStringExtra("Caller");                                                   //collecting variables that where passed on by the previous class
 
-        api = new ApiHandler();
-        titleTextView = (TextView) findViewById(R.id.titleTextView);
+        api = new ApiHandler();                                                                     //creating extern handlers
+        parser = new JsonParser();
+
+        titleTextView = (TextView) findViewById(R.id.titleTextView);                                //binding view items
         itemList = (ListView)findViewById(R.id.itemlist);
-        itemList.setOnItemClickListener(this);
 
-        if(isConnected()){
+        itemList.setOnItemClickListener(this);                                                      //binding actions
+
+        if(isConnected()){                                                                          //contacting server if the device is connected to a network
             new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp");
         }
     }
@@ -65,47 +75,57 @@ public class itemListView extends AppCompatActivity
         protected String doInBackground(String... urls) {
             JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
             try{
-                jsonObject.accumulate("Google_ID",1);                                               // ADD GOOGLE ID
+                jsonObject.accumulate("Google_ID",1);                                               // ADD GOOGLE ID to the json object
             }
             catch(Exception ex){
 
             }
-
             return api.GET(urls[0] , jsonObject);                                                   //function to handle the api post
         }
 
         @Override
         protected void onPostExecute(String result) {
-            String stat = "no answer form server";
-            ArrayList<JSONObject> objects = new ArrayList<JSONObject>();
 
-            try{
-                JSONArray dataArray = new JSONArray(result);                                        //converting the anwser
+            ArrayList<TournamentObj> list = parser.parseTournamentList(result);
 
-                for(int i = 0; i<dataArray.length();i++){                                           //looping trough the list of objects
-                    JSONObject obj = dataArray.getJSONObject(i);                                    //extracting the i^th json obj
-                    objects.add(obj);                                                               //adding that to the list
-                }
 
-            }catch(Exception ex){
-                Log.d("status parse", ex.toString());
-            }
-            itemListView.this.updateDisplay(objects);                                                      //after download update the display
+            itemListView.this.updateDisplay(list);                                                      //after download update the display
         }
     }
 
-    public  void updateDisplay(ArrayList<JSONObject> objList){
+    public  void updateDisplay(ArrayList<TournamentObj> objList){
         if(objList.isEmpty()){
                 titleTextView.setText("could not reach the server :(");
             return;
         }
 
+        ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
+
         if(caller.contentEquals("tournament")){
             titleTextView.setText("tournament list");
 
+            for(TournamentObj obj: objList){
+                HashMap<String,String> map =new HashMap<String,String>();
+                String combinedDate = obj.getStart_Date() + " - " + obj.getEnd_Date();
+                //String combinedDate = "tes";
+                map.put("name",obj.getTournament_Name());
+                map.put("date", combinedDate);
+
+                data.add(map);
+            }
+
+            //recources for the list adapter
+            int resource = R.layout.listview_item;
+            String[] from = {"name" , "date"};
+            int[] to = {R.id.TournamentName,R.id.tournamentDates};
+
+            //creating adapter
+            SimpleAdapter adapter = new SimpleAdapter(this,data,resource,from,to);
+            itemList.setAdapter(adapter);
+
         }else if(caller.contentEquals("game")){
             titleTextView.setText("game list");
-            
+
         }
 
     }
