@@ -90,9 +90,9 @@ public class AddScoreActivity extends AppCompatActivity
             String json = "";
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.accumulate("Totaal", score.getTotaleScore());
+            jsonObject.accumulate("Total", score.getTotaleScore());
             jsonObject.accumulate("Strikes",score.getAantalStrikes());
-            jsonObject.accumulate("Spare",score.getAantalSpares());
+            jsonObject.accumulate("Spares",score.getAantalSpares());
             jsonObject.accumulate("Game_ID",3);
             jsonObject.accumulate("Google_ID",3);
 
@@ -178,7 +178,16 @@ public class AddScoreActivity extends AppCompatActivity
                 }*/
         @Override
         protected void onPostExecute(String result) {
-            Toast.makeText(getBaseContext(),"Data Sent!",Toast.LENGTH_LONG).show();
+            String stat = "no anwser form server";                                                  //default no anwser yet
+
+            try{
+               JSONObject obj = new JSONObject(result);                                             //parsing the anwser to json obj
+               stat = obj.getString("status");                                                      //looking for the status field
+            }catch(Exception ex){
+                Log.d("status parse",ex.toString());
+            }
+            
+            Toast.makeText(getBaseContext(),stat,Toast.LENGTH_LONG).show();                         //showing toast with status
         }
     }
 

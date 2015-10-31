@@ -54,6 +54,8 @@ class ScoreController extends CI_Controller {
                 $this->load->model('Score_model');
                 $this->Score_model->ScoreToevoegen($aMobileScoreData);
             }
+        $status = array("status"=>"succes");
+        echo json_encode($status);
     }
 
     public function json(){
