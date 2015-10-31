@@ -41,6 +41,8 @@ public class itemListView extends AppCompatActivity
     //view variables
     private ListView itemList;
     private TextView titleTextView;
+    ArrayList<TournamentObj> tournamentList;
+    ArrayList<GameObj> gameList;
 
     //handlers
     private  ApiHandler api;
@@ -65,12 +67,9 @@ public class itemListView extends AppCompatActivity
         itemList.setOnItemClickListener(this);                                                      //binding actions
 
         if(isConnected()){                                                                          //contacting server if the device is connected to a network
-            if(caller.contentEquals("tournament")){
-                new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp");
-            }else if(caller.contentEquals("game")){
-                new HttpAsyncTask().execute("http://localhost/ICTProjects3/GameController/MobileApp");
-            }
 
+                new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp",
+                                            "http://localhost/ICTProjects3/GameController/MobileApp");
         }
     }
 
@@ -79,13 +78,25 @@ public class itemListView extends AppCompatActivity
         @Override
         protected String doInBackground(String... urls) {
             JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
+            int url = 0;
             try{
                 jsonObject.accumulate("Google_ID",1);                                               // ADD GOOGLE ID to the json object
+
+                if(caller.contentEquals("tournament")){
+                    url = 0;
+                    jsonObject.accumulate("req","accepted");
+                }else if(caller.contentEquals("game")){
+                    url = 1;
+                }else if(caller.contentEquals("inbox")){
+                    url = 0 ;
+                    jsonObject.accumulate("req","inbox");
+                }
+
             }
             catch(Exception ex){
 
             }
-            return api.GET(urls[0] , jsonObject);                                                   //function to handle the api post
+            return api.GET(urls[url] , jsonObject);                                                   //function to handle the api post
         }
 
         @Override
@@ -93,10 +104,10 @@ public class itemListView extends AppCompatActivity
             ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
             String title = null;
 
-            if(caller.contentEquals("tournament")){
-                ArrayList<TournamentObj> list = parser.parseTournamentList(result);
+            if(caller.contentEquals("tournament")|| caller.contentEquals("inbox")){
+                tournamentList = parser.parseTournamentList(result);
                 title = "Tournaments";
-                for(TournamentObj obj: list){                                                        //looping trought the list of tournaments
+                for(TournamentObj obj: tournamentList){                                                        //looping trought the list of tournaments
                     HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
                     String combinedDate = obj.getStart_Date() + " - " + obj.getEnd_Date();              //containing the dates and name
                     map.put("name",obj.getTournament_Name());
@@ -107,9 +118,9 @@ public class itemListView extends AppCompatActivity
 
 
             }else if(caller.contentEquals("game")){
-                ArrayList<GameObj> list = parser.parseGameList(result);
+                gameList = parser.parseGameList(result);
                 title="Games";
-                for(GameObj obj: list){                                                        //looping trought the list of tournaments
+                for(GameObj obj: gameList){                                                        //looping trought the list of tournaments
                     HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
                     String combinedDate = obj.getDate() + "  " + obj.getTime();              //containing the dates and name
                     map.put("name",obj.getGame_Name());

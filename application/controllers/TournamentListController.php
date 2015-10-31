@@ -31,7 +31,12 @@ class TournamentListController extends CI_Controller {
         
         $aMobileData = json_decode(file_get_contents('php://input'),true);
         
-        $result = $this->TournamentList_model->AllAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
+        if($aMobileData['req'] == "accepted"){
+            $result = $this->TournamentList_model->AllAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
+        }else if($aMobileData['req'] == "inbox"){
+            $result = $this->TournamentList_model->AllNotAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
+        }
+        
         
         echo json_encode($result);
     }

@@ -54,6 +54,14 @@
             android:text="@string/gameScore"
             android:layout_below="@+id/tournamentButton"
             android:layout_alignLeft="@+id/welkomTextView"/>
+        <Button
+            android:id="@+id/inboxButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inbox"
+            android:layout_below="@+id/gameButton"
+            android:layout_alignLeft="@+id/welkomTextView"/>
+
 
         </RelativeLayout>
 
