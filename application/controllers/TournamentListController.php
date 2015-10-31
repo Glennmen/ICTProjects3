@@ -27,8 +27,13 @@ class TournamentListController extends CI_Controller {
     }
     
     public function MobileApp(){
-        $status = array("status"=>"succes");
-        echo json_encode($status);
+        $this->load->model('TournamentList_model');
+        
+        $aMobileData = json_decode(file_get_contents('php://input'),true);
+        
+        $result = $this->TournamentList_model->AllAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
+        
+        echo json_encode($result);
     }
 }
 ?>

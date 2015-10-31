@@ -9,4 +9,5 @@
     <string name="scorePageButton">Score page</string>
     <string name="tournamentList">add tournament score</string>
     <string name="gameScore">add game score</string>
+    <string name="items_title">List</string>
 </resources>

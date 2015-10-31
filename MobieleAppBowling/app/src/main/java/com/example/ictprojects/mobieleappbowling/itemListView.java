@@ -1,6 +1,7 @@
 package com.example.ictprojects.mobieleappbowling;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpResponse;
@@ -18,6 +20,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -25,12 +28,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URI;
+import java.util.ArrayList;
 
 public class itemListView extends AppCompatActivity
         implements AdapterView.OnItemClickListener {
-    public static String CALLER = "com.example.ictprojects.mobileappbowling.CALLER";                //global var to check wich button called the class
 
+
+    private String caller;
     private ListView itemList;
+    private TextView titleTextView;
+    private  ApiHandler api;
 
 
     @Override
@@ -38,16 +45,79 @@ public class itemListView extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
 
+        Intent intent = getIntent();
+
+        caller = intent.getStringExtra("Caller");
+
+        api = new ApiHandler();
+        titleTextView = (TextView) findViewById(R.id.titleTextView);
         itemList = (ListView)findViewById(R.id.itemlist);
         itemList.setOnItemClickListener(this);
 
         if(isConnected()){
             new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp");
         }
+    }
 
+
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
+            try{
+                jsonObject.accumulate("Google_ID",1);                                               // ADD GOOGLE ID
+            }
+            catch(Exception ex){
+
+            }
+
+            return api.GET(urls[0] , jsonObject);                                                   //function to handle the api post
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            String stat = "no answer form server";
+            ArrayList<JSONObject> objects = new ArrayList<JSONObject>();
+
+            try{
+                JSONArray dataArray = new JSONArray(result);                                        //converting the anwser
+
+                for(int i = 0; i<dataArray.length();i++){                                           //looping trough the list of objects
+                    JSONObject obj = dataArray.getJSONObject(i);                                    //extracting the i^th json obj
+                    objects.add(obj);                                                               //adding that to the list
+                }
+
+            }catch(Exception ex){
+                Log.d("status parse", ex.toString());
+            }
+            itemListView.this.updateDisplay(objects);                                                      //after download update the display
+        }
+    }
+
+    public  void updateDisplay(ArrayList<JSONObject> objList){
+        if(objList.isEmpty()){
+                titleTextView.setText("could not reach the server :(");
+            return;
+        }
+
+        if(caller.contentEquals("tournament")){
+            titleTextView.setText("tournament list");
+
+        }else if(caller.contentEquals("game")){
+            titleTextView.setText("game list");
+            
+        }
 
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    /*
+    * function to check if the device is connected to a network
+    * */
     public boolean isConnected(){
         ConnectivityManager connMgr = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
@@ -55,76 +125,5 @@ public class itemListView extends AppCompatActivity
             return true;
         else
             return false;
-    }
-
-
-    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-        @Override
-        protected String doInBackground(String... urls) {
-
-            return GET(urls[0]);
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            String stat = "no anwser form server";                                                  //default no anwser yet
-    /*
-            try{
-                JSONObject obj = new JSONObject(result);                                             //parsing the anwser to json obj
-                stat = obj.getString("status");                                                      //looking for the status field
-            }catch(Exception ex){
-                Log.d("status parse", ex.toString());
-            }*/
-
-            Toast.makeText(getBaseContext(), result, Toast.LENGTH_LONG).show();                         //showing toast with status
-        }
-    }
-
-
-    public static String GET(String url){ //url veranderd
-        InputStream inputStream = null;
-        String result = "";
-        try{
-            HttpClient httpClient = new DefaultHttpClient();                                        //creating httpClient
-            HttpGet request = new HttpGet();                                                        //creating getMethod
-            URI website = new URI(url);                                                             //converting url
-            request.setURI(website);                                                                //adding url to getMethod
-
-            HttpResponse httpResponse = httpClient.execute(request);                                //excecuting the getMethod and buffering the anwser
-            inputStream = httpResponse.getEntity().getContent();
-
-            if(inputStream != null)
-            {
-                result = convertInputStreamToString(inputStream);
-            }
-            else
-            {
-                result = "Did not work!";
-            }
-        }
-        catch(Exception e)
-        {
-            Log.d("Inputstream", e.getLocalizedMessage());
-
-        }
-
-        return result;
-
-    }
-
-    private static String convertInputStreamToString(InputStream inputStream) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader( new InputStreamReader((inputStream)));
-        String line = "";
-        String result = "" ;
-        while ((line = bufferedReader.readLine()) != null)
-            result += line;
-
-        inputStream.close();;
-        return result;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 }

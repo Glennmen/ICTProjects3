@@ -64,12 +64,12 @@ public class MainActivity extends AppCompatActivity
                 startActivity(new Intent(MainActivity.this, AddScoreActivity.class));
                 break;
             case R.id.tournamentButton:
+                intent.putExtra("Caller" , "tournament");
                 startActivity(intent);
-                itemListView.CALLER = "tournament";
                 break;
             case R.id.gameButton:
+                intent.putExtra("Caller" , "game");
                 startActivity(intent);
-                itemListView.CALLER = "game";
                 break;
         }
     }

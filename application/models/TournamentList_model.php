@@ -16,7 +16,7 @@ class TournamentList_model extends CI_Model {
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE participants_tournament.Google_ID=".$googleID);
         
         
-       return $aData;
+       return $aData->result();
     }
     public function AllNotAcceptedTournaments($googleID)
     {
@@ -24,7 +24,7 @@ class TournamentList_model extends CI_Model {
         
         $aData =$this->db->query("SELECT * FROM tournament
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
-        return $aData;
+        return $aData->result();
     }
     public function AllAcceptedTournaments($googleID)
     {
@@ -32,7 +32,7 @@ class TournamentList_model extends CI_Model {
         
         $aData =$this->db->query("SELECT * FROM tournament
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 1 AND participants_tournament.Google_ID=".$googleID);
-        return $aData;
+        return $aData->result();
     }
     public function AllDeclinedTournaments($googleID)
     {
@@ -40,7 +40,7 @@ class TournamentList_model extends CI_Model {
         
         $aData =$this->db->query("SELECT * FROM tournament
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 2 AND participants_tournament.Google_ID=".$googleID);
-        return $aData;
+        return $aData-result();
     }
 }
 ?>
