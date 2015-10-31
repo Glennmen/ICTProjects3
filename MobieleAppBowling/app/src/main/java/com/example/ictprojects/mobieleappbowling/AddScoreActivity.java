@@ -81,6 +81,7 @@ public class AddScoreActivity extends AppCompatActivity
             else
                 return false; 
     }
+
     public static String POST(String url,ScoreData score){ //url veranderd
         InputStream inputStream = null;
         String result = "";
@@ -186,7 +187,7 @@ public class AddScoreActivity extends AppCompatActivity
             }catch(Exception ex){
                 Log.d("status parse",ex.toString());
             }
-            
+
             Toast.makeText(getBaseContext(),stat,Toast.LENGTH_LONG).show();                         //showing toast with status
         }
     }

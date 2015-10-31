@@ -25,5 +25,10 @@ class TournamentListController extends CI_Controller {
             return null;
         }
     }
+    
+    public function MobileApp(){
+        $status = array("status"=>"succes");
+        echo json_encode($status);
+    }
 }
 ?>

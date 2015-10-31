@@ -1,24 +1,19 @@
 package com.example.ictprojects.mobieleappbowling;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
 
-    Button scorePageButton;
+    Button scorePageButton , tournamentButton , gameButton;
 
 
     @Override
@@ -26,11 +21,14 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        scorePageButton = (Button) findViewById(R.id.scorePageButton);
+        gameButton = (Button) findViewById(R.id.gameButton);
+        tournamentButton =(Button) findViewById(R.id.tournamentButton);
+        scorePageButton = (Button) findViewById(R.id.scorePageButton);                              //temp
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        tournamentButton.setOnClickListener(this);                                                   //temp
+        gameButton.setOnClickListener(this);
         scorePageButton.setOnClickListener(this);
     }
 
@@ -59,11 +57,20 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
+        Intent intent = new Intent(MainActivity.this,itemListView.class);
 
         switch (view.getId()) {
             case R.id.scorePageButton:
-                startActivity(new Intent(MainActivity.this, AddScoreActivity.class
-                ));
+                startActivity(new Intent(MainActivity.this, AddScoreActivity.class));
+                break;
+            case R.id.tournamentButton:
+                startActivity(intent);
+                itemListView.CALLER = "tournament";
+                break;
+            case R.id.gameButton:
+                startActivity(intent);
+                itemListView.CALLER = "game";
+                break;
         }
     }
 }
