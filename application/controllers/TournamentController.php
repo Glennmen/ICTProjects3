@@ -1,6 +1,6 @@
 <?php
 if(!defined('BASEPATH'))exit('No direct acces allowed');
-
+//
 
 class TournamentController extends CI_Controller{
     

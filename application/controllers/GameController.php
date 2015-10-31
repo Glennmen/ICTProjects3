@@ -2,6 +2,7 @@
 if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 
+
 class GameController extends CI_Controller{
     
     public function index(){

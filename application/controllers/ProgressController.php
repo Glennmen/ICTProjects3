@@ -1,4 +1,6 @@
 <?php
+
+//
 if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 class ProgressController extends CI_Controller {

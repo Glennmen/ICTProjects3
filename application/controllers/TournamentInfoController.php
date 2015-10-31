@@ -1,6 +1,6 @@
 <?php
 if(!defined('BASEPATH'))exit('No direct acces allowed');
-
+//
 class TournamentInfoController extends CI_Controller {
     public function index(){
         $this->load->library('navbar');

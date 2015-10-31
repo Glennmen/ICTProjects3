@@ -1,6 +1,6 @@
 <?php
 if(!defined('BASEPATH'))exit('No direct acces allowed');
-
+//
 class ScoreController extends CI_Controller {
     public function index()
     {

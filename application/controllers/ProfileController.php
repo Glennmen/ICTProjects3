@@ -7,6 +7,7 @@ class ProfileController extends CI_Controller{
         $this->load->library('navbar');
       //  $this->load->model('Profile_model');
       //  $data = $this->Profile_model->GetProfile(2);
+        
         $data['nav'] = $this->navbar->get_navbar();   
          
     $this->form_validation->set_rules('Last_Name','Achternaam','required');    

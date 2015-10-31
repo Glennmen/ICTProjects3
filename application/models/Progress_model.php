@@ -1,5 +1,5 @@
 <?php
-
+//
 class Progress_model extends CI_Model {
     
     public function StatistiekenOphalen($googleID)

@@ -1,5 +1,5 @@
 <?php
-
+//
 class Invites_model extends CI_Model {
     
     public function Accepted($googleID,$toernooiID)
