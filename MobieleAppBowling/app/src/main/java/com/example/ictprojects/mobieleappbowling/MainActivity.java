@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity
         implements View.OnClickListener {
 
 
-    Button scorePageButton , tournamentButton , gameButton , inboxButton;
+    Button tournamentButton , gameButton , inboxButton;
 
 
     @Override
@@ -24,15 +24,15 @@ public class MainActivity extends AppCompatActivity
         gameButton = (Button) findViewById(R.id.gameButton);
         tournamentButton =(Button) findViewById(R.id.tournamentButton);
         inboxButton = (Button)findViewById(R.id.inboxButton);
-        scorePageButton = (Button) findViewById(R.id.scorePageButton);                              //temp
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tournamentButton.setOnClickListener(this);                                                   //temp
+        tournamentButton.setOnClickListener(this);
         inboxButton.setOnClickListener(this);
         gameButton.setOnClickListener(this);
-        scorePageButton.setOnClickListener(this);
+
     }
 
     @Override
@@ -63,9 +63,6 @@ public class MainActivity extends AppCompatActivity
         Intent intent = new Intent(MainActivity.this,itemListView.class);
 
         switch (view.getId()) {
-            case R.id.scorePageButton:
-                startActivity(new Intent(MainActivity.this, AddScoreActivity.class));
-                break;
             case R.id.tournamentButton:
                 intent.putExtra("Caller" , "tournament");
                 startActivity(intent);

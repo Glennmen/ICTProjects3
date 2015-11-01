@@ -33,19 +33,13 @@
             android:layout_height="wrap_content"
             android:textSize="20dp"/>
 
-        <Button
-            android:id="@+id/scorePageButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/scorePageButton"
-            android:layout_below="@+id/welkomTextView"
-            android:layout_alignLeft="@+id/welkomTextView"/>
+
         <Button
             android:id="@+id/tournamentButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tournamentList"
-            android:layout_below="@+id/scorePageButton"
+            android:layout_below="@+id/welkomTextView"
             android:layout_alignLeft="@+id/welkomTextView"/>
         <Button
             android:id="@+id/gameButton"

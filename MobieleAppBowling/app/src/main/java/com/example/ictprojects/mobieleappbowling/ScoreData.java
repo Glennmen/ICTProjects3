@@ -9,9 +9,9 @@ public class ScoreData {
     private String aantalStrikes;
     private String aantalSpares;
     //private int Score_ID;
-    //private int Game_ID;
-    //private int Google_ID;
-    //private int gameName;
+    private String Game_ID;
+    private String Google_ID;
+    private String gameName;
 
     public String getTotaleScore() {
         return totaleScore;
@@ -36,4 +36,16 @@ public class ScoreData {
     public void setAantalSpares(String aantalSpares) {
         this.aantalSpares = aantalSpares;
     }
+
+    public String getGame_ID() {return Game_ID;}
+
+    public void setGame_ID(String game_ID) {Game_ID = game_ID;}
+
+    public String getGoogle_ID() {return Google_ID;}
+
+    public void setGoogle_ID(String google_ID) {Google_ID = google_ID;}
+
+    public String getGameName() {return gameName;}
+
+    public void setGameName(String gameName) {this.gameName = gameName;}
 }

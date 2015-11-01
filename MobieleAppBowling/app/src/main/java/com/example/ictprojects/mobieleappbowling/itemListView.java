@@ -155,6 +155,22 @@ public class itemListView extends AppCompatActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+        if(caller.contentEquals("tournament")){
+
+        }else if(caller.contentEquals("game")){
+           GameObj obj = gameList.get(position);
+
+            Intent intent1 = new Intent(this , AddScoreActivity.class);
+
+            intent1.putExtra("GameID" , obj.getGame_ID());
+            intent1.putExtra("GoogleID" , obj.getGoogle_ID());
+            intent1.putExtra("gameName" , obj.getGame_Name());
+
+            this.startActivity(intent1);
+
+        }else if(caller.contentEquals("inbox")){
+
+        }
     }
 
     /*

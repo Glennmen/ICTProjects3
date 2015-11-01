@@ -2,6 +2,7 @@ package com.example.ictprojects.mobieleappbowling;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -37,11 +38,15 @@ public class AddScoreActivity extends AppCompatActivity
     EditText editAantalStrikes;
     EditText editAantalspares;
     TextView isConnected;
+    TextView title;
     Button submitScoreButton;
     ScoreData score;
     String TotaleScore;
     String AantalStrikes;
     String AantalSpares;
+    private String GoogleID;
+    private String GameID;
+    private String GameName;
 
 
     @Override
@@ -49,6 +54,13 @@ public class AddScoreActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addscore_main);
 
+        Intent intent = getIntent();
+
+        GoogleID = intent.getStringExtra("GoogleID");
+        GameID = intent.getStringExtra("GameID");
+        GameName = intent.getStringExtra("gameName");
+
+        title = (TextView) findViewById(R.id.gameName);
         editTotaleScore = (EditText) findViewById(R.id.editTotaleScore);
         editAantalStrikes = (EditText) findViewById(R.id.editAantalStrikes);
         editAantalspares = (EditText) findViewById(R.id.editAantalspares);
@@ -59,6 +71,7 @@ public class AddScoreActivity extends AppCompatActivity
         editAantalspares.setFilters(new InputFilter[] {new InputFilterMinMax("0", "10")});
         editAantalStrikes.setFilters(new InputFilter[] {new InputFilterMinMax("0", "12")});
 
+        title.setText(GameName);
 
         if(isConnected())
         {
@@ -94,8 +107,8 @@ public class AddScoreActivity extends AppCompatActivity
             jsonObject.accumulate("Total", score.getTotaleScore());
             jsonObject.accumulate("Strikes",score.getAantalStrikes());
             jsonObject.accumulate("Spares",score.getAantalSpares());
-            jsonObject.accumulate("Game_ID",3);
-            jsonObject.accumulate("Google_ID",3);
+            jsonObject.accumulate("Game_ID",score.getGame_ID());
+            jsonObject.accumulate("Google_ID",score.getGoogle_ID());
 
             json = jsonObject.toString();
             StringEntity se = new StringEntity(json);
@@ -154,6 +167,10 @@ public class AddScoreActivity extends AppCompatActivity
             score.setTotaleScore(TotaleScore);
             score.setAantalStrikes(AantalStrikes);
             score.setAantalSpares(AantalSpares);
+            score.setGame_ID(GameID);
+            score.setGoogle_ID(GoogleID);
+
+
 
             return POST(urls[0],score);
         }

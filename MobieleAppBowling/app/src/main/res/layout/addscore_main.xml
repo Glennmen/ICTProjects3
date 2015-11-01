@@ -8,6 +8,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin">
 
+    <TextView   android:text="@string/GameName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/gameName"
+        android:textSize="20sp"
+        android:padding="10dp"
+        />
 
     <TextView   android:text="@string/TotaleScore"
                 android:layout_width="wrap_content"
@@ -15,12 +22,14 @@
                 android:id="@+id/totaleScoreTextView"
                 android:textSize="20sp"
                 android:padding="10dp"
+                android:layout_below="@id/gameName"
                 />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editTotaleScore"
         android:ems="3"
+        android:layout_below="@id/gameName"
         android:layout_toRightOf="@id/totaleScoreTextView"
         android:layout_marginLeft="5dp"
         android:inputType="numberDecimal"
@@ -77,10 +86,5 @@
         android:textSize="30dp"
         android:text="Is Connected?"
         android:layout_centerHorizontal="true"/>
-
-
-
-
-
 
     </RelativeLayout>
