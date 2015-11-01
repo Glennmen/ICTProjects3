@@ -25,8 +25,10 @@
     <?php echo validation_errors()?>
     <?php echo $alert ?>
 
-<div class="col-xs-6 col-md-4"> 
-    <form id="form" action="GameController" method="post">
+<form id="form" action="GameController" method="post">    
+    
+    <div class="col-xs-6 col-md-4"> 
+    
         <div class="form-group">
             <label for="GameName">Naam van de Game :</label>
             <input type="text" class="form-control" id="GameName" name="gameName" value="<?php echo set_value('gameName'); ?>" placeholder="Naam van je game">
@@ -63,28 +65,24 @@
           </select>
         </div>
         
-            <select multiple="multiple" size="10" name="duallistbox_demo1[]">
-              <option value="option1">Option 1</option>
-              <option value="option2">Option 2</option>
-              <option value="option3" selected="selected">Option 3</option>
-              <option value="option4">Option 4</option>
-              <option value="option5">Option 5</option>
-              <option value="option6" selected="selected">Option 6</option>
-              <option value="option7">Option 7</option>
-              <option value="option8">Option 8</option>
-              <option value="option9">Option 9</option>
-              <option value="option0">Option 10</option>
+        <button type="submit" name="CreateGame" id="button" class="btn btn-default" disabled>Create Game</button>
+    
+    </div>
+
+    <div class="col-xs-6 col-md-5 col-md-offset-2"> 
+        <label for="personen">Deelnemers:</label>
+        <select id="personen" multiple size="10" name="Personen[]" class="form-control">
+
             </select>
 
           <script>
-            var demo1 = $('select[name="duallistbox_demo1[]"]').bootstrapDualListbox();
+            var personenSelect = $('select[name="Personen[]"]').bootstrapDualListbox();
             
           </script>
-        
-        <button type="submit" name="CreateGame" id="button" class="btn btn-default" disabled>Create Game</button>
-    </form>
-</div>
-
+    </div>
+    
+</form>
+    
 <script src="<?php echo base_url('assets/js/gamepaginaAjax.js'); ?>"></script>
 </body>
 </html>

@@ -6,12 +6,12 @@ function getInfo(radio) {
         type: "POST",
         url: "/ICTProjects3/ScoreController/json",
         dataType: 'json',
-        data: {GoogleID: 2, Type: 'free'},
+        data: {GoogleID: 1, Type: 'free'},
         success: function(data) {
             tourney = document.getElementById('tourney');
             tourney.options.length = 0;
             $.each(data, function(index, element) {
-            tourney.options[tourney.options.length] = new Option(element.Naam + " - " + element.Datum, element.Game_ID);
+            tourney.options[tourney.options.length] = new Option(element.Game_Name + " - " + element.Date, element.Game_ID);
         });
         document.getElementById("tourneyLabel").innerHTML = "Select game:";
         document.getElementById("tourneyDiv").style.display = "block";
@@ -24,12 +24,12 @@ function getInfo(radio) {
         type: "POST",
         url: "/ICTProjects3/ScoreController/json",
         dataType: 'json',
-        data: {GoogleID: 2, Type: 'tourney'},
+        data: {GoogleID: 1, Type: 'tourney'},
         success: function(data) {
             tourney = document.getElementById('tourney');
             tourney.options.length = 0;
             $.each(data, function(index, element) {
-            tourney.options[tourney.options.length] = new Option(element.Naam , element.Toernooi_ID);
+            tourney.options[tourney.options.length] = new Option(element.Tournament_Name , element.Tournament_ID);
         });
         document.getElementById("tourneyLabel").innerHTML = "Select toernooi:";
         document.getElementById("tourneyDiv").style.display = "block";
@@ -47,12 +47,12 @@ function getGames() {
         type: "POST",
         url: "/ICTProjects3/ScoreController/json",
         dataType: 'json',
-        data: {GoogleID: 2, TournooiID: ID},
+        data: {GoogleID: 1, TournooiID: ID},
         success: function(data) {
             game = document.getElementById('game');
             game.options.length = 0;
             $.each(data, function(index, element) {
-            game.options[game.options.length] = new Option(element.Naam + " - " + element.Datum, element.Game_ID);
+            game.options[game.options.length] = new Option(element.Game_Name + " - " + element.Date, element.Game_ID);
         });
         document.getElementById("gameLabel").innerHTML = "Select game:";
         document.getElementById("gameDiv").style.display = "block";

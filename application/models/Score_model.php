@@ -15,21 +15,21 @@ class Score_model extends CI_Model {
     
     public function GameOphalen($googleID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Game_Name, Date, Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE Google_ID=" .$googleID);
+        $aGameData = $this->db->query("SELECT Game_Name, Date, game.Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE Google_ID=" .$googleID. " AND Tournament_ID=0");
 
         return $aGameData->result();
     }
     
     public function TourneyOphalen($googleID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Tournament_Name, Tournament_ID FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE Google_ID=" .$googleID. " AND Status=1");
+        $aGameData = $this->db->query("SELECT Tournament_Name, tournament.Tournament_ID FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status=1");
 
         return $aGameData->result();
     }
     
     public function GameTourneyOphalen($googleID, $tournooiID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Game_Name, Date, Game_ID FROM participants_tournament INNER JOIN game ON participants_tournament.Tournament_ID=game.Tournament_ID WHERE Google_ID=" .$googleID. " AND Tournament_ID=".$tournooiID);
+        $aGameData = $this->db->query("SELECT Game_Name, Date, game.Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE Google_ID=" .$googleID. " AND Tournament_ID=".$tournooiID);
 
         return $aGameData->result();
     }

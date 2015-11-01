@@ -5,24 +5,56 @@ if (radio.value == "tourney") {
         type: "POST",
         url: "/ICTProjects3/GameController/json",
         dataType: 'json',
-        data: {GoogleID: 2},
+        data: {GoogleID: 1},
         success: function(data) {
             tourney = document.getElementById('tourney');
             tourney.options.length = 0;
             $.each(data, function(index, element) {
-            tourney.options[tourney.options.length] = new Option(element.Naam , element.Toernooi_ID);
+            tourney.options[tourney.options.length] = new Option(element.Tournament_Name , element.Tournament_ID);
         });
         document.getElementById("tourneyLabel").innerHTML = "Select toernooi:";
         document.getElementById("tourneyDiv").style.display = "block";
+        personen.options.length = 0;
+        personenSelect.bootstrapDualListbox('refresh');
         }
         });
     }
     else {
         $("#button").prop('disabled', false);
         document.getElementById("tourneyDiv").style.display = "none";
+        $.ajax({
+        type: "POST",
+        url: "/ICTProjects3/GameController/jsonPersonen",
+        dataType: 'json',
+        data: {},
+        success: function(data) {
+            personen = document.getElementById('personen');
+            personen.options.length = 0;
+            $.each(data, function(index, element) {
+            personen.options[personen.options.length] = new Option(element.Last_Name + " " + element.First_Name , element.Google_ID);
+            personenSelect.bootstrapDualListbox('refresh');
+        });
+        }
+        });
     }
 }
 
 function getGames() {
     $("#button").prop('disabled', false);
+    var e = document.getElementById("tourney");
+    var ID = e.options[e.selectedIndex].value;
+    $.ajax({
+        type: "POST",
+        url: "/ICTProjects3/GameController/jsonPersonen",
+        dataType: 'json',
+        data: {TournooiID: ID, Type: 'tourney'},
+        success: function(data) {
+            personen = document.getElementById('personen');
+            personen.options.length = 0;
+            $.each(data, function(index, element) {
+            personen.options[personen.options.length] = new Option(element.Last_Name + " " + element.First_Name , element.Google_ID);
+            personenSelect.bootstrapDualListbox('refresh');
+        });
+        }
+        });
 }

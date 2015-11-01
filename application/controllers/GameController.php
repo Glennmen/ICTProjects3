@@ -32,7 +32,7 @@ class GameController extends CI_Controller{
                 else if ($this->input->post('type') == 'tourney') {
                     $ID = $this->input->post('Tourney');
                 }
-            
+            $personen = $this->input->post('Personen[]');
             
               $aGameData = [
                   'Game_Name' => $this->input->post('gameName'),
@@ -43,7 +43,7 @@ class GameController extends CI_Controller{
               ];
               
               $this->load->model('Game_model');
-              $this->Game_model->GameToevoegen($aGameData);
+              $this->Game_model->GameToevoegen($aGameData, $ID, $personen);
               
               $data['alert'] = "<div class='alert alert-success' role='alert'>Game succesvol aangemaakt!</div>";
               $this->load->view('gameView1', $data);
@@ -79,6 +79,19 @@ class GameController extends CI_Controller{
     public function json(){
         $this->load->model('Game_model');
         $result = $this->Game_model->TourneyOphalen($this->input->post('GoogleID'));
+        
+        echo json_encode($result);
+    }
+    
+    public function jsonPersonen() {
+        $this->load->model('Game_model');
+        
+        if ($this->input->post('Type') == 'tourney') {
+            $result = $this->Game_model->PersonenTourneyOphalen($this->input->post('TournooiID'));
+        }
+        else {
+            $result = $this->Game_model->PersonenOphalen();
+        }
         
         echo json_encode($result);
     }
