@@ -7,28 +7,14 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -160,16 +146,26 @@ public class itemListView extends AppCompatActivity
         }else if(caller.contentEquals("game")){
            GameObj obj = gameList.get(position);
 
-            Intent intent1 = new Intent(this , AddScoreActivity.class);
+            Intent intent = new Intent(this , AddScoreActivity.class);
 
-            intent1.putExtra("GameID" , obj.getGame_ID());
-            intent1.putExtra("GoogleID" , obj.getGoogle_ID());
-            intent1.putExtra("gameName" , obj.getGame_Name());
+            intent.putExtra("GameID" , obj.getGame_ID());
+            intent.putExtra("GoogleID" , obj.getGoogle_ID());
+            intent.putExtra("gameName" , obj.getGame_Name());
 
-            this.startActivity(intent1);
+            this.startActivity(intent);
 
         }else if(caller.contentEquals("inbox")){
+            TournamentObj obj = tournamentList.get(position);
 
+            Intent intent = new Intent(this , tournamentView.class);
+
+            intent.putExtra("TournamentID" , obj.getTournament_ID());
+            intent.putExtra("GoogleID" , obj.getGoogle_ID());
+            intent.putExtra("StartDate" , obj.getStart_Date());
+            intent.putExtra("EndDate" , obj.getEnd_Date());
+            intent.putExtra("TournamentName" , obj.getTournament_Name());
+
+            this.startActivity(intent);
         }
     }
 

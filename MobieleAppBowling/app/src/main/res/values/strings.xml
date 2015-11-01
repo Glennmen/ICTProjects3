@@ -14,4 +14,7 @@
     <string name="name">name</string>
     <string name="inbox">challenged tournaments</string>
     <string name="GameName">Name of the Game</string>
+    <string name="tournamentName">Tournament name</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
 </resources>
