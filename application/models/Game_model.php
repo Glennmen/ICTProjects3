@@ -7,21 +7,14 @@
  */
 class Game_model extends CI_Model {
     
-    public function GameToevoegen($aData, $ID, $personen )
+    public function GameToevoegen($aData, $personen )
     {
         $this->load->database();
         $this->db->insert('game', $aData);
         $gameID = $this->db->insert_id();
-        
-        if ($ID == 0) {
-            foreach ($personen as $persoonID){
-                $this->db->query('INSERT INTO participants VALUES ('.$gameID.','.$persoonID.')');
-            } 
-        }
-        else {
-            foreach ($personen as $persoonID){
-                $this->db->query('INSERT INTO participants VALUES ('.$gameID.','.$persoonID.')');
-            }
+
+        foreach ($personen as $persoonID){
+            $this->db->query('INSERT INTO participants VALUES ('.$gameID.','.$persoonID.')');
         }
     }
     

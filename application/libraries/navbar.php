@@ -4,34 +4,12 @@ class Navbar {
 
     public function get_navbar()
     {        
-        $sMenu = '<div class="container">
-	<nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			</button>
-                    <!-- <a class="navbar-brand" href="'.base_url("home").'"><span><img alt="Brand" width="32" height="32" src="'.base_url('assets/images/thedon.png').'"></span> GF5FCalc</a> -->
-		</div>
-                <!-- Nav links -->
-		<div class="collapse navbar-collapse" id="navbar-collapse-1">
-			<ul class="nav navbar-nav">
-                            <li><a href="'.base_url("GameController").'">GameController</a></li>
-                            <li><a href="'.base_url("ScoreController").'">ScoreController</a></li>
-                            <li><a href="'.base_url("ProgressController").'">ProgressController</a></li>
-                            <li><a href="'.base_url("TournamentController").'">TournamentController</a></li>
-                            <li><a href="'.base_url("TournamentListController").'">TournamentListController</a></li>
-                            <li><a href="'.base_url("TournamentLinkListController").'">TournamentLinkListController</a></li>
-                            <li><a href="'.base_url("TournamentInfoController").'">TournamentInfoController</a></li>
-                            <li><a href="'.base_url("InvitesController").'">InvitesController</a></li>
-                            <li><a href="'.base_url("ProfileController").'">ProfileController</a></li>    
-			</ul>
-		</div>
-	</div>
-	</nav>';
+        $sMenu = '<nav class="main-menu">
+            <a class="green" href="MainController">Home</a>
+            <a class="blue" href="ScoreController">Score</a>
+            <a class="orange" href="GameController">Game</a>
+            <a class="red" href="TournamentController">Toernooi</a>
+        </nav>';
         
         return $sMenu;
     }

@@ -43,7 +43,7 @@ class GameController extends CI_Controller{
               ];
               
               $this->load->model('Game_model');
-              $this->Game_model->GameToevoegen($aGameData, $ID, $personen);
+              $this->Game_model->GameToevoegen($aGameData, $personen);
               
               $data['alert'] = "<div class='alert alert-success' role='alert'>Game succesvol aangemaakt!</div>";
               $this->load->view('gameView1', $data);

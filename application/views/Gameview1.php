@@ -3,7 +3,8 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>GamePagina</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/sandstone/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/darkly/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css'); ?>"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/duallistbox.min.css"/>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -20,6 +21,8 @@
     
     <?php echo $nav ?>
 
+    <div class="container">
+    
     <h1>Game aanmaken</h1>
     
     <?php echo validation_errors()?>
@@ -82,6 +85,8 @@
     </div>
     
 </form>
+    
+    </div>
     
 <script src="<?php echo base_url('assets/js/gamepaginaAjax.js'); ?>"></script>
 </body>

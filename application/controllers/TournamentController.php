@@ -8,6 +8,7 @@ class TournamentController extends CI_Controller{
         
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
+        $data['alert'] = "";
         
         $this->form_validation->set_rules('tournamentName', 'Name','required');
         $this->form_validation->set_rules('tournamentStartDate', 'StartDate','required|callback_dateCheck');
@@ -20,7 +21,8 @@ class TournamentController extends CI_Controller{
               
               $startDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentStartDate'));               
               $endDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentEndDate'));               
-
+                
+              $personen = $this->input->post('Personen[]');
                 
               $aTournamentData = [
                   'Tournament_Name' => $this->input->post('tournamentName'),
@@ -30,8 +32,9 @@ class TournamentController extends CI_Controller{
               ];
               
               $this->load->model('Tournament_model');
-              $this->Tournament_model->TournamentToevoegen($aTournamentData);
+              $this->Tournament_model->TournamentToevoegen($aTournamentData, $personen);
               
+              $data['alert'] = "<div class='alert alert-success' role='alert'>Toernooi succesvol aangemaakt!</div>";
               $this->load->view('TournamentView', $data);
             }
         }else{
@@ -50,6 +53,13 @@ class TournamentController extends CI_Controller{
             $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
             return FALSE;
         }   
+    }
+    
+    public function jsonPersonen() {
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->PersonenOphalen();
+        
+        echo json_encode($result);
     }
     
 }

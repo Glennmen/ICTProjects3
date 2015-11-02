@@ -1,0 +1,76 @@
+body {
+    position: relative;
+}
+
+.main-menu:hover,nav.main-menu.expanded {
+width:100px;
+overflow:visible;
+position: absolute;
+}
+
+.main-menu {
+background:#375a7f;
+position:absolute;
+top:30px;
+bottom:0;
+right:0;
+width:35px;
+height:400px;
+overflow:hidden;
+-webkit-transition:width .05s linear;
+transition:width .05s linear;
+-webkit-transform:translateZ(0) scale(1,1);
+z-index:1000;
+}
+
+.main-menu a {
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 13pt;
+  width: 90px;
+  line-height: 90px;
+  display: block;
+  margin: 5px;
+  text-align: center;
+  float: left;
+  text-decoration: none;
+  opacity: 0.5;
+  
+}
+a:hover,a:focus{
+  text-decoration: none;
+  opacity: 1;
+}
+
+.green {background:#00bc8c;}
+.blue {background:#3498db;}
+.orange {background:#f39c12;}
+.red {background:#e74c3c;}
+.purple {background:#9933cc;}
+.pink {background:#e61c67;}
+
+.menu {
+  width: 705px;
+}
+
+.menu a {
+  color: #ffffff;
+  font-weight: 300;
+  font-size: 13pt;
+  width: 225px;
+  line-height: 150px;
+  display: block;
+  margin: 5px;
+  text-align: center;
+  float: left;
+  opacity: 0.3;
+}
+
+.menu a:hover, .menu a:focus {
+    opacity: 1;
+}
+
+.menu .large {
+    width: 460px;
+    line-height: 310px;
+}
