@@ -1,19 +1,19 @@
 <?php
 
-/*class InlogController extends CI_Controller
+class InlogController extends CI_Controller
 {
 
     public function __construct()
     {
-        parent::__construct();*/
-        session_start();
-/*    }*/
+        parent::__construct();
+        //session_start();
+    }
 
-//    public function index()
-//    {
+    public function index()
+   {
 
 
-        require_once('../libraries/Google/autoload.php');
+        require_once('C:/xampp/htdocs/ICTProjects3/application/libraries/Google/autoload.php');
 
 //Insert your cient ID and secret 
 //You can get it from : https://console.developers.google.com/
@@ -86,7 +86,7 @@
             echo '<div align="center">';
             echo '<h3>Login with Google -- Demo</h3>';
             echo '<div>Please click login button to connect to Google.</div>';
-            echo '<a class="login" href="' . $authUrl . '"><img src="../images/google-login-button.png" /></a>';
+            echo '<a class="login" href="' . $authUrl . '"><img src="http://localhost/ICTProjects3/application/images/google-login-button.png" /></a>';
             echo '</div>';
 
         } else {
@@ -124,6 +124,6 @@
             echo '</pre>';
         }
         echo '</div>';
- /*   }
-}*/
+    }
+}
 ?>
