@@ -43,7 +43,7 @@ and open the template in the editor.
                     }
                 }
                 else{
-                    echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
+                    echo '<tr><td colspan="4">Geen data beschikbaar!</td></tr>';
                 }
             ?>
         </table>        
