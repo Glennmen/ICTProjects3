@@ -11,12 +11,12 @@
     <?php echo $nav ?>
 
 <div class="container">
-    
+  t
     <h1>Bowling</h1>
 
     
     <div class="menu">
-        <a class="orange large" href="#">Stats</a>
+        <a class="orange large" href="user_authenticationController">Stats</a>
         <a class="green" href="#">Profiel</a>
         <a class="blue" href="#">Uitnodigingen</a>
         <a class="pink" href="TournamentController">Toernooi aanmaken</a>
