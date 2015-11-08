@@ -9,6 +9,7 @@ class Navbar {
             <a class="blue" href="ScoreController">Score</a>
             <a class="orange" href="GameController">Game</a>
             <a class="red" href="TournamentController">Toernooi</a>
+            <a class="red" href="InglogController">Inlog</a>
         </nav>';
         
         return $sMenu;

@@ -1,7 +1,6 @@
 <?php
 
-class InlogController extends CI_Controller
-{
+class InlogController extends CI_Controller {
 
     public function __construct()
     {
@@ -11,6 +10,7 @@ class InlogController extends CI_Controller
 
     public function index()
    {
+       $sContent = null;
 
 
         require_once('C:/xampp/htdocs/ICTProjects3/application/libraries/Google/autoload.php');
@@ -80,14 +80,14 @@ class InlogController extends CI_Controller
 
 
 //Display user info or display login url as per the info we have.
-        echo '<div style="margin:20px">';
+        $sContent = '<div style="margin:20px">';
         if (isset($authUrl)) {
             //show login url
-            echo '<div align="center">';
-            echo '<h3>Login with Google -- Demo</h3>';
-            echo '<div>Please click login button to connect to Google.</div>';
-            echo '<a class="login" href="' . $authUrl . '"><img src="http://localhost/ICTProjects3/application/images/google-login-button.png" /></a>';
-            echo '</div>';
+            $sContent .='<div align="center">';
+            $sContent .='<h3>Login with Google -- Demo</h3>';
+            $sContent .='<div>Please click login button to connect to Google.</div>';
+            $sContent .='<a class="login" href="' . $authUrl . '"><img src="..\images\google-login-button.png" /></a>';
+            $sContent .='</div>';
 
         } else {
 
@@ -104,26 +104,27 @@ class InlogController extends CI_Controller
             $user_count = $result->fetch_object()->usercount; //will return 0 if user doesn't exist
 
             //show user picture
-            echo '<img src="' . $user->picture . '" style="float: right;margin-top: 33px;" />';
+            $sContent .= '<img src="' . $user->picture . '" style="float: right;margin-top: 33px;" />';
 
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
             {
-                echo 'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+                $sContent .=  'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             } else //else greeting text "Thanks for registering"
             {
-                echo 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+                $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
                 $statement = $mysqli->prepare("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) VALUES (?,?,?,?,?)");
                 $statement->bind_param('issss', $user->id, $user->name, $user->email, $user->link, $user->picture);
                 $statement->execute();
-                echo $mysqli->error;
+                $sContent .= $mysqli->error;
             }
 
-            //print user details
-            echo '<pre>';
-            print_r($user);
-            echo '</pre>';
         }
-        echo '</div>';
+        $sContent .= '</div>';
+        $this->load->library('navbar');
+        $data['inhoud'] = $sContent;
+        $data['nav'] = $this->navbar->get_navbar();
+        $this->load->view('InlogView',$data);
+
     }
 }
 ?>
