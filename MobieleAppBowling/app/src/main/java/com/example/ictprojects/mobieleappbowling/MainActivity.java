@@ -7,33 +7,60 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener {
-
-
-    Button tournamentButton , gameButton , inboxButton;
+public class MainActivity extends AppCompatActivity{
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        gameButton = (Button) findViewById(R.id.gameButton);
-        tournamentButton =(Button) findViewById(R.id.tournamentButton);
-        inboxButton = (Button)findViewById(R.id.inboxButton);
+        final GridView gridview = (GridView) findViewById(R.id.gridview);
+        gridview.setAdapter(new ButtonAdapter(this));
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        tournamentButton.setOnClickListener(this);
-        inboxButton.setOnClickListener(this);
-        gameButton.setOnClickListener(this);
+
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
+
+
+                Toast.makeText(MainActivity.this, "" + position,
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
+
+    /*
+    @Override
+    public void onClick(View view) {
+
+        Intent intent = new Intent(MainActivity.this,itemListView.class);
+
+        switch (view.getId()) {
+            case R.id.tournamentButton:
+                intent.putExtra("Caller" , "tournament");
+                startActivity(intent);
+                break;
+            case R.id.gameButton:
+                intent.putExtra("Caller" , "game");
+                startActivity(intent);
+                break;
+            case R.id.inboxButton:
+                intent.putExtra("Caller" , "inbox");
+                startActivity(intent);
+                break;
+        }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,25 +85,6 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this,itemListView.class);
-
-        switch (view.getId()) {
-            case R.id.tournamentButton:
-                intent.putExtra("Caller" , "tournament");
-                startActivity(intent);
-                break;
-            case R.id.gameButton:
-                intent.putExtra("Caller" , "game");
-                startActivity(intent);
-                break;
-            case R.id.inboxButton:
-                intent.putExtra("Caller" , "inbox");
-                startActivity(intent);
-                break;
-        }
-    }
 }
 
 
