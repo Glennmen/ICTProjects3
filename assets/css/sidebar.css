@@ -64,7 +64,19 @@ a:hover,a:focus{
   margin: 5px;
   text-align: center;
   float: left;
-  opacity: 0.3;
+  opacity: 0.5;
+}
+
+.menu a span:first-child{
+  font-size: 65pt;
+  vertical-align: middle;
+}
+
+.badge {
+    font-size: 15pt;
+    position:relative;
+    top: -35px;
+    left: -15px;
 }
 
 .menu a:hover, .menu a:focus {

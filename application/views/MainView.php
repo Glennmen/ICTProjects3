@@ -17,8 +17,8 @@
     
     <div class="menu">
         <a class="orange large" href="#">Stats</a>
-        <a class="green" href="#">Profiel</a>
-        <a class="blue" href="#">Uitnodigingen</a>
+        <a class="green" href="#" title="Home"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
+        <a class="blue" href="#" title="Uitnodiging"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="badge">4</span></a>
         <a class="pink" href="TournamentController">Toernooi aanmaken</a>
         <a class="purple" href="GameController">Game aanmaken</a>
         <a class="red" href="ScoreController">Score toevoegen</a>
