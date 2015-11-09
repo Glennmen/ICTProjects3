@@ -94,16 +94,22 @@ class InlogController extends CI_Controller {
             $user = $service->userinfo->get(); //get user info
 
             // connect to database
-            $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-            if ($mysqli->connect_error) {
-                die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
-            }
+            $this->load->model('Inlog_model');
+            $user_count = $this->Inlog_model->CheckIfUserExist($user);
 
-            //check if user exist in database using COUNT
-            $result = $mysqli->query("SELECT COUNT(google_id) as usercount FROM google_users WHERE google_id=$user->id");
-            $user_count = $result->fetch_object()->usercount; //will return 0 if user doesn't exist
+//            $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
+//            if ($mysqli->connect_error) {
+//                die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+//            }
+
+//            //check if user exist in database using COUNT
+//            $result = $mysqli->query("SELECT COUNT(google_id) as usercount FROM google_users WHERE google_id=$user->id");
+//            $user_count = $result->fetch_object()->usercount; //will return 0 if user doesn't exist
 
             //show user picture
+
+
+
             $sContent .= '<img src="' . $user->picture . '" style="float: right;margin-top: 33px;" />';
 
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
@@ -112,9 +118,16 @@ class InlogController extends CI_Controller {
             } else //else greeting text "Thanks for registering"
             {
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+
+                $this->load->model('Inlog_model');
+                $statement = $this->Inlog_model->RegisterUser($user);
+
+
                 $statement = $mysqli->prepare("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) VALUES (?,?,?,?,?)");
                 $statement->bind_param('issss', $user->id, $user->name, $user->email, $user->link, $user->picture);
                 $statement->execute();
+
+
                 $sContent .= $mysqli->error;
             }
 
