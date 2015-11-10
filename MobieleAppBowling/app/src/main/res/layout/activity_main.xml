@@ -17,6 +17,7 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:title="@string/app_name"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/appBar"
@@ -30,8 +31,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:numColumns="2"
-        android:verticalSpacing="0dp"
-        android:horizontalSpacing="0dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
         />
