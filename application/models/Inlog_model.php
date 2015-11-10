@@ -13,11 +13,11 @@ class Inlog_model extends CI_Model {
         return $user_count;
     }
 
-    public function RegisterUser()
+    public function RegisterUser($user)
     {
 
         $data = array(
-          'google_id' => 'Google_ID',
+          'google_id' => $user['id'],
             'google_name' => 'Google_ID',
             'google_email' => 'Google_ID',
             'google_id' => 'Google_ID',
