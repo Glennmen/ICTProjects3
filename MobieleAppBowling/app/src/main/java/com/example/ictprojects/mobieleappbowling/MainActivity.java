@@ -1,5 +1,6 @@
 package com.example.ictprojects.mobieleappbowling;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
 
+    GridView gv;
+    Context context;
+    public static String [] nameList={"blue","red","green","yello"};
+    public static int [] imageList ={R.drawable.red , R.drawable.purpel , R.drawable.redish ,R.drawable.brownish};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +24,12 @@ public class MainActivity extends AppCompatActivity{
 
         setContentView(R.layout.activity_main);
 
-        final GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new CustomAdapter(this));
+        gv = (GridView) findViewById(R.id.gridview);
+        gv.setAdapter(new CustomAdapter(this, nameList, imageList));
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
-
 
                 Toast.makeText(MainActivity.this, "" + position,
                         Toast.LENGTH_SHORT).show();
@@ -81,8 +81,6 @@ public class MainActivity extends AppCompatActivity{
 
         return super.onOptionsItemSelected(item);
     }
-
-
 }
 
 
