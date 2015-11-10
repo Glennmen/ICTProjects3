@@ -86,7 +86,7 @@ class InlogController extends CI_Controller {
             $sContent .='<div align="center">';
             $sContent .='<h3>Login with Google -- Demo</h3>';
             $sContent .='<div>Please click login button to connect to Google.</div>';
-            $sContent .='<a class="login" href="' . $authUrl . '"><img src="..\images\google-login-button.png" /></a>';
+            $sContent .='<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
             $sContent .='</div>';
 
         } else {
@@ -96,6 +96,8 @@ class InlogController extends CI_Controller {
             // connect to database
             $this->load->model('Inlog_model');
             $user_count = $this->Inlog_model->CheckIfUserExist($user);
+
+
 
 //            $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
 //            if ($mysqli->connect_error) {
@@ -123,12 +125,12 @@ class InlogController extends CI_Controller {
                 $statement = $this->Inlog_model->RegisterUser($user);
 
 
-                $statement = $mysqli->prepare("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) VALUES (?,?,?,?,?)");
-                $statement->bind_param('issss', $user->id, $user->name, $user->email, $user->link, $user->picture);
-                $statement->execute();
+                //$statement = $mysqli->prepare("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) VALUES (?,?,?,?,?)");
+                //$statement->bind_param('issss', $user->id, $user->name, $user->email, $user->link, $user->picture);
+                //$statement->execute();
 
 
-                $sContent .= $mysqli->error;
+                //$sContent .= $mysqli->error;
             }
 
         }
