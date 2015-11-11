@@ -109,9 +109,7 @@ class OAuthController extends CI_Controller
 //            $user_count = $result->fetch_object()->usercount; //will return 0 if user doesn't exist
 
             //show user picture
-
-
-            $sContent .= '<img src="' . $user->picture . '" style="float: right;margin-top: 33px;" />';
+            $sContent .= '<table><tr><td>';
 
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
             {
@@ -120,13 +118,12 @@ class OAuthController extends CI_Controller
             {
                 $this->load->model('OAuth_model');
                 $this->OAuth_model->RegisterUser($user);
+                
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
-
-//                $this->load->model('OAuth_model');
-//                $this->OAuth_model->RegisterUser($user);
-
             }
-
+            $sContent .= '</td></tr><tr><td>';
+            $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
+            $sContent .= '</td></tr></table>';      
         }
         $sContent .= '</div>';
         $this->load->library('navbar');
