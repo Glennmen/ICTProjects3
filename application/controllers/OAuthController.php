@@ -118,10 +118,12 @@ class OAuthController extends CI_Controller
                 $sContent .= 'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             } else //else greeting text "Thanks for registering"
             {
-                $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
-
                 $this->load->model('OAuth_model');
                 $this->OAuth_model->RegisterUser($user);
+                $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+
+//                $this->load->model('OAuth_model');
+//                $this->OAuth_model->RegisterUser($user);
 
             }
 
