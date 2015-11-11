@@ -121,7 +121,7 @@ class OAuthController extends CI_Controller
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
 
                 $this->load->model('OAuth_model');
-                $this->Inlog_model->RegisterUser($user);
+                $this->OAuth_model->RegisterUser($user);
 
             }
 
