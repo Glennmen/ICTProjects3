@@ -1,6 +1,6 @@
 <?php
 
-class InlogController extends CI_Controller {
+class OAuthController extends CI_Controller {
 
     public function __construct()
     {
@@ -84,8 +84,8 @@ class InlogController extends CI_Controller {
         if (isset($authUrl)) {
             //show login url
             $sContent .='<div align="center">';
-            $sContent .='<h3>Login with Google -- Demo</h3>';
-            $sContent .='<div>Please click login button to connect to Google.</div>';
+            $sContent .='<h3>Login with Google</h3>';
+            $sContent .='<p><div>Please click login button to connect to the Bowling WebApplication with Google.</div><p>';
             $sContent .='<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
             $sContent .='</div>';
 
@@ -94,8 +94,8 @@ class InlogController extends CI_Controller {
             $user = $service->userinfo->get(); //get user info
 
             // connect to database
-            $this->load->model('Inlog_model');
-            $user_count = $this->Inlog_model->CheckIfUserExist($user);
+            $this->load->model('OAuth_model');
+            $user_count = $this->OAuth_model->CheckIfUserExist($user);
 
 
 
@@ -121,16 +121,9 @@ class InlogController extends CI_Controller {
             {
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
 
-                $this->load->model('Inlog_model');
-                $statement = $this->Inlog_model->RegisterUser($user);
+                $this->load->model('OAuth_model');
+                $this->Inlog_model->RegisterUser($user);
 
-
-                //$statement = $mysqli->prepare("INSERT INTO google_users (google_id, google_name, google_email, google_link, google_picture_link) VALUES (?,?,?,?,?)");
-                //$statement->bind_param('issss', $user->id, $user->name, $user->email, $user->link, $user->picture);
-                //$statement->execute();
-
-
-                //$sContent .= $mysqli->error;
             }
 
         }
@@ -138,7 +131,7 @@ class InlogController extends CI_Controller {
         $this->load->library('navbar');
         $data['inhoud'] = $sContent;
         $data['nav'] = $this->navbar->get_navbar();
-        $this->load->view('InlogView',$data);
+        $this->load->view('OAuthView',$data);
 
     }
 }
