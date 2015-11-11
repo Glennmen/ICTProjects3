@@ -1,6 +1,8 @@
 <?php
+
 //
-class OAuth_model extends CI_Model {
+class OAuth_model extends CI_Model
+{
 
     public function CheckIfUserExist($user)
     {
@@ -8,7 +10,7 @@ class OAuth_model extends CI_Model {
 
         $result = $this->db->query("SELECT COUNT(Google_ID) as usercount FROM person WHERE Google_ID=$user->id");
 
-        if($result) {
+        if ($result) {
             $user_count = $result->row()->usercount; //will return 0 if user doesn't exist
         }
 
@@ -19,7 +21,7 @@ class OAuth_model extends CI_Model {
     {
 
         $data = array(
-          'Google_ID' => $user['id'],
+            'Google_ID' => $user['id'],
             'Last_Name' => $user['familyName'],
             'First_Name' => $user['givenName'],
             'Email' => $user['email'],

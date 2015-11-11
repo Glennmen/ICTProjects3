@@ -1,6 +1,7 @@
 <?php
 
-class OAuthController extends CI_Controller {
+class OAuthController extends CI_Controller
+{
 
     public function __construct()
     {
@@ -9,8 +10,8 @@ class OAuthController extends CI_Controller {
     }
 
     public function index()
-   {
-       $sContent = null;
+    {
+        $sContent = null;
 
 
         require_once('C:/xampp/htdocs/ICTProjects3/application/libraries/Google/autoload.php');
@@ -83,11 +84,11 @@ class OAuthController extends CI_Controller {
         $sContent = '<div style="margin:20px">';
         if (isset($authUrl)) {
             //show login url
-            $sContent .='<div align="center">';
-            $sContent .='<h3>Login with Google</h3>';
-            $sContent .='<p><div>Please click login button to connect to the Bowling WebApplication with Google.</div><p>';
-            $sContent .='<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
-            $sContent .='</div>';
+            $sContent .= '<div align="center">';
+            $sContent .= '<h3>Login with Google</h3>';
+            $sContent .= '<p><div>Please click login button to connect to the Bowling WebApplication with Google.</div><p>';
+            $sContent .= '<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
+            $sContent .= '</div>';
 
         } else {
 
@@ -96,7 +97,6 @@ class OAuthController extends CI_Controller {
             // connect to database
             $this->load->model('OAuth_model');
             $user_count = $this->OAuth_model->CheckIfUserExist($user);
-
 
 
 //            $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
@@ -111,12 +111,11 @@ class OAuthController extends CI_Controller {
             //show user picture
 
 
-
             $sContent .= '<img src="' . $user->picture . '" style="float: right;margin-top: 33px;" />';
 
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
             {
-                $sContent .=  'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+                $sContent .= 'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             } else //else greeting text "Thanks for registering"
             {
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
@@ -131,8 +130,9 @@ class OAuthController extends CI_Controller {
         $this->load->library('navbar');
         $data['inhoud'] = $sContent;
         $data['nav'] = $this->navbar->get_navbar();
-        $this->load->view('OAuthView',$data);
+        $this->load->view('OAuthView', $data);
 
     }
 }
+
 ?>
