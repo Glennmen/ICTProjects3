@@ -123,7 +123,7 @@ class OAuthController extends CI_Controller
             }
             $sContent .= '</td></tr><tr><td>';
             $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
-            $sContent .= '</td></tr></table>';      
+            $sContent .= '</td></tr></table>';
         }
         $sContent .= '</div>';
         $this->load->library('navbar');

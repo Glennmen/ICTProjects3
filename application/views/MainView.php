@@ -12,7 +12,7 @@
 
 <div class="container">
 
-    <h1>Bowling</h1>
+    <h1><? echo $title ?></h1>
 
     
     <div class="menu">
