@@ -132,6 +132,10 @@ class OAuthController extends CI_Controller
 
                 $sContent .= '</div>';
                 $this->load->library('navbar');
+                $this->load->model('Main_model');
+
+                $data['uitnodigingen'] = $this->Main_model->getAantalUitnodigingen(2);
+                $data['chart'] = $this->Main_model->makeChart(2);
                 $data['inhoud'] = $sContent;
                 $data['nav'] = $this->navbar->get_navbar();
                 $data['First_Name'] = $this->session->userdata("First_Name");
