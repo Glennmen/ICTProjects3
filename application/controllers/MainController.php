@@ -5,10 +5,10 @@ class MainController extends CI_Controller {
 
 
     function __construct() {
-        parent::__construct();
-        $this->load->helper('url');
-        $this->require_login();
-    }
+    parent::__construct();
+    $this->load->helper('url');
+    $this->require_login();
+}
 
     protected function require_login() {
         if(empty($_SESSION['Google_ID'])) {
