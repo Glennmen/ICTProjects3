@@ -12,7 +12,7 @@
 
 <div class="container">
 
-    <h1><? echo $title ?></h1>
+    <h1> Google_ID is  <?php echo $title ?> </h1>
 
     
     <div class="menu">

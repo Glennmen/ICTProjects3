@@ -114,10 +114,12 @@ class OAuthController extends CI_Controller
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
             {
                 $sContent .= 'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+                $_SESSION["Google_ID"] = $user['id'];
             } else //else greeting text "Thanks for registering"
             {
                 $this->load->model('OAuth_model');
                 $this->OAuth_model->RegisterUser($user);
+                $_SESSION["Google_ID"] = $user['id'];
                 
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             }
