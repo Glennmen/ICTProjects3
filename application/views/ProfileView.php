@@ -18,7 +18,21 @@
     <?php echo $nav ?>
 
     <?php echo validation_errors()?>
-        
+       
+ <?php
+ 
+                if($aProfiledata != null){
+                    foreach($aProfiledata as $aProfileRow){
+                        $sLast_Name =  $aProfileRow->Last_Name;
+                        $sFirst_Name =  $aProfileRow->First_Name;
+                        $sEmail =  $aProfileRow->Email;
+                        $sNickname =  $aProfileRow->Nickname;
+                        $sGSM =  $aProfileRow->GSM;
+                       
+                    }
+                }
+                
+            ?>
         
         <h1>Profiel</h1>
         
@@ -27,27 +41,27 @@
         <form action="ProfileController" method="post">
             <div class="form-group">
             <label for="Last_Name">Achternaam:</label>
-            <input type="text" class="form-control" id="Last_Name" name="Last_Name" value="<?php echo set_value('Last_Name'); ?>" placeholder="Achternaam">
+            <input type="text" class="form-control" id="Last_Name" name="Last_Name" value="<?php echo set_value('Last_Name'); ?>" placeholder="<?php echo $sLast_Name ?>">
             </div>
             
             <div class="form-group">
             <label for="First_Name">Voornaam:</label>
-            <input type="text" class="form-control" id="First_Name" name="First_Name" value="<?php echo set_value('First_Name'); ?>" placeholder="Voornaam">
+            <input type="text" class="form-control" id="First_Name" name="First_Name" value="<?php echo set_value('First_Name'); ?>" placeholder="<?php echo $sFirst_Name ?>">
             </div>
             
              <div class="form-group">
             <label for="Email">Email:</label>
-            <input type="text" class="form-control" id="Email" name="Email" value="<?php echo set_value('Email'); ?>" placeholder="E-mail">
+            <input type="text" class="form-control" id="Email" name="Email" value="<?php echo set_value('Email'); ?>" placeholder="<?php echo $sEmail ?>">
             </div>
             
              <div class="form-group">
             <label for="Nickname">Nickname:</label>
-            <input type="text" class="form-control" id="Nickname" name="Nickname" value="<?php echo set_value('Nickname'); ?>" placeholder="Nickname">
+            <input type="text" class="form-control" id="Nickname" name="Nickname" value="<?php echo set_value('Nickname'); ?>" placeholder="<?php echo $sNickname ?>">
             </div>
             
              <div class="form-group">
             <label for="GSM">GSM nummer:</label>
-            <input type="text" class="form-control" id="GSM" name="GSM" value="<?php echo set_value('GSM'); ?>" placeholder="GSM nummer">
+            <input type="text" class="form-control" id="GSM" name="GSM" value="<?php echo set_value('GSM'); ?>" placeholder="<?php echo $sGSM ?>">
             </div>
         
         <br>
