@@ -9,7 +9,7 @@ class Navbar {
             <a class="blue" href="ScoreController">Score</a>
             <a class="orange" href="GameController">Game</a>
             <a class="red" href="TournamentController">Toernooi</a>
-            <a class="purple" href="OAuthController">Inlog</a>
+            <a class="purple" href="OAuthController/?logout=1">Uitloggen</a>
         </nav>';
         
         return $sMenu;

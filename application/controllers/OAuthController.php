@@ -31,6 +31,8 @@ class OAuthController extends CI_Controller
 //incase of logout request, just unset the session var
         if (isset($_GET['logout'])) {
             unset($_SESSION['access_token']);
+
+            session_destroy();
         }
 
         /************************************************
@@ -90,6 +92,12 @@ class OAuthController extends CI_Controller
             $sContent .= '<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
             $sContent .= '</div>';
 
+            $sContent .= '</div>';
+            $this->load->library('navbar');
+            $data['inhoud'] = $sContent;
+            $data['nav'] = $this->navbar->get_navbar();
+            $this->load->view('OAuthView', $data);
+
         } else {
 
             $user = $service->userinfo->get(); //get user info
@@ -115,23 +123,40 @@ class OAuthController extends CI_Controller
             {
                 $sContent .= 'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
                 $_SESSION["Google_ID"] = $user['id'];
+                $_SESSION["First_Name"] = $user['familyName'];
+                $_SESSION["Last_Name"] = $user['givenName'];
+
+                $sContent .= '</td></tr><tr><td>';
+                $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
+                $sContent .= '</td></tr></table>';
+
+                $sContent .= '</div>';
+                $this->load->library('navbar');
+                $data['inhoud'] = $sContent;
+                $data['nav'] = $this->navbar->get_navbar();
+                $data['First_Name'] = $this->session->userdata("First_Name");
+                $data['Last_Name'] = $this->session->userdata("Last_Name");
+                $this->load->view('MainView', $data);
+
             } else //else greeting text "Thanks for registering"
             {
                 $this->load->model('OAuth_model');
                 $this->OAuth_model->RegisterUser($user);
                 $_SESSION["Google_ID"] = $user['id'];
+                $_SESSION["First_Name"] = $user['familyName'];
+                $_SESSION["Last_Name"] = $user['givenName'];
                 
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             }
-            $sContent .= '</td></tr><tr><td>';
-            $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
-            $sContent .= '</td></tr></table>';
+//            $sContent .= '</td></tr><tr><td>';
+//            $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
+//            $sContent .= '</td></tr></table>';
         }
-        $sContent .= '</div>';
+     /*   $sContent .= '</div>';
         $this->load->library('navbar');
         $data['inhoud'] = $sContent;
         $data['nav'] = $this->navbar->get_navbar();
-        $this->load->view('OAuthView', $data);
+        $this->load->view('OAuthView', $data);*/
 
     }
 }

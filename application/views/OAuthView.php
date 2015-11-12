@@ -5,15 +5,15 @@
     <title>Inloggen</title>
     <link rel="stylesheet" type="text/css"
           href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/darkly/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css'); ?>"/>
+<!--    <link rel="stylesheet" type="text/css" href="--><?php //echo base_url('assets/css/sidebar.css'); ?><!--"/>-->
 </head>
 <body>
 
-<?php echo $nav ?>
+<?php //echo $nav ?>
 
 <div class="container">
 
-    <h1>Score toevoegen</h1>
+    <h1>Inloggen</h1>
 
     <?php echo validation_errors() ?>
     <?php echo $inhoud ?>
