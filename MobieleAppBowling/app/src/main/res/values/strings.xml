@@ -7,8 +7,8 @@
     <string name="totaleSpares">Aantal spares:</string>
     <string name="submitScoreButtonText">Submit</string>
     <string name="scorePageButton">Score page</string>
-    <string name="tournamentList">add tournament score</string>
-    <string name="gameScore">add game score</string>
+    <string name="tournamentList">tournament score</string>
+    <string name="gameScore">game score</string>
     <string name="items_title">List</string>
     <string name="date">date</string>
     <string name="name">name</string>

@@ -3,38 +3,53 @@ package com.example.ictprojects.mobieleappbowling;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity
-        implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity{
 
-
-    Button tournamentButton , gameButton , inboxButton;
-
+    GridView gv;
+    public static String [] nameList={"Tournament score","Game Score","uitnodigingen","profiel"};
+    public static int [] imageList ={R.drawable.red , R.drawable.purpel , R.drawable.redish ,R.drawable.brownish};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
-        gameButton = (Button) findViewById(R.id.gameButton);
-        tournamentButton =(Button) findViewById(R.id.tournamentButton);
-        inboxButton = (Button)findViewById(R.id.inboxButton);
+        gv = (GridView) findViewById(R.id.gridview);
+
+        gv.setAdapter(new CustomAdapter(this, nameList, imageList));
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        gv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
 
-        tournamentButton.setOnClickListener(this);
-        inboxButton.setOnClickListener(this);
-        gameButton.setOnClickListener(this);
+                Intent intent = new Intent(MainActivity.this,itemListView.class);
+
+                switch (position) {
+                    case 0:
+                        intent.putExtra("Caller" , "tournament");
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent.putExtra("Caller" , "game");
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent.putExtra("Caller" , "inbox");
+                        startActivity(intent);
+                        break;
+                }
+            }
+        });
 
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -55,27 +70,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MainActivity.this,itemListView.class);
-
-        switch (view.getId()) {
-            case R.id.tournamentButton:
-                intent.putExtra("Caller" , "tournament");
-                startActivity(intent);
-                break;
-            case R.id.gameButton:
-                intent.putExtra("Caller" , "game");
-                startActivity(intent);
-                break;
-            case R.id.inboxButton:
-                intent.putExtra("Caller" , "inbox");
-                startActivity(intent);
-                break;
-        }
     }
 }
 
