@@ -12,7 +12,7 @@
 
 <div class="container">
 
-    <h1> Welkom  <?php echo $First_Name,$Last_Name ?> ! </h1>
+    <h1> Name is  <?php echo $First_Name,$Last_Name ?> </h1>
 
     
     <div class="menu">

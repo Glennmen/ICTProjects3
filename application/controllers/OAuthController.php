@@ -117,7 +117,7 @@ class OAuthController extends CI_Controller
 //            $user_count = $result->fetch_object()->usercount; //will return 0 if user doesn't exist
 
             //show user picture
-            //$sContent .= '<table><tr><td>';
+            $sContent .= '<table><tr><td>';
 
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
             {
@@ -126,13 +126,13 @@ class OAuthController extends CI_Controller
                 $_SESSION["First_Name"] = $user['familyName'];
                 $_SESSION["Last_Name"] = $user['givenName'];
 
-     /*           $sContent .= '</td></tr><tr><td>';
+                $sContent .= '</td></tr><tr><td>';
                 $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
-                $sContent .= '</td></tr></table>';*/
+                $sContent .= '</td></tr></table>';
 
-               // $sContent .= '</div>';
-
+                $sContent .= '</div>';
                 $this->load->library('navbar');
+                $data['inhoud'] = $sContent;
                 $data['nav'] = $this->navbar->get_navbar();
                 $data['First_Name'] = $this->session->userdata("First_Name");
                 $data['Last_Name'] = $this->session->userdata("Last_Name");
@@ -145,14 +145,8 @@ class OAuthController extends CI_Controller
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
                 $_SESSION["Last_Name"] = $user['givenName'];
-
-                $this->load->library('navbar');
-                $data['nav'] = $this->navbar->get_navbar();
-                $data['First_Name'] = $this->session->userdata("First_Name");
-                $data['Last_Name'] = $this->session->userdata("Last_Name");
-                $this->load->view('MainView', $data);
                 
-                //$sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
+                $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             }
 //            $sContent .= '</td></tr><tr><td>';
 //            $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
