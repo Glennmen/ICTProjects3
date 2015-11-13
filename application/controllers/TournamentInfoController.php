@@ -26,8 +26,8 @@ class TournamentInfoController extends CI_Controller {
     }
 
     public function view_participants() {
-        $this->load->model('TournamentInfo_model');
-        $result = $this->TournamentInfo_model->AllParticipants(1);
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllParticipants(1);
         if ($result != false) {
             return $result;
         } else {

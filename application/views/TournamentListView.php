@@ -27,7 +27,7 @@ and open the template in the editor.
 
             <?php
                 if($aTournamentListData != null){
-                    foreach($aTournamentListData->result() as $aTournamentListRow){
+                    foreach($aTournamentListData as $aTournamentListRow){
                         $sContent =  "<tr><td>".$aTournamentListRow->Tournament_ID."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Tournament_Name."</td>";
                         $sContent .=  "<td>".$aTournamentListRow->Start_Date."</td>";

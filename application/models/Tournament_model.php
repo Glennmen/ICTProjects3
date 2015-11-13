@@ -25,4 +25,59 @@ class Tournament_model extends CI_Model {
 
         return $aGameData->result();
     }
+    
+    public function AllTournaments($googleID)
+    {
+        $this->load->database();
+        
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE participants_tournament.Google_ID=".$googleID);
+        
+        
+       return $aData->result();
+    }
+    
+    public function AllParticipants($tournamentID)
+    {
+        $this->load->database();
+       
+        $aData = $this->db->query("SELECT COUNT(person.Google_ID) AS aantalGames, person.Last_Name, person.First_Name, AVG(score.Total) AS gemTotaal, AVG(score.Strikes) AS gemStrikes, AVG(score.Spares) AS gemSpare
+                FROM person INNER JOIN score ON score.Google_ID = person.Google_ID
+                INNER JOIN game ON game.Game_ID = score.Game_ID
+                INNER JOIN tournament ON tournament.Tournament_ID = game.Tournament_ID WHERE tournament.Tournament_ID = ".$tournamentID.
+                " GROUP BY person.First_Name");
+        
+       return $aData;
+    }
+    
+    
+    
+    public function AllNotAcceptedTournaments($googleID)
+    {
+        $this->load->database();
+        
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
+        return $aData->result();
+    }
+    
+    public function AllAcceptedTournaments($googleID)
+    {
+        $this->load->database();
+        
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 1 AND participants_tournament.Google_ID=".$googleID);
+        return $aData->result();
+    }
+    
+    public function AllDeclinedTournaments($googleID)
+    {
+        $this->load->database();
+        
+        $aData =$this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 2 AND participants_tournament.Google_ID=".$googleID);
+        return $aData-result();
+    }
+    
+    
 }

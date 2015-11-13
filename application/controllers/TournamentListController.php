@@ -17,8 +17,8 @@ class TournamentListController extends CI_Controller {
     }
     
     public function view_list(){
-        $this->load->model('TournamentList_model');
-        $result = $this->TournamentList_model->AllAcceptedTournaments(1); //komt googleID
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllAcceptedTournaments(1); //komt googleID
         if ($result != false) {
             return $result;
         }else{
@@ -27,14 +27,14 @@ class TournamentListController extends CI_Controller {
     }
     
     public function MobileApp(){
-        $this->load->model('TournamentList_model');
+        $this->load->model('Tournament_model');
         
         $aMobileData = json_decode(file_get_contents('php://input'),true);
         
         if($aMobileData['req'] == "accepted"){
-            $result = $this->TournamentList_model->AllAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
+            $result = $this->Tournament_model->AllAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
         }else if($aMobileData['req'] == "inbox"){
-            $result = $this->TournamentList_model->AllNotAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
+            $result = $this->Tournament_model->AllNotAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
         }
         
         

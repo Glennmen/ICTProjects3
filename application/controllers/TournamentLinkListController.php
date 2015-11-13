@@ -23,8 +23,8 @@ class TournamentLinkListController extends CI_Controller {
     }
     
     public function view_list(){
-        $this->load->model('TournamentList_model');
-        $result = $this->TournamentList_model->AllAcceptedTournaments(1); //komt googleID
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllAcceptedTournaments(1); //komt googleID
         if ($result != false) {
             return $result;
         }else{
