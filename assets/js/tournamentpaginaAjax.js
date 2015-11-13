@@ -12,3 +12,12 @@ $.ajax({
         });
         }
         });
+function select() {
+    personen = document.getElementById('personen');
+    if (personen.value) {
+        $("#button").prop('disabled', false);
+    }
+    else {
+        $("#button").prop('disabled', true);
+    }
+}

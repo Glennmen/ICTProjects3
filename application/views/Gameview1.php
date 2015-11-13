@@ -74,7 +74,7 @@
 
     <div class="col-xs-6 col-md-5 col-md-offset-2"> 
         <label for="personen">Deelnemers:</label>
-        <select id="personen" multiple size="10" name="Personen[]" class="form-control">
+        <select id="personen" multiple size="10" name="Personen[]" class="form-control" onchange="select()">
 
             </select>
 

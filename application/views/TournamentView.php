@@ -47,13 +47,13 @@
         </div>
         
         </br>
-        <button type="submit" name="CreateTournament" class="btn btn-default">Maak toernooi aan</button>
+        <button type="submit" name="CreateTournament" id="button" class="btn btn-default" disabled>Maak toernooi aan</button>
 
 </div>
         
         <div class="col-xs-6 col-md-5 col-md-offset-2"> 
         <label for="personen">Deelnemers:</label>
-        <select id="personen" multiple size="10" name="Personen[]" class="form-control">
+        <select id="personen" multiple size="10" name="Personen[]" class="form-control" onchange="select()">
 
             </select>
 

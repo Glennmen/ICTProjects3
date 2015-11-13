@@ -20,7 +20,7 @@ if (radio.value == "tourney") {
         });
     }
     else {
-        $("#button").prop('disabled', false);
+        $("#button").prop('disabled', true);
         document.getElementById("tourneyDiv").style.display = "none";
         $.ajax({
         type: "POST",
@@ -40,7 +40,7 @@ if (radio.value == "tourney") {
 }
 
 function getGames() {
-    $("#button").prop('disabled', false);
+    $("#button").prop('disabled', true);
     var e = document.getElementById("tourney");
     var ID = e.options[e.selectedIndex].value;
     $.ajax({
@@ -57,4 +57,14 @@ function getGames() {
         });
         }
         });
+}
+
+function select() {
+    personen = document.getElementById('personen');
+    if (personen.value) {
+        $("#button").prop('disabled', false);
+    }
+    else {
+        $("#button").prop('disabled', true);
+    }
 }
