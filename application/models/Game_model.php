@@ -18,12 +18,7 @@ class Game_model extends CI_Model {
         }
     }
     
-    public function TourneyOphalen($googleID){
-        $this->load->database();
-        $aGameData = $this->db->query("SELECT Tournament_Name, participants_tournament.Tournament_ID FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status=1");
-
-        return $aGameData->result();
-    }
+   
     
     public function allGames($googleID){
         $this->load->database();

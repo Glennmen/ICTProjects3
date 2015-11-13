@@ -77,8 +77,8 @@ class GameController extends CI_Controller{
     }
     
     public function json(){
-        $this->load->model('Game_model');
-        $result = $this->Game_model->TourneyOphalen($this->input->post('GoogleID'));
+        $this->load->model('Score_model');
+        $result = $this->Score_model->TourneyOphalen($this->input->post('GoogleID'));
         
         echo json_encode($result);
     }
