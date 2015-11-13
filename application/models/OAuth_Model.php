@@ -31,6 +31,12 @@ class OAuth_model extends CI_Model
         $this->db->insert('person', $data);
 
     }
+    
+    public function UpdateProfile($aData,$googleID){
+        $this->load->database();
+        $this->db->where('Google_ID', $googleID);
+        $this->db->update('person', $aData); 
+    }
 }
 
 ?>
