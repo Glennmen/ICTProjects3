@@ -67,10 +67,10 @@ class ScoreController extends CI_Controller {
             $result = $this->Score_model->TourneyOphalen($this->input->post('GoogleID'));
         }
         else if ($this->input->post('Type') == 'free') {
-            $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
+            $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), 0);
         }
         else {
-            $result = $this->Score_model->GameTourneyOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
+            $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
         }
         
         echo json_encode($result);

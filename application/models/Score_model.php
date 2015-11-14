@@ -13,9 +13,9 @@ class Score_model extends CI_Model {
         $this->db->insert('score', $aData);
     }
     
-    public function GameOphalen($googleID){
+    public function GameOphalen($googleID, $tournooiID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Game_Name, Date, game.Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE Google_ID=" .$googleID. " AND Tournament_ID=0");
+        $aGameData = $this->db->query("SELECT Game_Name, Date, game.Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE participants.Google_ID=" .$googleID. " AND Tournament_ID=".$tournooiID." AND NOT EXISTS (select null FROM score WHERE score.Game_ID=participants.Game_ID AND score.Google_ID=participants.Google_ID)");
 
         return $aGameData->result();
     }
@@ -23,13 +23,6 @@ class Score_model extends CI_Model {
     public function TourneyOphalen($googleID){
         $this->load->database();
         $aGameData = $this->db->query("SELECT Tournament_Name, tournament.Tournament_ID FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status=1");
-
-        return $aGameData->result();
-    }
-    
-    public function GameTourneyOphalen($googleID, $tournooiID){
-        $this->load->database();
-        $aGameData = $this->db->query("SELECT Game_Name, Date, game.Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE Google_ID=" .$googleID. " AND Tournament_ID=".$tournooiID);
 
         return $aGameData->result();
     }
