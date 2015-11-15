@@ -14,7 +14,7 @@ class OAuthController extends CI_Controller
         $sContent = null;
 
 
-        require_once('C:/xampp/htdocs/ICTProjects3/application/libraries/Google/autoload.php');
+        require_once('application/libraries/Google/autoload.php');
 
 //Insert your cient ID and secret 
 //You can get it from : https://console.developers.google.com/
