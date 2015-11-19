@@ -12,8 +12,7 @@ class OAuthController extends CI_Controller
     public function index()
     {
         $sContent = null;
-
-
+        
         require_once('application/libraries/Google/autoload.php');
 
 //Insert your cient ID and secret 
@@ -90,8 +89,13 @@ class OAuthController extends CI_Controller
             $sContent .= '<h3>Login with Google</h3>';
             $sContent .= '<p><div>Please click login button to connect to the Bowling WebApplication with Google.</div><p>';
             $sContent .= '<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
+            
+            if ($_SERVER['QUERY_STRING'] == "logout=1")
+            {
+                $sContent .= '<p><div>Your Google-Account is still active</div></p>';
+            }
+            
             $sContent .= '</div>';
-
             $sContent .= '</div>';
             $this->load->library('navbar');
             $data['inhoud'] = $sContent;
@@ -161,7 +165,6 @@ class OAuthController extends CI_Controller
         $data['inhoud'] = $sContent;
         $data['nav'] = $this->navbar->get_navbar();
         $this->load->view('OAuthView', $data);*/
-
     }
 }
 
