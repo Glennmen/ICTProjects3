@@ -32,10 +32,14 @@ class OAuth_model extends CI_Model
 
     }
     
-    public function UpdateProfile($aData,$googleID){
-        $this->load->database();
-        $this->db->where('Google_ID', $googleID);
-        $this->db->update('person', $aData); 
+    public function UpdateProfile($user){
+       try{ $this->load->database();
+       $this->db->query("UPDATE person SET Last_Name ='".$user['familyName']."' , First_Name ='".$user['givenName']."' , Email ='".$user['email']."' , picture ='".$user['picture']."' WHERE Google_ID =".$user['id']);
+        return true;
+      }catch(Exception  $e)
+      {
+         return false;
+      }
     }
 }
 
