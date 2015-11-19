@@ -7,12 +7,23 @@ class TournamentListController extends CI_Controller {
         $data['nav'] = $this->navbar->get_navbar();
         
         if(isset($_POST['SelectTournament'])){
-            $this->load->view('Gameview1');
+            $data['aParticipants'] = $this->view_participants();
+            //$data['aScore'] = $this->view_score();
+            $this->load->view('TournamentInfoView',$data);
         }
-        else
-        {
+        else{
             $data['aTournamentListData'] = $this->view_list();
             $this->load->view('TournamentListView', $data);
+        }
+    }
+    
+    public function view_participants() {
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllParticipants(1);
+        if ($result != false) {
+            return $result;
+        } else {
+            return null;
         }
     }
     
@@ -36,7 +47,6 @@ class TournamentListController extends CI_Controller {
         }else if($aMobileData['req'] == "inbox"){
             $result = $this->Tournament_model->AllNotAcceptedTournaments($aMobileData['Google_ID']); //komt googleID
         }
-        
         
         echo json_encode($result);
     }

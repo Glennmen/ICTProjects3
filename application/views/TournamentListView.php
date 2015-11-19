@@ -13,37 +13,23 @@ and open the template in the editor.
     <body>
     
     <?php echo $nav ?>
-
     <?php echo validation_errors()?>
-        
-        <table>
-            <tr>
-                <th>Toernooi ID</th>
-                <th>Toernooi naam</th>
-                <th>Begin datum</th>
-                <th>Eind datum</th>
-                <th>Eigenaar</th>
-            </tr>
-
-            <?php
+        <form action="TournamentListController" method="post">
+            <select name="tournaments" size="5" style="width: 300px">
+            <?php 
                 if($aTournamentListData != null){
                     foreach($aTournamentListData as $aTournamentListRow){
-                        $sContent =  "<tr><td>".$aTournamentListRow->Tournament_ID."</td>";
-                        $sContent .=  "<td>".$aTournamentListRow->Tournament_Name."</td>";
-                        $sContent .=  "<td>".$aTournamentListRow->Start_Date."</td>";
-                        $sContent .=  "<td>".$aTournamentListRow->End_Date."</td></tr>";
-                        $sContent .=  "<td>".$aTournamentListRow->Google_ID."</td></tr>";
-                        echo $sContent;
+                        $sContent .= "<option value='".$aTournamentListRow->Google_ID."'>".$aTournamentListRow->Tournament_Name."</option>";
                     }
+                    echo $sContent;
                 }
                 else{
-                    echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
+                    echo '<select>Geen data beschikbaar</select>';
                 }
-            ?>
-        </table>        
-            <form action="MyTournamentController" method="post">
-                <button type="submit" name="SelectTournament" class="btn btn-default">Selecteer toernooi</button>
-            </form>
-        </div>
+            ?> 
+            </select>
+            <br /><br />
+            <button type="submit" name="SelectTournament" class="btn btn-default">Selecteer toernooi</button>
+        </form>
     </body>
 </html>
