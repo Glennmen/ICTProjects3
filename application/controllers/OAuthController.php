@@ -12,7 +12,7 @@ class OAuthController extends CI_Controller
     public function index()
     {
         $sContent = null;
-        
+
         require_once('application/libraries/Google/autoload.php');
 
 //Insert your cient ID and secret 
@@ -83,12 +83,11 @@ class OAuthController extends CI_Controller
             $sContent .= '<h3>Login with Google</h3>';
             $sContent .= '<p><div>Please click login button to connect to the Bowling WebApplication with Google.</div><p>';
             $sContent .= '<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
-            
-            if ($_SERVER['QUERY_STRING'] == "logout=1")
-            {
+
+            if ($_SERVER['QUERY_STRING'] == "logout=1") {
                 $sContent .= '<p><div>Your Google-Account is still active</div></p>';
             }
-            
+
             $sContent .= '</div>';
             $sContent .= '</div>';
             $this->load->library('navbar');
@@ -105,22 +104,15 @@ class OAuthController extends CI_Controller
             $user_count = $this->OAuth_model->CheckIfUserExist($user);
 
 
-            if ($user_count) //if user already exist change greeting text to "Welcome Back"
+            if ($user_count) //if user already exist change greeting text to "Welcome"
             {
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
                 $_SESSION["Last_Name"] = $user['givenName'];
 
 
-            /*    $this->load->library('navbar');
-                $this->load->model('Main_model');*/
-                
-                $this->OAuth_model->UpdateProfile($user,$user['id']);
+                $this->OAuth_model->UpdateProfile($user, $user['id']);
 
-              /*  $data['uitnodigingen'] = $this->Main_model->getAantalUitnodigingen(2);
-                $data['chart'] = $this->Main_model->makeChart(2);
-                $data['inhoud'] = $sContent;
-                $data['nav'] = $this->navbar->get_navbar();*/
 
                 $data['First_Name'] = $this->session->userdata("First_Name");
                 $data['Last_Name'] = $this->session->userdata("Last_Name");
@@ -128,13 +120,8 @@ class OAuthController extends CI_Controller
                 redirect("MainController");
 
 
+            } else {
 
-                /*$this->load->view('MainView', $data);*/
-
-            } 
-            else //else greeting text "Thanks for registering"
-            {
-                
                 $this->OAuth_model->RegisterUser($user);
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
