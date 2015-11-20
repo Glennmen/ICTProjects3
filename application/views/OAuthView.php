@@ -13,7 +13,6 @@
 
 <div class="container">
 
-    <h1>Inloggen</h1>
 
     <?php echo validation_errors() ?>
     <?php echo $inhoud ?>

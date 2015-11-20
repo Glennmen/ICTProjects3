@@ -89,5 +89,6 @@
     </div>
     
 <script src="<?php echo base_url('assets/js/gamepaginaAjax.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
 </body>
 </html>

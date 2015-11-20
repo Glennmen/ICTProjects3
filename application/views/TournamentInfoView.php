@@ -9,6 +9,7 @@ and open the template in the editor.
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <title></title>
 </head>
 <body>
@@ -40,4 +41,5 @@ and open the template in the editor.
 </table>
 </div>
 </body>
+<script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
 </html>

@@ -66,5 +66,6 @@
     </form>
     </div>
     <script src="<?php echo base_url('assets/js/tournamentpaginaAjax.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
 </body>
 </html>

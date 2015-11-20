@@ -5,10 +5,17 @@
     <title>MainPagina</title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/darkly/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css'); ?>"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+
 </head>
 <body>
+
     
     <?php echo $nav ?>
+
 
 <div class="container">
 
@@ -25,7 +32,8 @@
     </div>    
     
 </div>
-    
-    
+
+    <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
+
 </body>
 </html>
