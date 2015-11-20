@@ -14,7 +14,7 @@ class ScoreController extends CI_Controller {
             );
             if ( ! in_array($this->router->fetch_method(), $allowed))
             {
-            redirect('login');
+
         }
         }
     }
