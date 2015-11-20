@@ -18,16 +18,20 @@ class MainController extends CI_Controller {
 
     public function index()
     {
-
-
         $this->load->library('navbar');
+        $this->load->library('nicknamePopup');
+        $this->load->model('Main_model');
         $data['nav'] = $this->navbar->get_navbar();
+        if($this->Main_model->getNickname(2) != null){
+            $data['popup'] = $this->nicknamePopup->get_Popup();
+        }  else {
+            $data['popup'] = "";    
+        }
         $data['First_Name'] = $this->session->userdata("First_Name");
         $data['Last_Name'] = $this->session->userdata("Last_Name");
 
         $googleID = 2;
 
-        $this->load->model('Main_model');
         $data['uitnodigingen'] = $this->Main_model->getAantalUitnodigingen($googleID);
         $data['chart'] = $this->Main_model->makeChart($googleID);
 

@@ -16,20 +16,28 @@ and open the template in the editor.
     <?php echo $nav ?>
     <?php echo validation_errors()?>
         <form action="TournamentListController" method="post">
-            <select name="tournaments" size="5" style="width: 300px">
+        <table>
+            <tr>
+                <th>Select</th>
+                <th>Toernooi naam</th>
+                <th>Begin datum</th>
+                <th>Eind datum</th>
+            </tr>
             <?php 
-                if($aTournamentListData != null){
-                    foreach($aTournamentListData as $aTournamentListRow){
-                        $sContent .= "<option value='".$aTournamentListRow->Google_ID."'>".$aTournamentListRow->Tournament_Name."</option>";
-                    }
-                    echo $sContent;
-                }
-                else{
-                    echo '<select>Geen data beschikbaar</select>';
-                }
-            ?> 
-            </select>
-            <br /><br />
+                 if($aTournamentListData != null){
+                     foreach($aTournamentListData as $aTournamentListRow){
+                        $sContent =  "<tr><td><input name='Selected' type='radio' value='".$aTournamentListRow->Tournament_ID."'></td>";
+                        $sContent .=  "<td>".$aTournamentListRow->Tournament_Name."</td>";
+                        $sContent .=  "<td>".$aTournamentListRow->Start_Date."</td>";
+                        $sContent .=  "<td>".$aTournamentListRow->End_Date."</td></tr>";
+                        echo $sContent;
+                     }
+                 }
+                 else{
+                    echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
+                 }
+                 ?>
+            </table>
             <button type="submit" name="SelectTournament" class="btn btn-default">Selecteer toernooi</button>
         </form>
         <script>
@@ -40,5 +48,4 @@ and open the template in the editor.
             })
         </script>
     </body>
-    <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
 </html>

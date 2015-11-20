@@ -30,4 +30,11 @@ class Main_model extends CI_Model {
         
         return $urlTrim;
     }
+    
+    public function getNickname($googleID)
+    {
+        $this->load->database();
+        $result = $this->db->query('SELECT Nickname FROM person WHERE Google_ID = '.$googleID);
+        return $result;
+    }
 }
