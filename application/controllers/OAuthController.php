@@ -127,16 +127,6 @@ class OAuthController extends CI_Controller
             $this->load->model('OAuth_model');
             $user_count = $this->OAuth_model->CheckIfUserExist($user);
 
-
-//            $mysqli = new mysqli($host_name, $db_username, $db_password, $db_name);
-//            if ($mysqli->connect_error) {
-//                die('Error : (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
-//            }
-
-//            //check if user exist in database using COUNT
-//            $result = $mysqli->query("SELECT COUNT(google_id) as usercount FROM google_users WHERE google_id=$user->id");
-//            $user_count = $result->fetch_object()->usercount; //will return 0 if user doesn't exist
-
             //show user picture
             $sContent .= '<table><tr><td>';
 
@@ -166,7 +156,8 @@ class OAuthController extends CI_Controller
                 $data['Last_Name'] = $this->session->userdata("Last_Name");
                 $this->load->view('MainView', $data);
 
-            } else //else greeting text "Thanks for registering"
+            } 
+            else //else greeting text "Thanks for registering"
             {
                 $this->load->model('OAuth_model');
                 $this->OAuth_model->RegisterUser($user);
@@ -176,15 +167,7 @@ class OAuthController extends CI_Controller
                 
                 $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             }
-//            $sContent .= '</td></tr><tr><td>';
-//            $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
-//            $sContent .= '</td></tr></table>';
         }
-     /*   $sContent .= '</div>';
-        $this->load->library('navbar');
-        $data['inhoud'] = $sContent;
-        $data['nav'] = $this->navbar->get_navbar();
-        $this->load->view('OAuthView', $data);*/
     }
 }
 
