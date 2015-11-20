@@ -5,6 +5,22 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 class GameController extends CI_Controller{
     
+    function __construct()
+    {
+        parent::__construct();
+        if ( ! $this->session->userdata('logged_in'))
+        {
+            // Allow some methods?
+            $allowed = array(
+                'MobileApp'
+            );
+            if ( ! in_array($this->router->fetch_method(), $allowed))
+            {
+            redirect('login');
+        }
+        }
+    }
+    
     public function index(){
         
         $this->load->library('navbar');
