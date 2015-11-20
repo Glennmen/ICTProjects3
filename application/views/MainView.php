@@ -11,7 +11,6 @@
 <body>
     
     <?php echo $nav ?>
-    <?php echo $popup?>
 
 <div class="container">
 

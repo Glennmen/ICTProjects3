@@ -22,11 +22,11 @@ class MainController extends CI_Controller {
         $this->load->library('nicknamePopup');
         $this->load->model('Main_model');
         $data['nav'] = $this->navbar->get_navbar();
-        if($this->Main_model->getNickname(2) != null){
+        /*if($this->Main_model->getNickname(2) != null){
             $data['popup'] = $this->nicknamePopup->get_Popup();
         }  else {
             $data['popup'] = "";    
-        }
+        }*/
         $data['First_Name'] = $this->session->userdata("First_Name");
         $data['Last_Name'] = $this->session->userdata("Last_Name");
 
