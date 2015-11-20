@@ -29,6 +29,8 @@
         </activity>
         <activity android:name=".tournamentView" >
         </activity>
+        <activity android:name=".game_list_view" >
+        </activity>
     </application>
 
 </manifest>

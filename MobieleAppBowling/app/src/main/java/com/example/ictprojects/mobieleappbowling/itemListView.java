@@ -54,8 +54,8 @@ public class itemListView extends AppCompatActivity
 
         if(isConnected()){                                                                          //contacting server if the device is connected to a network
 
-                new HttpAsyncTask().execute("http://localhost/ICTProjects3/TournamentListController/MobileApp",
-                                            "http://localhost/ICTProjects3/GameController/MobileApp");
+                new HttpAsyncTask().execute("http://192.168.43.48/ICTProjects3/TournamentListController/MobileApp",
+                                            "http://192.168.43.48/ICTProjects3/GameController/MobileApp");
         }
     }
 
@@ -142,9 +142,16 @@ public class itemListView extends AppCompatActivity
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         if(caller.contentEquals("tournament")){
+            TournamentObj obj = tournamentList.get(position);
+
+            Intent intent = new Intent(this , game_list_view.class);
+
+            intent.putExtra("TournamentID",obj.getTournament_ID());
+
+            this.startActivity(intent);
 
         }else if(caller.contentEquals("game")){
-           GameObj obj = gameList.get(position);
+            GameObj obj = gameList.get(position);
 
             Intent intent = new Intent(this , AddScoreActivity.class);
 
