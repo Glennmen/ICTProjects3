@@ -72,6 +72,7 @@ public class itemListView extends AppCompatActivity
                     url = 0;
                     jsonObject.accumulate("req","accepted");
                 }else if(caller.contentEquals("game")){
+                    jsonObject.accumulate("req","freeGames");
                     url = 1;
                 }else if(caller.contentEquals("inbox")){
                     url = 0 ;
@@ -93,8 +94,8 @@ public class itemListView extends AppCompatActivity
             if(caller.contentEquals("tournament")|| caller.contentEquals("inbox")){
                 tournamentList = parser.parseTournamentList(result);
                 title = "Tournaments";
-                for(TournamentObj obj: tournamentList){                                                        //looping trought the list of tournaments
-                    HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
+                for(TournamentObj obj: tournamentList){                                                  //looping trought the list of tournaments
+                    HashMap<String,String> map =new HashMap<String,String>();                                        //new hashmap for each tournament
                     String combinedDate = obj.getStart_Date() + " - " + obj.getEnd_Date();              //containing the dates and name
                     map.put("name",obj.getTournament_Name());
                     map.put("date", combinedDate);

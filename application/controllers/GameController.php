@@ -4,7 +4,7 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 
 class GameController extends CI_Controller{
-    
+    /*
     function __construct()
     {
         parent::__construct();
@@ -19,7 +19,7 @@ class GameController extends CI_Controller{
 
         }
         }
-    }
+    }*/
     
     public function index(){
         
@@ -114,10 +114,17 @@ class GameController extends CI_Controller{
     
     public function MobileApp(){
          $this->load->model('Game_model');
+         $this->load->model('Score_model');
          
         $aMobileData = json_decode(file_get_contents('php://input'),true);
         
-        $result = $this->Game_model->allGames($aMobileData['Google_ID']);
+        if($aMobileData['req'] == "freeGames"){
+            $result = $this->Game_model->allGames($aMobileData['Google_ID']);
+        }else if ($aMobileData['req'] == "tourneyGames"){
+            $result = $this->Score_model->GameOphalen($aMobileData['Google_ID'],$aMobileData['Tournament_ID']);
+        }
+        
+        
         
         echo json_encode($result);
     }

@@ -51,26 +51,26 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
     }
 
     private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-
+        @Override
         protected String doInBackground(String... urls) {
             JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
 
             try {
-                jsonObject.accumulate("Tournament_ID", tournamentID);                                               // ADD GOOGLE ID to the json object
-
+                jsonObject.accumulate("Google_ID",1);
+                jsonObject.accumulate("Tournament_ID", tournamentID);                               // ADD GOOGLE ID to the json object
+                jsonObject.accumulate("req" ,"tourneyGames");
             } catch (Exception ex) {
 
             }
-            return api.GET(urls[0], jsonObject);                                                   //function to handle the api post
+             return api.GET(urls[0], jsonObject);                                                   //function to handle the api post
         }
-    }
 
-
+    @Override
     protected void onPostExecute(String result) {
         ArrayList<HashMap<String,String>> data = new ArrayList<HashMap<String,String>>();
         String title;
 
-        gameList = parser.parseGameList(result);
+        gameList = parser.parseTournyGameList(result);
         title="Games";
         for(GameObj obj: gameList){                                                        //looping trought the list of tournaments
             HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
@@ -82,6 +82,7 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
         }
 
         game_list_view.this.updateDisplay(data, title);
+        }
     }
 
     public  void updateDisplay( ArrayList<HashMap<String,String>> data , String title){
