@@ -34,11 +34,16 @@
                 </select>
                 </div>
                 </div>
-                
+                <div id="alert1" class="alert alert-info" role="alert" style="display: none">Geen scores beschikbaar.</div>
                 <div class="row">
                 <div class="form-group col-xs-6" id="gameDiv2" style="display: none">
                 <table class="table table-striped" id="gameTable">
-                    <thead><td>#</td><td>Nickname</td><td>Score</td><td>Strikes</td><td>Spares</td></thead>
+                    <thead>
+                        <tr><td>#</td><td>Nickname</td><td>Score</td><td>Strikes</td><td>Spares</td></tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
                 </table>
                 </div>
                 </div>
@@ -52,31 +57,24 @@
                 </select>
                 </div>
                 </div>
+                <div id="alert2" class="alert alert-info" role="alert" style="display: none">Geen scores beschikbaar.</div>
+                <div class="row">
+                <div class="form-group col-xs-6" id="tourneyDiv2" style="display: none">
+                <table class="table table-striped" id="tourneyTable">
+                    <thead>
+                        <tr><td>#</td><td>Nickname</td><td>Score</td><td>Strikes</td><td>Spares</td></tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+                </div>
+                </div>
             </div>
           <div role="tabpanel" class="tab-pane" id="overal">...</div>
         </div>
 
     </div>
-    
-<!--<div class="col-xs-6 col-md-4"> 
-    <table class="table"> 
-        <tr><th>GameNr</th><th>Totaal</th><th>Strikes</th><th>Spares</th></tr>
-            <?php
-                if($aProgressData != null){
-                    foreach($aProgressData->result() as $aProgressRow){
-                        $sContent =  "<tr><td>".$aProgressRow->Game_ID."</td>";
-                        $sContent .=  "<td>".$aProgressRow->Total."</td>";
-                        $sContent .=  "<td>".$aProgressRow->Strikes."</td>";
-                        $sContent .=  "<td>".$aProgressRow->Spares."</td></tr>";
-                        echo $sContent;
-                    }
-                }
-                else{
-                    echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
-                }
-            ?>
-    </table>
-</div>-->
     
 </div>
     

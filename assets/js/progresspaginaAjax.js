@@ -27,18 +27,83 @@ success: function(data) {
 });
 
 function getProgress1() {
-        document.getElementById("gameDiv2").style.display = "block";
-    // Find a <table> element with id="myTable":
-var table = document.getElementById("myTable");
+    var e = document.getElementById("gameSelect");
+    var ID = e.options[e.selectedIndex].value;
+    
+    $.ajax({
+    type: "POST",
+    url: "/ICTProjects3/ProgressController/json",
+    dataType: 'json',
+    data: {GameID: ID, Type: 'freeProgress'},
+    success: function(data) {
+        if(!data.length) {
+            document.getElementById("gameDiv2").style.display = "none";
+            document.getElementById("alert1").style.display = "block";
+        }
+        else {
+        var table = document.getElementById("gameTable").getElementsByTagName('tbody')[0];
+        $.each(data, function(index, element) {
+            document.getElementById("gameDiv2").style.display = "block";
+            document.getElementById("alert1").style.display = "none";
+            if (table.rows[index]){
+                table.deleteRow(index);
+            }
 
-// Create an empty <tr> element and add it to the 1st position of the table:
-var row = table.insertRow(0);
+            var row = table.insertRow(index);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
 
-// Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
-var cell1 = row.insertCell(0);
-var cell2 = row.insertCell(1);
+            cell1.innerHTML = index;
+            cell2.innerHTML = element.Nickname;
+            cell3.innerHTML = element.Total;
+            cell4.innerHTML = element.Strikes;
+            cell5.innerHTML = element.Spares;
+            });
+        }
+    }
+    });  
+}
 
-// Add some text to the new cells:
-cell1.innerHTML = "NEW CELL1";
-cell2.innerHTML = "NEW CELL2";
+function getProgress2() {
+    var e = document.getElementById("tourneySelect");
+    var ID = e.options[e.selectedIndex].value;
+    
+    $.ajax({
+    type: "POST",
+    url: "/ICTProjects3/ProgressController/json",
+    dataType: 'json',
+    data: {TournamentID: ID, Type: 'tourneyProgress'},
+    success: function(data) {
+        if(!data.length) {
+            document.getElementById("tourneyDiv2").style.display = "none";
+            document.getElementById("alert2").style.display = "block";
+        }
+        else {
+        var table = document.getElementById("tourneyTable").getElementsByTagName('tbody')[0];
+        $.each(data, function(index, element) {
+            document.getElementById("tourneyDiv2").style.display = "block";
+            document.getElementById("alert2").style.display = "none";
+            if (table.rows[index]){
+                table.deleteRow(index);
+            }
+
+            var row = table.insertRow(index);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            var cell4 = row.insertCell(3);
+            var cell5 = row.insertCell(4);
+
+            cell1.innerHTML = index;
+            cell2.innerHTML = element.Nickname;
+            cell3.innerHTML = element.Total;
+            cell4.innerHTML = element.Strikes;
+            cell5.innerHTML = element.Spares;
+            });
+        }
+    }
+    });  
 }

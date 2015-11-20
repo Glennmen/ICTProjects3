@@ -20,19 +20,8 @@ class ProgressController extends CI_Controller {
     public function index(){
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
-        
-        $data['aProgressData'] = $this->view_table();
+
         $this->load->view('ProgressView', $data);
-    }
-    
-    public function view_table(){
-        $this->load->model('Progress_model');
-        $result = $this->Progress_model->StatistiekenOphalen(3); //komt googleID
-        if ($result != false) {
-            return $result;
-        }else{
-            return null;
-        }
     }
     
     public function json(){
@@ -44,8 +33,11 @@ class ProgressController extends CI_Controller {
         else if ($this->input->post('Type') == 'free') {
             $result = $this->Progress_model->GameOphalen($this->input->post('GoogleID'), 0);
         }
-        else {
-            $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
+        else if($this->input->post('Type') == 'freeProgress'){
+            $result = $this->Progress_model->StatistiekenOphalen($this->input->post('GameID'), 'Free');
+        }
+        else if($this->input->post('Type') == 'tourneyProgress'){
+            $result = $this->Progress_model->StatistiekenOphalen($this->input->post('TournamentID'), 'Tourney');
         }
         
         echo json_encode($result);

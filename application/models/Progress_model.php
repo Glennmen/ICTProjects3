@@ -2,12 +2,26 @@
 //
 class Progress_model extends CI_Model {
     
-    public function StatistiekenOphalen($googleID)
+    public function StatistiekenOphalen($gameID, $type)
     {
         $this->load->database();  
-        $aProgressData =$this->db->query("SELECT * FROM Score WHERE Google_ID =".$googleID );
+        
+        if ($type == 'Free') {
+            $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$gameID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
+        }
+        else if ($type == 'Tourney') {
+            $aTourneyData = $this->db->query("SELECT Game_ID FROM game WHERE Tournament_ID =".$gameID);
+            
+            foreach ($aTourneyData->result() as $Game){
+                $aProgressData[] = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$Game->Game_ID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
+            }
+            
+            for($i = 0;$i < $aProgressData.sizeof();$i++){
+                $aProgressData[$i]
+            }
+        }
 
-        return $aProgressData;
+        return $aProgressData->result();
     }
     
     public function GameOphalen($googleID, $tournooiID){
