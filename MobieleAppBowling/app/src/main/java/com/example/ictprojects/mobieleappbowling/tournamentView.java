@@ -35,9 +35,5 @@ public class tournamentView extends AppCompatActivity {
 
         Title.setText(Name);
         Date.setText(StartDate + " - " + EndDate);
-
-
-
-
     }
 }

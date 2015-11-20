@@ -15,7 +15,7 @@ class Score_model extends CI_Model {
     
     public function GameOphalen($googleID, $tournooiID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Game_Name, Date, game.Game_ID FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE participants.Google_ID=" .$googleID. " AND Tournament_ID=".$tournooiID." AND NOT EXISTS (select null FROM score WHERE score.Game_ID=participants.Game_ID AND score.Google_ID=participants.Google_ID)");
+        $aGameData = $this->db->query("SELECT * FROM participants INNER JOIN game ON participants.Game_ID=game.Game_ID WHERE participants.Google_ID=" .$googleID. " AND Tournament_ID=".$tournooiID." AND NOT EXISTS (select null FROM score WHERE score.Game_ID=participants.Game_ID AND score.Google_ID=participants.Google_ID)");
 
         return $aGameData->result();
     }
