@@ -6,7 +6,6 @@ class OAuthController extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        //session_start();
     }
 
 
@@ -21,12 +20,6 @@ class OAuthController extends CI_Controller
         $client_id = '452281875900-3mmee3tiiu38kp4a2s6lerokmg22r20r.apps.googleusercontent.com';
         $client_secret = 'hfok_9MOqFGP--y5i0yJjzY0';
         $redirect_uri = 'http://localhost/ICTProjects3/OAuthController';
-
-//database
-        $db_username = "xxxxxxxxx"; //Database Username
-        $db_password = "xxxxxxxxx"; //Database Password
-        $host_name = "localhost"; //Mysql Hostname
-        $db_name = 'xxxxxxxxx'; //Database Name
 
 //incase of logout request, just unset the session var
         if (isset($_GET['logout'])) {
@@ -111,33 +104,32 @@ class OAuthController extends CI_Controller
             $this->load->model('OAuth_model');
             $user_count = $this->OAuth_model->CheckIfUserExist($user);
 
-            //show user picture
-            $sContent .= '<table><tr><td>';
 
             if ($user_count) //if user already exist change greeting text to "Welcome Back"
             {
-                $sContent .= 'Welcome back ' . $user->name . '! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
                 $_SESSION["Last_Name"] = $user['givenName'];
 
-                $sContent .= '</td></tr><tr><td>';
-                $sContent .= '<img src="' . $user->picture . '" style="margin-top: 33px; padding: 10px; width: 150px; height: 150px" />';
-                $sContent .= '</td></tr></table>';
 
-                $sContent .= '</div>';
-                $this->load->library('navbar');
-                $this->load->model('Main_model');
+            /*    $this->load->library('navbar');
+                $this->load->model('Main_model');*/
                 
                 $this->OAuth_model->UpdateProfile($user,$user['id']);
 
-                $data['uitnodigingen'] = $this->Main_model->getAantalUitnodigingen(2);
+              /*  $data['uitnodigingen'] = $this->Main_model->getAantalUitnodigingen(2);
                 $data['chart'] = $this->Main_model->makeChart(2);
                 $data['inhoud'] = $sContent;
-                $data['nav'] = $this->navbar->get_navbar();
+                $data['nav'] = $this->navbar->get_navbar();*/
+
                 $data['First_Name'] = $this->session->userdata("First_Name");
                 $data['Last_Name'] = $this->session->userdata("Last_Name");
-                $this->load->view('MainView', $data);
+
+                redirect("MainController");
+
+
+
+                /*$this->load->view('MainView', $data);*/
 
             } 
             else //else greeting text "Thanks for registering"
@@ -147,8 +139,6 @@ class OAuthController extends CI_Controller
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
                 $_SESSION["Last_Name"] = $user['givenName'];
-                
-                $sContent .= 'Hi ' . $user->name . ', Thanks for Registering! [<a href="' . $redirect_uri . '?logout=1">Log Out</a>]';
             }
         }
     }
