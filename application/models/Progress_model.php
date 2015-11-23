@@ -13,15 +13,25 @@ class Progress_model extends CI_Model {
             $aTourneyData = $this->db->query("SELECT Game_ID FROM game WHERE Tournament_ID =".$gameID);
             
             foreach ($aTourneyData->result() as $Game){
-                $aProgressData[] = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$Game->Game_ID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
-            }
-            
-            for($i = 0;$i < $aProgressData.sizeof();$i++){
-                $aProgressData[$i]
+                $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$Game->Game_ID." ORDER BY Total DESC, Strikes DESC, Spares DESC");   
             }
         }
 
         return $aProgressData->result();
+    }
+    
+    public function TournooiStatsOphalen($gameID){
+        
+        $this->load->database(); 
+        
+        $aTourneyData = $this->db->query("SELECT Game_ID FROM game WHERE Tournament_ID =".$gameID);
+            $i = 0;
+            foreach ($aTourneyData->result() as $Game){
+                $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$Game->Game_ID." ORDER BY Total DESC, Strikes DESC, Spares DESC");   
+                $result[$i] = $aProgressData->result();
+                $i++;   
+            }
+        return $aProgressData;
     }
     
     public function GameOphalen($googleID, $tournooiID){
