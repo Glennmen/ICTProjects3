@@ -38,8 +38,34 @@ class Main_model extends CI_Model {
     
     public function getNickname($googleID)
     {
+        try{
         $this->load->database();
         $result = $this->db->query('SELECT Nickname FROM person WHERE Google_ID = '.$googleID);
-        return $result;
+        if ($result){
+            $nickname = $result->row()->Nickname;  
+            return $nickname;             
+        } else {
+            return false;
+        }
+          
+        
+        
+        } catch (Exception $e)
+            {
+                return false;
+            }
     }
+    public function setNickname($googleID,$nickname)
+    {
+        try{
+        $this->load->database();
+        $this->db->query("UPDATE person SET Nickname = '".$nickname."' WHERE Google_ID = ".$googleID);
+        return true;
+    } catch(Exception $e)
+    {
+        return false;
+    }
+        
+    }
+            
 }
