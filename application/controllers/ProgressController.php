@@ -20,7 +20,12 @@ class ProgressController extends CI_Controller {
     public function index(){
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
-
+        $googleID = 2;
+        $this->load->model('Progress_model');
+        $data['chart1'] = $this->Progress_model->makeTotalChart($googleID);
+        $data['chart2'] = $this->Progress_model->makeStrikesChart($googleID);
+        $data['chart3'] = $this->Progress_model->makeSparesChart($googleID);
+        
         $this->load->view('ProgressView', $data);
     }
     

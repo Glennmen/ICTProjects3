@@ -26,7 +26,12 @@ class Main_model extends CI_Model {
             $url .= $row->Total.',';
         }
         $urlTrim = rtrim($url, ",");
-        $urlTrim .= '&chco=FFFFFF&chls=2&chds=0,300&chf=bg,s,FFFFFF00&chxt=y,x&chxr=0,0,300,50&amp;chxs=0,FFFFFF,12,1,lt,FFFFFF,FFFFFF|1,FFFFFF00,12,1,lt,FFFFFF00,FFFFFF';
+        
+        $result2 = $this->db->query('SELECT AVG(Total) AS TotalAverage FROM score WHERE Google_ID = '.$googleID);
+        $AvgTotal = $result2->row();
+        $urlTrim .= "|".$AvgTotal->TotalAverage.",".$AvgTotal->TotalAverage;
+        
+        $urlTrim .= '&chco=FFFFFF,B81321&chls=2|2&chds=0,300&chf=bg,s,FFFFFF00&chxt=y,x&chxr=0,0,300,50&amp;chxs=0,FFFFFF,12,1,lt,FFFFFF,FFFFFF|1,FFFFFF00,12,1,lt,FFFFFF00,FFFFFF';
         
         return $urlTrim;
     }

@@ -47,6 +47,69 @@ class Progress_model extends CI_Model {
 
         return $aGameData->result();
     }
+    
+    public function makeTotalChart($googleID)
+    {
+        $this->load->database();
+        $result = $this->db->query('SELECT Total FROM score WHERE Google_ID = '.$googleID);
+        
+        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=350x300&chd=t:';
+        foreach ($result->result() as $row)
+        {
+            $url .= $row->Total.',';
+        }
+        $urlTrim = rtrim($url, ",");
+        
+        $result2 = $this->db->query('SELECT AVG(Total) AS TotalAverage FROM score WHERE Google_ID = '.$googleID);
+        $AvgTotal = $result2->row();
+        $urlTrim .= "|".$AvgTotal->TotalAverage.",".$AvgTotal->TotalAverage;
+        
+        $urlTrim .= '&chco=FFFFFF,B81321&chls=2|2&chds=0,300&chf=bg,s,FFFFFF00&chxt=y,x&chxr=0,0,300,50&amp;chxs=0,FFFFFF,12,1,lt,FFFFFF,FFFFFF|1,FFFFFF00,12,1,lt,FFFFFF00,FFFFFF';
+        
+        return $urlTrim;
+    }
+    
+    public function makeStrikesChart($googleID)
+    {
+        $this->load->database();
+        $result = $this->db->query('SELECT Strikes FROM score WHERE Google_ID = '.$googleID);
+        
+        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=350x300&chd=t:';
+        foreach ($result->result() as $row)
+        {
+            $url .= $row->Strikes.',';
+        }
+        $urlTrim = rtrim($url, ",");
+        
+        $result2 = $this->db->query('SELECT AVG(Strikes) AS StrikesAverage FROM score WHERE Google_ID = '.$googleID);
+        $AvgStrikes = $result2->row();
+        $urlTrim .= "|".$AvgStrikes->StrikesAverage.",".$AvgStrikes->StrikesAverage;
+        
+        $urlTrim .= '&chco=FFFFFF,B81321&chls=2|2&chds=0,12&chf=bg,s,FFFFFF00&chxt=y,x&chxr=0,0,12,2&amp;chxs=0,FFFFFF,12,1,lt,FFFFFF,FFFFFF|1,FFFFFF00,12,1,lt,FFFFFF00,FFFFFF';
+        
+        return $urlTrim;
+    }
+    
+    public function makeSparesChart($googleID)
+    {
+        $this->load->database();
+        $result = $this->db->query('SELECT Spares FROM score WHERE Google_ID = '.$googleID);
+        
+        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=350x300&chd=t:';
+        foreach ($result->result() as $row)
+        {
+            $url .= $row->Spares.',';
+        }
+        $urlTrim = rtrim($url, ",");
+        
+        $result2 = $this->db->query('SELECT AVG(Spares) AS SparesAverage FROM score WHERE Google_ID = '.$googleID);
+        $AvgSpares = $result2->row();
+        $urlTrim .= "|".$AvgSpares->SparesAverage.",".$AvgSpares->SparesAverage;
+        
+        $urlTrim .= '&chco=FFFFFF,B81321&chls=2|2&chds=0,12&chf=bg,s,FFFFFF00&chxt=y,x&chxr=0,0,12,2&amp;chxs=0,FFFFFF,12,1,lt,FFFFFF,FFFFFF|1,FFFFFF00,12,1,lt,FFFFFF00,FFFFFF';
+        
+        return $urlTrim;
+    }
 }
 
 ?>
