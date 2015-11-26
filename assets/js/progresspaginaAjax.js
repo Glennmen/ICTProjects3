@@ -56,7 +56,7 @@ function getProgress1() {
             var cell4 = row.insertCell(3);
             var cell5 = row.insertCell(4);
 
-            cell1.innerHTML = index;
+            cell1.innerHTML = index + 1;
             cell2.innerHTML = element.Nickname;
             cell3.innerHTML = element.Total;
             cell4.innerHTML = element.Strikes;
@@ -97,7 +97,7 @@ function getProgress2() {
             var cell4 = row.insertCell(3);
             var cell5 = row.insertCell(4);
 
-            cell1.innerHTML = index;
+            cell1.innerHTML = index + 1;
             cell2.innerHTML = element.Nickname;
             cell3.innerHTML = element.Total;
             cell4.innerHTML = element.Strikes;

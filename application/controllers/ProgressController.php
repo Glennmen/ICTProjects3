@@ -39,10 +39,10 @@ class ProgressController extends CI_Controller {
             $result = $this->Progress_model->GameOphalen($this->input->post('GoogleID'), 0);
         }
         else if($this->input->post('Type') == 'freeProgress'){
-            $result = $this->Progress_model->StatistiekenOphalen($this->input->post('GameID'), 'Free');
+            $result = $this->Progress_model->StatistiekenOphalen($this->input->post('GameID'));
         }
         else if($this->input->post('Type') == 'tourneyProgress'){
-            $result[] = $this->Progress_model->TournooiStatsOphalen($this->input->post('TournamentID'));
+            $result = $this->Progress_model->TournooiStatsOphalen($this->input->post('TournamentID'));
         }
         
         echo json_encode($result);

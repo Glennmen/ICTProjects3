@@ -18,7 +18,7 @@
 
     
     <div class="menu">
-        <a class="orange large" href="#"><img src="<?php echo $chart ?>" alt="Progress chart"></a>
+        <a class="orange large" href="ProgressController"><img src="<?php echo $chart ?>" alt="Progress chart"></a>
         <a class="green" href="#" title="Home"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></a>
         <a class="blue" href="#" title="Uitnodiging"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><span class="badge"><?php echo $uitnodigingen ?></span></a>
         <a class="pink" href="TournamentController">Toernooi aanmaken</a>

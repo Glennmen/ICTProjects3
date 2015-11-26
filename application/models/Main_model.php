@@ -27,7 +27,7 @@ class Main_model extends CI_Model {
         }
         $urlTrim = rtrim($url, ",");
         
-        $result2 = $this->db->query('SELECT AVG(Total) AS TotalAverage FROM score WHERE Google_ID = '.$googleID);
+        $result2 = $this->db->query('SELECT ROUND(AVG(Total),1) AS TotalAverage FROM score WHERE Google_ID = '.$googleID);
         $AvgTotal = $result2->row();
         $urlTrim .= "|".$AvgTotal->TotalAverage.",".$AvgTotal->TotalAverage;
         

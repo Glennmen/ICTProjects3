@@ -2,36 +2,25 @@
 //
 class Progress_model extends CI_Model {
     
-    public function StatistiekenOphalen($gameID, $type)
+    public function StatistiekenOphalen($gameID)
     {
         $this->load->database();  
-        
-        if ($type == 'Free') {
-            $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$gameID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
-        }
-        else if ($type == 'Tourney') {
-            $aTourneyData = $this->db->query("SELECT Game_ID FROM game WHERE Tournament_ID =".$gameID);
-            
-            foreach ($aTourneyData->result() as $Game){
-                $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$Game->Game_ID." ORDER BY Total DESC, Strikes DESC, Spares DESC");   
-            }
-        }
+
+        $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$gameID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
 
         return $aProgressData->result();
     }
     
-    public function TournooiStatsOphalen($gameID){
+    public function TournooiStatsOphalen($tourneyID){
         
         $this->load->database(); 
         
-        $aTourneyData = $this->db->query("SELECT Game_ID FROM game WHERE Tournament_ID =".$gameID);
-            $i = 0;
-            foreach ($aTourneyData->result() as $Game){
-                $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$Game->Game_ID." ORDER BY Total DESC, Strikes DESC, Spares DESC");   
-                $result[$i] = $aProgressData->result();
-                $i++;   
-            }
-        return $aProgressData;
+        $aProgressData = $this->db->query("SELECT p.Nickname, s.Total, s.Strikes, s.Spares
+                                            FROM (SELECT Google_ID, ROUND(AVG(Total),1) AS Total, ROUND(AVG(Strikes),1) AS Strikes, ROUND(AVG(Spares),1) AS Spares FROM score INNER JOIN game ON score.Game_ID=game.Game_ID WHERE Tournament_ID=".$tourneyID." GROUP BY Google_ID) s,
+                                                (SELECT Nickname, Google_ID FROM person) p
+                                            WHERE s.Google_ID=p.Google_ID ORDER BY Total DESC, Strikes DESC, Spares DESC");
+        
+        return $aProgressData->result();
     }
     
     public function GameOphalen($googleID, $tournooiID){
@@ -60,7 +49,7 @@ class Progress_model extends CI_Model {
         }
         $urlTrim = rtrim($url, ",");
         
-        $result2 = $this->db->query('SELECT AVG(Total) AS TotalAverage FROM score WHERE Google_ID = '.$googleID);
+        $result2 = $this->db->query('SELECT ROUND(AVG(Total),1) AS TotalAverage FROM score WHERE Google_ID = '.$googleID);
         $AvgTotal = $result2->row();
         $urlTrim .= "|".$AvgTotal->TotalAverage.",".$AvgTotal->TotalAverage;
         
@@ -81,7 +70,7 @@ class Progress_model extends CI_Model {
         }
         $urlTrim = rtrim($url, ",");
         
-        $result2 = $this->db->query('SELECT AVG(Strikes) AS StrikesAverage FROM score WHERE Google_ID = '.$googleID);
+        $result2 = $this->db->query('SELECT ROUND(AVG(Strikes),1) AS StrikesAverage FROM score WHERE Google_ID = '.$googleID);
         $AvgStrikes = $result2->row();
         $urlTrim .= "|".$AvgStrikes->StrikesAverage.",".$AvgStrikes->StrikesAverage;
         
@@ -102,7 +91,7 @@ class Progress_model extends CI_Model {
         }
         $urlTrim = rtrim($url, ",");
         
-        $result2 = $this->db->query('SELECT AVG(Spares) AS SparesAverage FROM score WHERE Google_ID = '.$googleID);
+        $result2 = $this->db->query('SELECT ROUND(AVG(Spares),1) AS SparesAverage FROM score WHERE Google_ID = '.$googleID);
         $AvgSpares = $result2->row();
         $urlTrim .= "|".$AvgSpares->SparesAverage.",".$AvgSpares->SparesAverage;
         
