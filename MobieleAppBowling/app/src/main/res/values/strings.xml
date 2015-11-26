@@ -17,4 +17,13 @@
     <string name="tournamentName">Tournament name</string>
     <string name="accept">Accept</string>
     <string name="decline">Decline</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+
+
+    //GogoleLogin
+    <string name="btn_logout_from_google">Logout from Google</string>
+    <string name="btn_revoke_access">Revoke Access</string>
+    <string name="Profile_Details">Profile Details</string>
 </resources>
