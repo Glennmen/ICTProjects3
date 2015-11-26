@@ -5,6 +5,9 @@
     <title> ScorePagina </title>
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/darkly/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/tablesorter/jquery.tablesorter.js"></script>
+    <script type="text/javascript" src="assets/tablesorter/jquery_latest.js"></script>
+        <script src="<?php echo base_url('assets/js/sorter.js'); ?>"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css'); ?>"/>
 </head>
 <body>
@@ -37,7 +40,7 @@
                 <div id="alert1" class="alert alert-info" role="alert" style="display: none">Geen scores beschikbaar.</div>
                 <div class="row">
                 <div class="form-group col-xs-6" id="gameDiv2" style="display: none">
-                <table class="table table-striped" id="gameTable">
+                <table class="table table-striped tablesorter" id="gameTable">
                     <thead>
                         <tr><td>#</td><td>Nickname</td><td>Score</td><td>Strikes</td><td>Spares</td></tr>
                     </thead>
