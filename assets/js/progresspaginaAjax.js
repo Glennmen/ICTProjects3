@@ -62,6 +62,7 @@ function getProgress1() {
             cell4.innerHTML = element.Strikes;
             cell5.innerHTML = element.Spares;
             });
+            $("#gameTable").trigger("update");
         }
     }
     });  
@@ -103,6 +104,7 @@ function getProgress2() {
             cell4.innerHTML = element.Strikes;
             cell5.innerHTML = element.Spares;
             });
+            $("#tourneyTable").trigger("update"); 
         }
     }
     });  
