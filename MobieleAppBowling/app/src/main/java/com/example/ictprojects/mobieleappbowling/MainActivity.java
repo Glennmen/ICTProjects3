@@ -15,12 +15,15 @@ public class MainActivity extends AppCompatActivity{
     GridView gv;
     public static String [] nameList={"Tournament score","Game Score","uitnodigingen","profiel"};
     public static int [] imageList ={R.drawable.red , R.drawable.purpel , R.drawable.redish ,R.drawable.brownish};
-
+    private String googleID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+
+        googleID = intent.getStringExtra("id");
 
         gv = (GridView) findViewById(R.id.gridview);
 
@@ -31,6 +34,8 @@ public class MainActivity extends AppCompatActivity{
             public void onItemClick(AdapterView<?> parent, View v,int position, long id) {
 
                 Intent intent = new Intent(MainActivity.this,itemListView.class);
+
+                intent.putExtra("id",googleID);
 
                 switch (position) {
                     case 0:

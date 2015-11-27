@@ -23,7 +23,7 @@ public class itemListView extends AppCompatActivity
 
     //global keys
     private String caller;
-
+    private String googleID;
     //view variables
     private ListView itemList;
     private TextView titleTextView;
@@ -41,7 +41,7 @@ public class itemListView extends AppCompatActivity
         setContentView(R.layout.activity_list_view);
 
         Intent intent = getIntent();
-
+        googleID = intent.getStringExtra("id");
         caller = intent.getStringExtra("Caller");                                                   //collecting variables that where passed on by the previous class
 
         api = new ApiHandler();                                                                     //creating extern handlers
@@ -66,7 +66,7 @@ public class itemListView extends AppCompatActivity
             JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
             int url = 0;
             try{
-                jsonObject.accumulate("Google_ID",1);                                               // ADD GOOGLE ID to the json object
+                jsonObject.accumulate("Google_ID",googleID);                                               // ADD GOOGLE ID to the json object
 
                 if(caller.contentEquals("tournament")){
                     url = 0;
