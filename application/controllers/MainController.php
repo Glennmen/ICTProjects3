@@ -30,13 +30,13 @@ class MainController extends CI_Controller {
         
         $result = $this->Main_model->getNickname($_SESSION['Google_ID']);
        
-        if($result == NULL){
+        /*if($result == NULL){
             $data['popup'] = $this->popup->get_Popup();
             $this->form_validation->set_rules('nicknameText', 'Name','required|is_unique');
         }  else {
             $data['popup'] = '';    
-        }
-        
+        }*/
+        $data['popup'] = '';
         $data['First_Name'] = $this->session->userdata("First_Name");
         $data['Last_Name'] = $this->session->userdata("Last_Name");
 
