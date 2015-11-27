@@ -7,15 +7,15 @@ class popup {
           <div class="modal fade" id="myModal" role="dialog" data-backdrop="static">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-                <form action="" method="post">
+                <form id = "nicknameform" action="MainController" method="post">
                     <div class="modal-header">
                        <h4 class="modal-title">Enter nickname </h4>
                     </div>
                     <div class="modal-body">
-                      <input type="text" name="nicknameText"/>
+                      <input type="text" name="nicknameText" required>
                     </div>
                     <div class="modal-footer">
-                      <input type="submit" name="btnSubmit" class="btn btn-default" data-dismiss="modal" value="Save" />
+                      <input type="submit" id="btnSubmit" class="btn btn-default" data-dismiss="modal" value="Save" />
                     </div>
                 </form>
               </div>
@@ -23,9 +23,13 @@ class popup {
           </div>
         </div>
         <script>
-        $(window).load(function(){$("#myModal").modal("show");
-        });
-        </script>';
+        $(window).load(function(){$("#myModal").modal("show");});
+        </script>'
+                ."<script>"
+                . "$('#btnSubmit').click(function(){"
+                . "$('#nicknameform').submit();"
+                . "});"
+                . "</script>";
         return $main;
     }
 }

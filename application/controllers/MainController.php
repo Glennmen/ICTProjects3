@@ -23,20 +23,25 @@ class MainController extends CI_Controller {
         $this->load->library('popup');
         
         
-       
+        if(isset($_POST['nicknameText'])){
+        $newNickname = $_POST['nicknameText'];
+        $this->Main_model->setNickname($_SESSION['Google_ID'],$newNickname);
+        
+        }
+        
         
        
         $data['nav'] = $this->navbar->get_navbar();
         
         $result = $this->Main_model->getNickname($_SESSION['Google_ID']);
        
-        /*if($result == NULL){
+        if($result == NULL){
             $data['popup'] = $this->popup->get_Popup();
             $this->form_validation->set_rules('nicknameText', 'Name','required|is_unique');
         }  else {
             $data['popup'] = '';    
-        }*/
-        $data['popup'] = '';
+        }
+        //$data['popup'] = '';
         $data['First_Name'] = $this->session->userdata("First_Name");
         $data['Last_Name'] = $this->session->userdata("Last_Name");
 
@@ -47,11 +52,7 @@ class MainController extends CI_Controller {
 
         $this->load->view('MainView', $data);
         
-        if(isset($_POST['btnSubmit'])){
-        $newNickname = $_POST('nicknameText');
-        $this->Main_model->setNickname($_SESSION['Google_ID'],$newNickname);
-        }
-        
+       
     }
 
 }
