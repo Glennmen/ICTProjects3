@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/accept"
-        android:id="@+id/button"
+        android:id="@+id/btnaccept"
         android:layout_below="@+id/Date"
         android:layout_alignLeft="@+id/TournamentName"
         android:layout_alignStart="@+id/TournamentName"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/decline"
-        android:id="@+id/button2"
+        android:id="@+id/btnDecline"
         android:layout_alignTop="@+id/button"
         android:layout_alignRight="@+id/TournamentName"
         android:layout_alignEnd="@+id/TournamentName" />
