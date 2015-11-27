@@ -1,6 +1,7 @@
 $(document).ready(function() 
     { 
-        $("#gameTable").tablesorter( ); 
+        $("#gameTable").tablesorter(); 
+        $("#tourneyTable").tablesorter(); 
     } 
     );
 

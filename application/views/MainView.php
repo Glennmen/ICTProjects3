@@ -11,7 +11,7 @@
 <body>
     
     <?php echo $nav ?>
-
+    <?php echo $popup ?>
 <div class="container">
 
     <h1> Welkom  <?php echo $First_Name,' ',$Last_Name ?> </h1>
