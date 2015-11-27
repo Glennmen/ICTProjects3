@@ -7,6 +7,16 @@ class InvitesController extends CI_Controller{
         parent::__construct();
         $this->load->helper('url');
         $this->require_login();
+        
+        // Allow some methods?
+            $allowed = array(
+                'MobileApp'
+            );
+            if ( ! in_array($this->router->fetch_method(), $allowed))
+            {
+                
+            }
+        
     }
 
     protected function require_login() {
@@ -49,6 +59,22 @@ class InvitesController extends CI_Controller{
         }else{
             return null;
         }
+    }
+    
+    public function mobileApp(){
+        $this->load->model('Invites_model');
+        
+        $aMobileData = json_decode(file_get_contents('php://input'),true);
+        
+        if($aMobileData['state'] == "accept"){
+            $result = $this->Invites_model->AllAcceptedTournaments($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
+            $status = array("status"=>"geaccepteerd");
+        }else if($aMobileData['state'] == "decline"){
+            $result = $this->Invites_model->AllNotAcceptedTournaments($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
+            $status = array("status"=>"geweigerd");
+        }
+        
+        echo json_encode($status);
     }
 }
 
