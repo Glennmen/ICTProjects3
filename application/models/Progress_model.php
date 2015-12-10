@@ -42,7 +42,7 @@ class Progress_model extends CI_Model {
         $this->load->database();
         $result = $this->db->query('SELECT Total FROM score WHERE Google_ID = '.$googleID);
         
-        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=350x300&chd=t:';
+        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=300x300&chtt=Score&chts=FFFFFF,15&chd=t:';
         foreach ($result->result() as $row)
         {
             $url .= $row->Total.',';
@@ -63,7 +63,7 @@ class Progress_model extends CI_Model {
         $this->load->database();
         $result = $this->db->query('SELECT Strikes FROM score WHERE Google_ID = '.$googleID);
         
-        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=350x300&chd=t:';
+        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=300x300&chtt=Strikes&chts=FFFFFF,15&chd=t:';
         foreach ($result->result() as $row)
         {
             $url .= $row->Strikes.',';
@@ -84,7 +84,7 @@ class Progress_model extends CI_Model {
         $this->load->database();
         $result = $this->db->query('SELECT Spares FROM score WHERE Google_ID = '.$googleID);
         
-        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=350x300&chd=t:';
+        $url = 'http://chart.apis.google.com/chart?cht=lc&chs=300x300&chtt=Spares&chts=FFFFFF,15&chd=t:';
         foreach ($result->result() as $row)
         {
             $url .= $row->Spares.',';

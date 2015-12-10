@@ -30,33 +30,68 @@ class InvitesController extends CI_Controller{
         $googleID = 1;
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
+
+        $data['aInvitesListData'] = $this->view_invites($googleID);
+        $data['aTournamentListData'] = $this->view_tournaments($googleID);
         
-        if(isset($_POST['Accept'])){
-            $this->load->model('Invites_model');
-            $toernooiID = $_POST['Accept'];
-            $this->Invites_model->Accepted($googleID,$toernooiID);
-            
-            $data['aTournamentListData'] = $this->view_list();
-            $this->load->view('InvitesView', $data);
-        }else if(isset($_POST['Decline'])){
-            $this->load->model('Invites_model');
-            $toernooiID = $_POST['Decline'];
-            $this->Invites_model->Declined($googleID,$toernooiID);
-            
-            $data['aTournamentListData'] = $this->view_list();
-            $this->load->view('InvitesView', $data);
-        }else{
-            $data['aTournamentListData'] = $this->view_list();
-            $this->load->view('InvitesView', $data);
-        }
+        $this->load->view('InvitesView', $data);
         
     }
-    public function view_list(){
-        $this->load->model('TournamentList_model');
-        $result = $this->TournamentList_model->AllNotAcceptedTournaments(1); //komt googleID
+    public function view_invites($googleID){
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllNotAcceptedTournaments($googleID); //komt googleID
         if ($result != false) {
             return $result;
         }else{
+            return null;
+        }
+    }
+    
+    public function view_tournaments($googleID){
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllAcceptedTournaments($googleID); //komt googleID
+        if ($result != false) {
+            return $result;
+        }else{
+            return null;
+        }
+    }
+    
+    public function changeInvites(){
+        $googleID = 1;
+        $this->load->library('navbar');
+        $data['nav'] = $this->navbar->get_navbar();
+        $this->load->model('Invites_model');
+        
+        if(isset($_POST['Accept'])){
+            $toernooiID = $_POST['Accept'];
+            $this->Invites_model->Accepted($googleID,$toernooiID);
+        }else if(isset($_POST['Decline'])){
+            $toernooiID = $_POST['Decline'];
+            $this->Invites_model->Declined($googleID,$toernooiID);
+        }
+        
+        $data['aInvitesListData'] = $this->view_invites($googleID);
+        $data['aTournamentListData'] = $this->view_tournaments($googleID);
+        $this->load->view('InvitesView', $data);
+    }
+    
+    public function viewInfo() {
+        $this->load->library('navbar');
+        $data['nav'] = $this->navbar->get_navbar();
+        
+        $toernooiID = $_POST['SelectedTournament'];
+
+        $data['aParticipants'] = $this->view_participants($toernooiID);
+        $this->load->view('TournamentInfoView',$data);
+    }
+    
+    public function view_participants($toernooiID) {
+        $this->load->model('Tournament_model');
+        $result = $this->Tournament_model->AllParticipants($toernooiID);
+        if ($result != false) {
+            return $result;
+        } else {
             return null;
         }
     }

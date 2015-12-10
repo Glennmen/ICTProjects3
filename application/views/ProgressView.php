@@ -72,13 +72,13 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="overal">
                 <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
                         <img src="<?php echo $chart1 ?>" alt="Progress total chart">
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
                         <img src="<?php echo $chart2 ?>" alt="Progress strikes chart">
                     </div>
-                    <div class="col-xs-4">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
                         <img src="<?php echo $chart3 ?>" alt="Progress spares chart">
                     </div>
                 </div>

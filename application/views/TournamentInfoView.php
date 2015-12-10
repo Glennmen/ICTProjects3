@@ -7,22 +7,25 @@ and open the template in the editor.
 
 <html>
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/bootstrap.css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <title></title>
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>InfoPagina</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/darkly/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/sidebar.css'); ?>"/>
+    </head>
 <body>
 
 <?php echo $nav ?>
+    
+<div class="container">
 
-<?php echo validation_errors()?>
+<h1>Tournament Info</h1>
 
-<h1></h1>
-<div class="col-xs-6 col-md-4">
-<table class="table">
+<table class="table table-striped">
+    <thead>
     <tr><th>Voornaam</th><th>Achternaam</th><th>Aantal gespeelde games</th><th>Gemiddelde score</th><th>Gemiddeld aantal strikes</th><th>Gemiddeld aantal spares</th></tr>
-        <?php
+    </thead>
+    <tbody>
+   <?php
             if($aParticipants != NULL) {
                 foreach($aParticipants->result() as $aParticipantRow) {
                     $sContent = "<tr><td>".$aParticipantRow->Last_Name."</td>";
@@ -38,8 +41,15 @@ and open the template in the editor.
                 echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
             }
         ?>
+    </tbody>
 </table>
 </div>
-</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
+<script>      
+    if (typeof window.history.replaceState == 'function') {
+        history.replaceState({}, '', window.location.href.slice(0, -9));
+    }
+</script>
+</body>
 </html>
