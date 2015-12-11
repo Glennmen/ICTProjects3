@@ -22,21 +22,22 @@ class TournamentListController extends CI_Controller {
     public function index(){
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
+        $googleID = $_SESSION['Google_ID'];
         
         if(isset($_POST['SelectTournament'])){
-            $data['aParticipants'] = $this->view_participants();
+            $data['aParticipants'] = $this->view_participants($googleID);
             //$data['aScore'] = $this->view_score();
             $this->load->view('TournamentInfoView',$data);
         }
         else{
-            $data['aTournamentListData'] = $this->view_list();
+            $data['aTournamentListData'] = $this->view_list($googleID);
             $this->load->view('TournamentListView', $data);
         }
     }
     
-    public function view_participants() {
+    public function view_participants($googleID) {
         $this->load->model('Tournament_model');
-        $result = $this->Tournament_model->AllParticipants(1);
+        $result = $this->Tournament_model->AllParticipants($googleID);
         if ($result != false) {
             return $result;
         } else {
@@ -44,9 +45,9 @@ class TournamentListController extends CI_Controller {
         }
     }
     
-    public function view_list(){
+    public function view_list($googleID){
         $this->load->model('Tournament_model');
-        $result = $this->Tournament_model->AllAcceptedTournaments(1); //komt googleID
+        $result = $this->Tournament_model->AllAcceptedTournaments($googleID);
         if ($result != false) {
             return $result;
         }else{
