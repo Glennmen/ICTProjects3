@@ -129,6 +129,18 @@ class OAuthController extends CI_Controller
             }
         }
     }
+    
+    
+    public function MobileApp(){
+        $this->load->model('OAuth_model');
+         
+        $aMobileData = json_decode(file_get_contents('php://input'),true);
+        
+        if($aMobileData['req'] == "UserExist"){
+            $result = $this->OAuth_model->CheckIfUserExist($this->input->post('GoogleID'));
+        }
+        echo json_encode($result);  // 0 if user doesn't exists
+    }
 }
 
 ?>

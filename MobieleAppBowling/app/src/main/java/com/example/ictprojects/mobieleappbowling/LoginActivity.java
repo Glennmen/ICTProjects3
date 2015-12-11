@@ -1,12 +1,17 @@
 package com.example.ictprojects.mobieleappbowling;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -18,6 +23,12 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 
 /**
  * Activity to demonstrate basic retrieval of the Google user's ID, email address, and basic
@@ -31,6 +42,9 @@ public class LoginActivity extends AppCompatActivity implements
     private static final int RC_SIGN_IN = 9001;
 
     private String googleID;
+    //handlers
+    private  ApiHandler api;
+    private  JsonParser parser;
 
     private GoogleApiClient mGoogleApiClient;
     private TextView mStatusTextView;
@@ -40,6 +54,9 @@ public class LoginActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        api = new ApiHandler();                                                                     //creating extern handlers
+        parser = new JsonParser();
 
         // Views
         mStatusTextView = (TextView) findViewById(R.id.status);
@@ -115,7 +132,7 @@ public class LoginActivity extends AppCompatActivity implements
         if (requestCode == RC_SIGN_IN) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             GoogleSignInAccount acct = result.getSignInAccount();
-            String googleID = acct.getId();
+            googleID = acct.getId();
             handleSignInResult(result);
         }
     }
@@ -138,8 +155,16 @@ public class LoginActivity extends AppCompatActivity implements
 
     // [START signIn]
     private void signIn() {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        try{
+            Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+
+            startActivityForResult(signInIntent, RC_SIGN_IN);
+        }catch (NullPointerException e){
+
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), "aanmelden mislukt.",
+                    Toast.LENGTH_SHORT).show();
+        }
     }
     // [END signIn]
 
@@ -206,24 +231,80 @@ public class LoginActivity extends AppCompatActivity implements
         }
     }
 
+    public boolean checkInternetConnection() {
+
+        ConnectivityManager con_manager = (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        if (con_manager.getActiveNetworkInfo() != null
+                && con_manager.getActiveNetworkInfo().isAvailable()
+                && con_manager.getActiveNetworkInfo().isConnected()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign_in_button:
-                signIn();
+                if(checkInternetConnection())
+                    signIn();
+                else
+                    Toast.makeText(getApplicationContext(), "Geen internet Toegang.",
+                            Toast.LENGTH_SHORT).show();
                 break;
             case R.id.sign_out_button:
                 signOut();
                 break;
             case R.id.disconnect_button:
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                if(checkInternetConnection()) {
 
-                intent.putExtra("id",googleID);
+                    new HttpAsyncTask().execute("http://192.168.43.48/ICTProjects3/OAuthController/MobileApp");
 
-                startActivity(intent);
 
-                //revokeAccess();
+                }
+                else
+                    Toast.makeText(getApplicationContext(), "Geen internet Toegang.",
+                            Toast.LENGTH_SHORT).show();
                 break;
+        }
+    }
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+
+        //UserExist
+
+        @Override
+        protected String doInBackground(String... urls) {
+            JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
+            int url = 0;
+            try{
+                jsonObject.accumulate("Google_ID",googleID);                                               // ADD GOOGLE ID to the json object
+                jsonObject.accumulate("req","UserExist");
+            }
+            catch(Exception ex){
+
+            }
+            return api.GET(urls[url] , jsonObject);                                                   //function to handle the api post
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            if(!parser.parseExistUser(result))
+            {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://www.google.com"));
+                startActivity(browserIntent);
+            }else{
+                Toast.makeText(getApplicationContext(), "Nog geen user op site aangemaakt.",
+                        Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("id", googleID);
+                startActivity(intent);
+            }
+
         }
     }
 }

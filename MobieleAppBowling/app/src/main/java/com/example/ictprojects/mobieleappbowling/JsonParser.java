@@ -93,6 +93,31 @@ public class JsonParser {
 
         return  list;
     }
+    public Boolean parseExistUser(String stringObj){
+        try{
+            JSONArray jsonArray = new JSONArray(stringObj);
+
+            for(int i = 0; i < jsonArray.length(); i++){
+                JSONObject obj = jsonArray.getJSONObject(i);
+
+                GameObj gameObj = new GameObj();
+
+//// TODO: 11/12/2015 fiddler moet zijn als result == 0 geef false anders geen true
+                gameObj.setDate(obj.getString("Date"));
+                gameObj.setGame_ID(obj.getString("Game_ID"));
+                gameObj.setGame_Name(obj.getString("Game_Name"));
+                gameObj.setLocation(obj.getString("Location"));
+                gameObj.setTime(obj.getString("Time"));
+
+                //list.add(gameObj);
+            }
+
+        }catch (Exception e){
+            Log.d("parser", e.toString());
+        }
+
+        return  true;
+    }
 
 
 }
