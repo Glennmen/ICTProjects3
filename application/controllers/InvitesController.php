@@ -27,7 +27,7 @@ class InvitesController extends CI_Controller{
 
     
     public function index(){
-        $googleID = 1;
+        $googleID = $_SESSION['Google_ID'];
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
 
@@ -39,7 +39,7 @@ class InvitesController extends CI_Controller{
     }
     public function view_invites($googleID){
         $this->load->model('Tournament_model');
-        $result = $this->Tournament_model->AllNotAcceptedTournaments($googleID); //komt googleID
+        $result = $this->Tournament_model->AllNotAcceptedTournaments($googleID);
         if ($result != false) {
             return $result;
         }else{
@@ -49,7 +49,7 @@ class InvitesController extends CI_Controller{
     
     public function view_tournaments($googleID){
         $this->load->model('Tournament_model');
-        $result = $this->Tournament_model->AllAcceptedTournaments($googleID); //komt googleID
+        $result = $this->Tournament_model->AllAcceptedTournaments($googleID);
         if ($result != false) {
             return $result;
         }else{
@@ -58,7 +58,7 @@ class InvitesController extends CI_Controller{
     }
     
     public function changeInvites(){
-        $googleID = 1;
+        $googleID = $_SESSION['Google_ID'];
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         $this->load->model('Invites_model');

@@ -4,7 +4,7 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 
 class GameController extends CI_Controller{
-    /*
+    
     function __construct()
     {
         parent::__construct();
@@ -19,7 +19,7 @@ class GameController extends CI_Controller{
 
         }
         }
-    }*/
+    }
     
     public function index(){
         
@@ -72,24 +72,9 @@ class GameController extends CI_Controller{
     public function dateCheck($strDate){
         
         $values = explode("/", $strDate);
-        $this->load->model('Game_model');
        
-        
-        $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
-       // $Date = DateTime::createFromFormat('d/m/Y', $strDate);
-        $Date2 = date('Y/m/d',  strtotime($strNewDate));
-       $startDate = date('Y/m/d', strtotime($this->Game_model->getStartDate(1,9)));
-       $endDate = date('Y/m/d', strtotime($this->Game_model->getEndDate(1,9)));
-        
         if(checkdate ( $values[1] , $values[0] , $values[2] )){
-            if ($Date2 > $startDate && $Date2 < $endDate){
-                return true;
-            } else {
-                
-                $this->form_validation->set_message('dateCheck', 'Date not between tournament dates date:'.$Date2." startdate:".$startDate." enddate:".$endDate);
-               
-            return FALSE;
-            }
+             return true;
         }else{
             $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
             return FALSE;
@@ -108,8 +93,9 @@ class GameController extends CI_Controller{
     }
     
     public function json(){
-        $this->load->model('Game_model');
-        $result = $this->Game_model->TourneyOphalen($this->input->post('GoogleID'));
+        $googleID = $_SESSION['Google_ID'];
+        $this->load->model('Score_model');
+        $result = $this->Score_model->TourneyOphalen($googleID);
         
         echo json_encode($result);
     }
