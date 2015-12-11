@@ -22,14 +22,13 @@ and open the template in the editor.
 
 <table class="table table-striped">
     <thead>
-    <tr><th>Voornaam</th><th>Achternaam</th><th>Aantal gespeelde games</th><th>Gemiddelde score</th><th>Gemiddeld aantal strikes</th><th>Gemiddeld aantal spares</th></tr>
+    <tr><th>Nickname</th><th>Aantal gespeelde games</th><th>Gemiddelde score</th><th>Gemiddeld aantal strikes</th><th>Gemiddeld aantal spares</th></tr>
     </thead>
     <tbody>
    <?php
             if($aParticipants != null) {
                 foreach($aParticipants as $aParticipantRow) {
-                    $sContent = "<tr><td>".$aParticipantRow->Last_Name."</td>";
-                    $sContent .= "<td>".$aParticipantRow->First_Name."</td>";
+                    $sContent = "<tr><td>".$aParticipantRow->Nickname."</td>";
                     $sContent .= "<td>".$aParticipantRow->aantalGames."</td>";
                     $sContent .= "<td>".round($aParticipantRow->gemTotaal, 1)."</td>";
                     $sContent .= "<td>".round($aParticipantRow->gemStrikes, 1)."</td>";

@@ -51,7 +51,7 @@ and open the template in the editor.
                                     $sContent .=  "<tr><td>".$aInvitesListRow->Tournament_Name."</td>";
                                     $sContent .=  "<td>".$aInvitesListRow->Start_Date."</td>";
                                     $sContent .=  "<td>".$aInvitesListRow->End_Date."</td>";
-                                    $sContent .=  "<td>".$aInvitesListRow->Google_ID."</td>";
+                                    $sContent .=  "<td>".$aInvitesListRow->Nickname."</td>";
                                     $sContent .=  "<td><button class='btn btn-default btn-xs' type = 'submit' name ='Accept' value = '".$aInvitesListRow->Tournament_ID."'>Accept</button></td>";
                                     $sContent .=  "<td><button class='btn btn-default btn-xs' type = 'submit' name ='Decline' value = '".$aInvitesListRow->Tournament_ID."'>Decline</button></td>";
                                     $sContent .=  "</tr>";

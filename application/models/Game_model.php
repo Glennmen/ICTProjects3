@@ -31,14 +31,14 @@ class Game_model extends CI_Model {
     
     public function PersonenOphalen(){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Last_Name, First_Name, Google_ID FROM person");
+        $aGameData = $this->db->query("SELECT Last_Name, First_Name, Nickname, Google_ID FROM person");
 
         return $aGameData->result();
     }
     
     public function PersonenTourneyOphalen($tournooiID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Last_Name, First_Name, person.Google_ID FROM participants_tournament INNER JOIN person ON participants_tournament.Google_ID=person.Google_ID WHERE participants_tournament.Tournament_ID=" .$tournooiID. " AND Status=1");
+        $aGameData = $this->db->query("SELECT Last_Name, First_Name, Nickname, person.Google_ID FROM participants_tournament INNER JOIN person ON participants_tournament.Google_ID=person.Google_ID WHERE participants_tournament.Tournament_ID=" .$tournooiID. " AND Status=1");
 
         return $aGameData->result();
     }

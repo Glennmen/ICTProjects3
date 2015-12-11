@@ -7,7 +7,7 @@ $.ajax({
             personen = document.getElementById('personen');
             personen.options.length = 0;
             $.each(data, function(index, element) {
-            personen.options[personen.options.length] = new Option(element.Last_Name + " " + element.First_Name , element.Google_ID);
+            personen.options[personen.options.length] = new Option(element.Nickname , element.Google_ID);
             personenSelect.bootstrapDualListbox('refresh');
         });
         }

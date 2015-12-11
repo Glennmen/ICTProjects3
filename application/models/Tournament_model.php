@@ -21,7 +21,7 @@ class Tournament_model extends CI_Model {
     
     public function PersonenOphalen(){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Last_Name, First_Name, Google_ID FROM person");
+        $aGameData = $this->db->query("SELECT Last_Name, First_Name, Nickname, Google_ID FROM person");
 
         return $aGameData->result();
     }
@@ -57,7 +57,9 @@ class Tournament_model extends CI_Model {
         $this->load->database();
         
         $aData =$this->db->query("SELECT * FROM tournament
-                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID 
+                                    INNER JOIN person ON participants_tournament.Google_ID = person.Google_ID
+                                    WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
         return $aData->result();
     }
     
