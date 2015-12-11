@@ -30,6 +30,7 @@ class InvitesController extends CI_Controller{
         $googleID = $_SESSION['Google_ID'];
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
+        $data['removeUrl'] = "";
 
         $data['aInvitesListData'] = $this->view_invites($googleID);
         $data['aTournamentListData'] = $this->view_tournaments($googleID);
@@ -62,6 +63,10 @@ class InvitesController extends CI_Controller{
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         $this->load->model('Invites_model');
+        
+        $data['removeUrl'] = "if (typeof window.history.replaceState == 'function') {
+        history.replaceState({}, '', window.location.href.slice(0, -14));
+            }";
         
         if(isset($_POST['Accept'])){
             $toernooiID = $_POST['Accept'];

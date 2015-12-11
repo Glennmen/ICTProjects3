@@ -10,7 +10,8 @@ class Main_model extends CI_Model {
     public function getAantalUitnodigingen($googleID)
     {
         $this->load->database();
-        $result = $this->db->query('SELECT * FROM participants_tournament WHERE Google_ID = '.$googleID.' AND Status = 0');
+        $result = $this->db->query("SELECT * FROM tournament
+                                    INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
         
         return $result->num_rows();
     }

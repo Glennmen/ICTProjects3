@@ -59,7 +59,7 @@ and open the template in the editor.
                                 }
                             }
                             else{
-                                echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
+                                echo '<tr><td colspan="6">Geen data beschikbaar</td></tr>';
                             }
                         ?>
                         </tbody>
@@ -113,6 +113,8 @@ and open the template in the editor.
                 $(this).children().find(":radio").prop('checked', true);
                 });
             });
+            
+            <?php echo $removeUrl ?>
         </script>
     </body>
 </html>
