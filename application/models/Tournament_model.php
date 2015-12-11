@@ -47,7 +47,7 @@ class Tournament_model extends CI_Model {
                 INNER JOIN tournament ON tournament.Tournament_ID = game.Tournament_ID WHERE tournament.Tournament_ID = ".$tournamentID.
                 " GROUP BY person.First_Name");
         
-       return $aData;
+       return $aData->result();
     }
     
     

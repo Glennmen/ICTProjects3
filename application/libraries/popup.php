@@ -12,24 +12,17 @@ class popup {
                        <h4 class="modal-title">Enter nickname </h4>
                     </div>
                     <div class="modal-body">
-                      <input type="text" name="nicknameText" required>
+                    <div id="alert" class="alert alert-info" role="alert" style="display: none">Verplicht nickname in te voeren.</div>
+                      <input type="text" name="nicknameText" id="nicknameText" onchange="button()" required>
                     </div>
                     <div class="modal-footer">
-                      <input type="submit" id="btnSubmit" class="btn btn-default" data-dismiss="modal" value="Save" />
+                      <input type="submit" id="btnSubmit" class="btn btn-default" data-dismiss="modal" value="Save" disabled />
                     </div>
                 </form>
               </div>
             </div>
           </div>
-        </div>
-        <script>
-        $(window).load(function(){$("#myModal").modal("show");});
-        </script>'
-                ."<script>"
-                . "$('#btnSubmit').click(function(){"
-                . "$('#nicknameform').submit();"
-                . "});"
-                . "</script>";
+        </div>';
         return $main;
     }
 }

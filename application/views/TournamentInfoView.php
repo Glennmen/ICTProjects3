@@ -26,8 +26,8 @@ and open the template in the editor.
     </thead>
     <tbody>
    <?php
-            if($aParticipants != NULL) {
-                foreach($aParticipants->result() as $aParticipantRow) {
+            if($aParticipants != null) {
+                foreach($aParticipants as $aParticipantRow) {
                     $sContent = "<tr><td>".$aParticipantRow->Last_Name."</td>";
                     $sContent .= "<td>".$aParticipantRow->First_Name."</td>";
                     $sContent .= "<td>".$aParticipantRow->aantalGames."</td>";
@@ -38,7 +38,7 @@ and open the template in the editor.
                 }
             } 
             else {
-                echo '<tr><td colspan="4">Geen data beschikbaar</td></tr>';
+                echo '<tr><td colspan="6">Geen data beschikbaar</td></tr>';
             }
         ?>
     </tbody>

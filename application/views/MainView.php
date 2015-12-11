@@ -28,6 +28,25 @@
 </div>
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
+    <script>
+        $(window).load(function(){$("#myModal").modal("show");});
+        document.getElementById("alert").style.display = "none";
+        function button(){
+           personen = document.getElementById('nicknameText');
+           if (personen.value) {
+               document.getElementById("alert").style.display = "none";
+               $("#btnSubmit").prop('disabled', false);
+           }
+           else{
+               document.getElementById("alert").style.display = "block";
+               $("#btnSubmit").prop('disabled', true);
+           } 
+           $('#btnSubmit').click(function(){
+               $('#nicknameform').submit();
+           });
+         }
+        </script>
 </body>
 </html>
