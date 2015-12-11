@@ -28,7 +28,7 @@ class TournamentController extends CI_Controller{
                   'Tournament_Name' => $this->input->post('tournamentName'),
                   'Start_Date' => $startDate->format("Y-m-d"),
                   'End_Date' => $endDate->format("Y-m-d"),
-                  'Google_ID' => $_SESSION['Google_ID'],
+                  'Google_ID' => 1,
               ];
               
               $this->load->model('Tournament_model');

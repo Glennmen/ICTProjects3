@@ -27,7 +27,7 @@ class InvitesController extends CI_Controller{
 
     
     public function index(){
-        $googleID = $_SESSION['Google_ID'];
+        $googleID = 1;
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
 
@@ -58,7 +58,7 @@ class InvitesController extends CI_Controller{
     }
     
     public function changeInvites(){
-        $googleID = $_SESSION['Google_ID'];
+        $googleID = 1;
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         $this->load->model('Invites_model');

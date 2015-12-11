@@ -6,7 +6,7 @@ function getInfo(radio) {
         type: "POST",
         url: "/ICTProjects3/ScoreController/json",
         dataType: 'json',
-        data: {Type: 'free'},
+        data: {GoogleID: 1, Type: 'free'},
         success: function(data) {
             tourney = document.getElementById('tourney');
             tourney.options.length = 0;
@@ -24,7 +24,7 @@ function getInfo(radio) {
         type: "POST",
         url: "/ICTProjects3/ScoreController/json",
         dataType: 'json',
-        data: {Type: 'tourney'},
+        data: {GoogleID: 1, Type: 'tourney'},
         success: function(data) {
             tourney = document.getElementById('tourney');
             tourney.options.length = 0;
@@ -47,7 +47,7 @@ function getGames() {
         type: "POST",
         url: "/ICTProjects3/ScoreController/json",
         dataType: 'json',
-        data: {TournooiID: ID},
+        data: {GoogleID: 1, TournooiID: ID},
         success: function(data) {
             game = document.getElementById('game');
             game.options.length = 0;

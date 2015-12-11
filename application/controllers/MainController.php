@@ -21,12 +21,11 @@ class MainController extends CI_Controller {
         $this->load->model('Main_model');
         $this->load->library('navbar');
         $this->load->library('popup');
-        $googleID = $_SESSION['Google_ID'];
         
         
         if(isset($_POST['nicknameText'])){
         $newNickname = $_POST['nicknameText'];
-        $this->Main_model->setNickname($googleID,$newNickname);
+        $this->Main_model->setNickname($_SESSION['Google_ID'],$newNickname);
         
         }
         
@@ -34,7 +33,7 @@ class MainController extends CI_Controller {
        
         $data['nav'] = $this->navbar->get_navbar();
         
-        $result = $this->Main_model->getNickname($googleID);
+        $result = $this->Main_model->getNickname($_SESSION['Google_ID']);
        
         if($result == NULL){
             $data['popup'] = $this->popup->get_Popup();
@@ -45,6 +44,8 @@ class MainController extends CI_Controller {
         //$data['popup'] = '';
         $data['First_Name'] = $this->session->userdata("First_Name");
         $data['Last_Name'] = $this->session->userdata("Last_Name");
+
+        $googleID = 2;
 
         $data['uitnodigingen'] = $this->Main_model->getAantalUitnodigingen($googleID);
         $data['chart'] = $this->Main_model->makeChart($googleID);

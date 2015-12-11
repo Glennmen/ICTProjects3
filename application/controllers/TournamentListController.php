@@ -20,23 +20,23 @@ class TournamentListController extends CI_Controller {
     }
     
     public function index(){
-        $googleID = $_SESSION['Google_ID'];
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         
         if(isset($_POST['SelectTournament'])){
-            $data['aParticipants'] = $this->view_participants($googleID);
+            $data['aParticipants'] = $this->view_participants();
+            //$data['aScore'] = $this->view_score();
             $this->load->view('TournamentInfoView',$data);
         }
         else{
-            $data['aTournamentListData'] = $this->view_list($googleID);
+            $data['aTournamentListData'] = $this->view_list();
             $this->load->view('TournamentListView', $data);
         }
     }
     
-    public function view_participants($googleID) {
+    public function view_participants() {
         $this->load->model('Tournament_model');
-        $result = $this->Tournament_model->AllParticipants($googleID);
+        $result = $this->Tournament_model->AllParticipants(1);
         if ($result != false) {
             return $result;
         } else {
@@ -44,9 +44,9 @@ class TournamentListController extends CI_Controller {
         }
     }
     
-    public function view_list($googleID){
+    public function view_list(){
         $this->load->model('Tournament_model');
-        $result = $this->Tournament_model->AllAcceptedTournaments($googleID);
+        $result = $this->Tournament_model->AllAcceptedTournaments(1); //komt googleID
         if ($result != false) {
             return $result;
         }else{
