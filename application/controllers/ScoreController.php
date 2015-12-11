@@ -43,7 +43,7 @@ class ScoreController extends CI_Controller {
                 }
                 $aScoreData = [
                     'Game_ID' => $ID,
-                    'Google_ID' => 2,
+                    'Google_ID' => $_SESSION['Google_ID'],
                     'Total' => $this->input->post('scoreTotaal'),
                     'Strikes' => $this->input->post('scoreStrikes'),
                     'Spares' => $this->input->post('scoreSpares'),
@@ -76,16 +76,17 @@ class ScoreController extends CI_Controller {
     }
 
     public function json(){
+        $googleID = $_SESSION['Google_ID'];
         $this->load->model('Score_model');
         
         if ($this->input->post('Type') == 'tourney') {
-            $result = $this->Score_model->TourneyOphalen($this->input->post('GoogleID'));
+            $result = $this->Score_model->TourneyOphalen($googleID);
         }
         else if ($this->input->post('Type') == 'free') {
-            $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), 0);
+            $result = $this->Score_model->GameOphalen($googleID, 0);
         }
         else {
-            $result = $this->Score_model->GameOphalen($this->input->post('GoogleID'), $this->input->post('TournooiID'));
+            $result = $this->Score_model->GameOphalen($googleID, $this->input->post('TournooiID'));
         }
         
         echo json_encode($result);

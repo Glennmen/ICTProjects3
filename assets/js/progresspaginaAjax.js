@@ -2,7 +2,7 @@ $.ajax({
 type: "POST",
 url: "/ICTProjects3/ProgressController/json",
 dataType: 'json',
-data: {GoogleID: 1, Type: 'free'},
+data: {Type: 'free'},
 success: function(data) {
     game = document.getElementById('gameSelect');
     game.options.length = 0;
@@ -16,7 +16,7 @@ $.ajax({
 type: "POST",
 url: "/ICTProjects3/ProgressController/json",
 dataType: 'json',
-data: {GoogleID: 1, Type: 'tourney'},
+data: {Type: 'tourney'},
 success: function(data) {
     tourney = document.getElementById('tourneySelect');
     tourney.options.length = 0;

@@ -4,7 +4,7 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 
 class GameController extends CI_Controller{
-    /*
+    
     function __construct()
     {
         parent::__construct();
@@ -19,7 +19,7 @@ class GameController extends CI_Controller{
 
         }
         }
-    }*/
+    }
     
     public function index(){
         
@@ -93,8 +93,9 @@ class GameController extends CI_Controller{
     }
     
     public function json(){
+        $googleID = $_SESSION['Google_ID'];
         $this->load->model('Score_model');
-        $result = $this->Score_model->TourneyOphalen($this->input->post('GoogleID'));
+        $result = $this->Score_model->TourneyOphalen($googleID);
         
         echo json_encode($result);
     }

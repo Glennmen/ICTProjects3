@@ -5,7 +5,7 @@ if (radio.value == "tourney") {
         type: "POST",
         url: "/ICTProjects3/GameController/json",
         dataType: 'json',
-        data: {GoogleID: 1},
+        data: {},
         success: function(data) {
             tourney = document.getElementById('tourney');
             tourney.options.length = 0;

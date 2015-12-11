@@ -20,8 +20,9 @@ class ProgressController extends CI_Controller {
     public function index(){
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
-        $googleID = 2;
+        $googleID = $_SESSION['Google_ID'];
         $this->load->model('Progress_model');
+        
         $data['chart1'] = $this->Progress_model->makeTotalChart($googleID);
         $data['chart2'] = $this->Progress_model->makeStrikesChart($googleID);
         $data['chart3'] = $this->Progress_model->makeSparesChart($googleID);
@@ -30,13 +31,14 @@ class ProgressController extends CI_Controller {
     }
     
     public function json(){
+        $googleID = $_SESSION['Google_ID'];
         $this->load->model('Progress_model');
         
         if ($this->input->post('Type') == 'tourney') {
-            $result = $this->Progress_model->TourneyOphalen($this->input->post('GoogleID'));
+            $result = $this->Progress_model->TourneyOphalen($googleID);
         }
         else if ($this->input->post('Type') == 'free') {
-            $result = $this->Progress_model->GameOphalen($this->input->post('GoogleID'), 0);
+            $result = $this->Progress_model->GameOphalen($googleID, 0);
         }
         else if($this->input->post('Type') == 'freeProgress'){
             $result = $this->Progress_model->StatistiekenOphalen($this->input->post('GameID'));
