@@ -13,12 +13,27 @@ class Progress_model extends CI_Model {
     
     public function TournooiStatsOphalen($tourneyID){
         
-        $this->load->database(); 
-        
-        $aProgressData = $this->db->query("SELECT p.Nickname, s.Total, s.Strikes, s.Spares
-                                            FROM (SELECT Google_ID, ROUND(AVG(Total),1) AS Total, ROUND(AVG(Strikes),1) AS Strikes, ROUND(AVG(Spares),1) AS Spares FROM score INNER JOIN game ON score.Game_ID=game.Game_ID WHERE Tournament_ID=".$tourneyID." GROUP BY Google_ID) s,
-                                                (SELECT Nickname, Google_ID FROM person) p
-                                            WHERE s.Google_ID=p.Google_ID ORDER BY Total DESC, Strikes DESC, Spares DESC");
+        $this->load->database();
+        $endDate = $this->db->query("SELECT End_Date FROM tournament WHERE Tournament_ID = ".$tourneyID);
+        if($endDate){ $endDate2 = $endDate->row()->End_Date; }
+        $currentDate = date('Y-m-d');
+        if($endDate2 < $currentDate)
+        {
+        $aProgressData = $this->db->query("SELECT p.Nickname, s.Total, s.Strikes, s.Spares 
+                                            FROM (SELECT Google_ID, ROUND(AVG(Total),1) AS Total, ROUND(AVG(Strikes),1) AS Strikes, ROUND(AVG(Spares),1) AS Spares FROM score 
+                                                  INNER JOIN game ON score.Game_ID=game.Game_ID WHERE Tournament_ID=".$tourneyID." GROUP BY Google_ID HAVING COUNT(score.Score_ID) > 9) s,
+                                                 (SELECT Nickname, Google_ID FROM person) p 
+                                            WHERE s.Google_ID=p.Google_ID 
+                                            ORDER BY Total DESC, Strikes DESC, Spares DESC ");
+        }
+        else{
+        $aProgressData = $this->db->query("SELECT p.Nickname, s.Total, s.Strikes, s.Spares 
+                                            FROM (SELECT Google_ID, ROUND(AVG(Total),1) AS Total, ROUND(AVG(Strikes),1) AS Strikes, ROUND(AVG(Spares),1) AS Spares FROM score 
+                                                  INNER JOIN game ON score.Game_ID=game.Game_ID WHERE Tournament_ID=".$tourneyID." GROUP BY Google_ID ) s,
+                                                 (SELECT Nickname, Google_ID FROM person) p 
+                                            WHERE s.Google_ID=p.Google_ID 
+                                            ORDER BY Total DESC, Strikes DESC, Spares DESC ");
+        }
         
         return $aProgressData->result();
     }
@@ -32,7 +47,10 @@ class Progress_model extends CI_Model {
     
     public function TourneyOphalen($googleID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Tournament_Name, tournament.Tournament_ID FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status=1");
+        $todayData = date("Y-m-d");
+        $aGameData = $this->db->query("SELECT Tournament_Name, tournament.Tournament_ID
+                                       FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID 
+                                       WHERE participants_tournament.Google_ID=" .$googleID. " AND Status=1 ");
 
         return $aGameData->result();
     }
