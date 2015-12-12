@@ -4,7 +4,7 @@ function getInfo(radio) {
         document.getElementById("gameDiv").style.display = "none";
         $.ajax({
         type: "POST",
-        url: "/ICTProjects3/ScoreController/json",
+        url: "/ScoreController/json",
         dataType: 'json',
         data: {Type: 'free'},
         success: function(data) {
@@ -22,7 +22,7 @@ function getInfo(radio) {
         $("#button").prop('disabled', true);
         $.ajax({
         type: "POST",
-        url: "/ICTProjects3/ScoreController/json",
+        url: "/ScoreController/json",
         dataType: 'json',
         data: {Type: 'tourney'},
         success: function(data) {
@@ -45,7 +45,7 @@ function getGames() {
   
         $.ajax({
         type: "POST",
-        url: "/ICTProjects3/ScoreController/json",
+        url: "/ScoreController/json",
         dataType: 'json',
         data: {TournooiID: ID},
         success: function(data) {

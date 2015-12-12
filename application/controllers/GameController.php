@@ -38,7 +38,7 @@ class GameController extends CI_Controller{
         
         if(isset($_POST['CreateGame'])){
             if($this->form_validation->run()==FALSE){
-                $this->load->view('gameView1', $data);
+                $this->load->view('GameView1', $data);
             }else{
                 
             $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));               
@@ -62,11 +62,11 @@ class GameController extends CI_Controller{
               $this->Game_model->GameToevoegen($aGameData, $personen);
               
               $data['alert'] = "<div class='alert alert-success' role='alert'>Game succesvol aangemaakt!</div>";
-              $this->load->view('gameView1', $data);
+              $this->load->view('GameView1', $data);
             }
         }else{
             
-            $this->load->view('gameView1', $data);
+            $this->load->view('GameView1', $data);
         } 
     } 
     public function dateCheck($strDate){

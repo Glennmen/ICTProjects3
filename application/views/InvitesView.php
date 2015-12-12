@@ -82,7 +82,7 @@ and open the template in the editor.
                     <?php 
                          if($aTournamentListData != null){
                              foreach($aTournamentListData as $aTournamentListRow){
-                                $sContent =  "<tr><td><input name='SelectedTournament' type='radio' value='".$aTournamentListRow->Tournament_ID."'></td>";
+                                $sContent =  "<tr><td><input name='SelectedTournament' type='radio' required value='".$aTournamentListRow->Tournament_ID."'></td>";
                                 $sContent .=  "<td>".$aTournamentListRow->Tournament_Name."</td>";
                                 $sContent .=  "<td>".$aTournamentListRow->Start_Date."</td>";
                                 $sContent .=  "<td>".$aTournamentListRow->End_Date."</td></tr>";

@@ -19,7 +19,7 @@ class OAuthController extends CI_Controller
 //You can get it from : https://console.developers.google.com/
         $client_id = '452281875900-3mmee3tiiu38kp4a2s6lerokmg22r20r.apps.googleusercontent.com';
         $client_secret = 'hfok_9MOqFGP--y5i0yJjzY0';
-        $redirect_uri = 'http://localhost/ICTProjects3/OAuthController';
+        $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
 
 //incase of logout request, just unset the session var
         if (isset($_GET['logout'])) {
