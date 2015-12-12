@@ -14,6 +14,7 @@ class GameController extends CI_Controller{
             $allowed = array(
                 'MobileApp'
             );
+             
             if ( ! in_array($this->router->fetch_method(), $allowed))
             {
 
@@ -70,11 +71,27 @@ class GameController extends CI_Controller{
         } 
     } 
     public function dateCheck($strDate){
-        
+        $googleID = $_SESSION['Google_ID'];
+        $tournamentID = $this->input->post('Tourney');
         $values = explode("/", $strDate);
+       $this->load->model('Game_model');
+       
+        
+        $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
+       
+        $Date2 = date('Y/m/d',  strtotime($strNewDate));
+       $startDate = date('Y/m/d', strtotime($this->Game_model->getStartDate($googleID,$tournamentID)));
+       $endDate = date('Y/m/d', strtotime($this->Game_model->getEndDate($googleID,$tournamentID)));
        
         if(checkdate ( $values[1] , $values[0] , $values[2] )){
-             return true;
+             if ($Date2 > $startDate && $Date2 < $endDate){
+                return true;
+            } else {
+                
+                $this->form_validation->set_message('dateCheck', "Date not between tournament dates -- date:".$Date2." startdate:".$startDate." enddate:".$endDate);
+               
+            return FALSE;
+            }
         }else{
             $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
             return FALSE;
@@ -94,8 +111,8 @@ class GameController extends CI_Controller{
     
     public function json(){
         $googleID = $_SESSION['Google_ID'];
-        $this->load->model('Score_model');
-        $result = $this->Score_model->TourneyOphalen($googleID);
+        $this->load->model('Game_model');
+        $result = $this->Game_model->TourneyOphalen($googleID);
         
         echo json_encode($result);
     }

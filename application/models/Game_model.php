@@ -42,4 +42,35 @@ class Game_model extends CI_Model {
 
         return $aGameData->result();
     }
+    
+    
+    public function TourneyOphalen($googleID){
+        $this->load->database();
+        
+        $aGameData = $this->db->query("SELECT Tournament_Name, tournament.Tournament_ID FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status=1 AND tournament.End_Date >= NOW()");
+
+        return $aGameData->result();
+    }
+     public function getStartDate($googleID,$tournament){
+        $this->load->database();
+        
+        $aGameData = $this->db->query("SELECT Start_Date FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status= 1 AND tournament.Tournament_ID =".$tournament);
+
+       
+        if ($aGameData){
+            $startDate = $aGameData->row()->Start_Date;  
+            return $startDate;             
+        }
+    }
+     public function getEndDate($googleID,$tournament){
+        $this->load->database();
+        
+        $aGameData = $this->db->query("SELECT End_Date FROM participants_tournament INNER JOIN tournament ON participants_tournament.Tournament_ID=tournament.Tournament_ID WHERE participants_tournament.Google_ID=" .$googleID. " AND Status= 1 AND tournament.Tournament_ID =".$tournament);
+
+        if ($aGameData){
+            $endDate = $aGameData->row()->End_Date;  
+            return $endDate;             
+        }
+    }
+    
 }
