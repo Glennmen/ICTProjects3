@@ -21,14 +21,13 @@ class ScoreController extends CI_Controller {
     
     public function index()
     {
-
         $this->load->library('navbar');
         $data['nav'] = $this->navbar->get_navbar();
         $data['alert'] = "";
 
 
         $this->form_validation->set_rules('scoreTotaal', 'Totaal', 'required|max_length[3]|less_than[301]|is_natural_no_zero');
-        $this->form_validation->set_rules('scoreSpares', 'spares', 'required|max_length[2]|less_than[13]|is_natural');
+        $this->form_validation->set_rules('scoreSpares', 'spares', 'required|max_length[2]|less_than[13]|is_natural|callback_maxCheck');
         $this->form_validation->set_rules('scoreStrikes', 'strikes', 'required|max_length[2]|less_than[13]|is_natural');
 
         if (isset($_POST['UploadScore'])) {
@@ -60,6 +59,20 @@ class ScoreController extends CI_Controller {
             $this->load->view('ScoreView', $data);
         }
 
+    }
+    
+    public function maxCheck(){
+        $strikes = $this->input->post('scoreStrikes');
+        $scores = $this->input->post('scoreSpares');
+        
+        if(($strikes+$scores)<= 12)
+        {
+            return true;
+        }
+        else{
+            $this->form_validation->set_message('maxCheck', 'Enter valid strike and spare value.');
+            return false;
+        }
     }
 
     public function MobileApp(){

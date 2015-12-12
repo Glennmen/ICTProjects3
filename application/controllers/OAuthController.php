@@ -21,6 +21,11 @@ class OAuthController extends CI_Controller
         $client_secret = 'hfok_9MOqFGP--y5i0yJjzY0';
         $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
 
+//Als je lokaal werkt , onderstaande link uit commentaar halen en de andere link in commentaar zetten.
+       $redirect_uri = 'http://localhost/ICTProjects3/OAuthController';
+// Als je op de server werkt , onderstaande link uit commentaar halen en bovenstaande link in commentaar zetten.
+    //    $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
+
 //incase of logout request, just unset the session var
         if (isset($_GET['logout'])) {
             unset($_SESSION['access_token']);
