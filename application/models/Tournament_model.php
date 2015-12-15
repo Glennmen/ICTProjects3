@@ -56,7 +56,7 @@ class Tournament_model extends CI_Model {
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT Nickname FROM person 
+        $aData =$this->db->query("SELECT person.Nickname,tournament.Tournament_Name,tournament.Start_Date,tournament.End_Date,tournament.Tournament_ID FROM person 
                                     INNER JOIN tournament ON tournament.Google_ID = person.Google_ID
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 0 AND participants_tournament.Google_ID=".$googleID);
         
@@ -67,7 +67,7 @@ class Tournament_model extends CI_Model {
     {
         $this->load->database();      
         
-        $aData =$this->db->query("SELECT Nickname FROM person 
+        $aData =$this->db->query("SELECT Nickname,tournament.Tournament_Name,tournament.Start_Date,tournament.End_Date,tournament.Tournament_ID FROM person 
                                     INNER JOIN tournament ON tournament.Google_ID = person.Google_ID
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 1 AND participants_tournament.Google_ID=".$googleID);
         
@@ -78,7 +78,7 @@ class Tournament_model extends CI_Model {
     {
         $this->load->database();
         
-        $aData =$this->db->query("SELECT Nickname FROM person 
+        $aData =$this->db->query("SELECT Nickname,tournament.tournament_Name,tournament.Start_Date,tournament.End_Date,tournament.Tournament_ID FROM person 
                                     INNER JOIN tournament ON tournament.Google_ID = person.Google_ID
                                     INNER JOIN participants_tournament ON tournament.Tournament_ID = participants_tournament.Tournament_ID WHERE Status = 2 AND participants_tournament.Google_ID=".$googleID);
         return $aData-result();
