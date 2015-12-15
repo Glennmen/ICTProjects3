@@ -48,7 +48,7 @@ and open the template in the editor.
                             $sContent = null;
                             if($aInvitesListData != null){
                                 foreach($aInvitesListData as $aInvitesListRow){
-                                    $sContent .=  "<tr><td>".$aInvitesListRow->Tournament_Name."</td>";
+                                    $sContent =  "<tr><td>".$aInvitesListRow->Tournament_Name."</td>";
                                     $sContent .=  "<td>".$aInvitesListRow->Start_Date."</td>";
                                     $sContent .=  "<td>".$aInvitesListRow->End_Date."</td>";
                                     $sContent .=  "<td>".$aInvitesListRow->Nickname."</td>";
