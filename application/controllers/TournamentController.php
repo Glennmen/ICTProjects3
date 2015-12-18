@@ -20,22 +20,27 @@ class TournamentController extends CI_Controller{
             }else{
               
               $startDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentStartDate'));               
-              $endDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentEndDate'));               
+              $endDate = DateTime::createFromFormat('d/m/Y', $this->input->post('tournamentEndDate'));     
+              $currentDate = date("Y-m-d");
                 
-              $personen = $this->input->post('Personen[]');
-                
-              $aTournamentData = [
-                  'Tournament_Name' => $this->input->post('tournamentName'),
-                  'Start_Date' => $startDate->format("Y-m-d"),
-                  'End_Date' => $endDate->format("Y-m-d"),
-                  'Google_ID' => $_SESSION['Google_ID'],
-              ];
               
-              $this->load->model('Tournament_model');
-              $this->Tournament_model->TournamentToevoegen($aTournamentData, $personen);
-              
-              $data['alert'] = "<div class='alert alert-success' role='alert'>Toernooi succesvol aangemaakt!</div>";
-              $this->load->view('TournamentView', $data);
+              if ((strtotime($startDate) > strtotime($currentDate)) && (strtotime($endDate) > strtotime($currentDate)))
+              {
+                $personen = $this->input->post('Personen[]');
+
+                $aTournamentData = [
+                    'Tournament_Name' => $this->input->post('tournamentName'),
+                    'Start_Date' => $startDate->format("Y-m-d"),
+                    'End_Date' => $endDate->format("Y-m-d"),
+                    'Google_ID' => $_SESSION['Google_ID'],
+                ];
+
+                $this->load->model('Tournament_model');
+                $this->Tournament_model->TournamentToevoegen($aTournamentData, $personen);
+
+                $data['alert'] = "<div class='alert alert-success' role='alert'>Toernooi succesvol aangemaakt!</div>";
+                $this->load->view('TournamentView', $data);
+              }
             }
         }else{
             

@@ -38,7 +38,7 @@ class Game_model extends CI_Model {
     
     public function PersonenTourneyOphalen($tournooiID){
         $this->load->database();
-        $aGameData = $this->db->query("SELECT Last_Name, First_Name, Nickname, person.Google_ID FROM participants_tournament INNER JOIN person ON participants_tournament.Google_ID=person.Google_ID WHERE participants_tournament.Tournament_ID=" .$tournooiID. " AND Status=1");
+        $aGameData = $this->db->query("SELECT Last_Name, First_Name, person.Google_ID FROM person INNER JOIN score ON person.Google_ID = score.Google_ID INNER JOIN game ON score.Game_ID = game.Game_ID WHERE game.Tournament_ID = " .$tournooiID. " GROUP BY person.Google_ID HAVING COUNT(person.Google_ID) < 10");
 
         return $aGameData->result();
     }
