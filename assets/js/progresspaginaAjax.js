@@ -1,6 +1,6 @@
 $.ajax({
 type: "POST",
-url: "/ProgressController/json",
+url: "ICTProjects3/ProgressController/json",
 dataType: 'json',
 data: {Type: 'free'},
 success: function(data) {
@@ -14,7 +14,7 @@ success: function(data) {
 
 $.ajax({
 type: "POST",
-url: "/ProgressController/json",
+url: "ICTProjects3/ProgressController/json",
 dataType: 'json',
 data: {Type: 'tourney'},
 success: function(data) {
@@ -32,7 +32,7 @@ function getProgress1() {
     
     $.ajax({
     type: "POST",
-    url: "/ProgressController/json",
+    url: "ICTProjects3/ProgressController/json",
     dataType: 'json',
     data: {GameID: ID, Type: 'freeProgress'},
     success: function(data) {
@@ -74,7 +74,7 @@ function getProgress2() {
     
     $.ajax({
     type: "POST",
-    url: "/ProgressController/json",
+    url: "ICTProjects3/ProgressController/json",
     dataType: 'json',
     data: {TournamentID: ID, Type: 'tourneyProgress'},
     success: function(data) {

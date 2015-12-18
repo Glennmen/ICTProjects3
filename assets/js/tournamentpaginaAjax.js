@@ -1,6 +1,6 @@
 $.ajax({
         type: "POST",
-        url: "/TournamentController/jsonPersonen",
+        url: "/ICTProjects3/TournamentController/jsonPersonen",
         dataType: 'json',
         data: {},
         success: function(data) {

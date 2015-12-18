@@ -3,7 +3,8 @@ if (radio.value == "tourney") {
         $("#button").prop('disabled', true);
         $.ajax({
         type: "POST",
-        url: "/GameController/json",
+        url: "/ICTProjects3/GameController/json",
+        //url: "/GameController/json",
         dataType: 'json',
         data: {},
         success: function(data) {
@@ -24,7 +25,8 @@ if (radio.value == "tourney") {
         document.getElementById("tourneyDiv").style.display = "none";
         $.ajax({
         type: "POST",
-        url: "/GameController/jsonPersonen",
+        url: "/ICTProjects3/GameController/jsonPersonen",
+//        url: "/GameController/jsonPersonen",
         dataType: 'json',
         data: {},
         success: function(data) {
@@ -45,7 +47,8 @@ function getGames() {
     var ID = e.options[e.selectedIndex].value;
     $.ajax({
         type: "POST",
-        url: "/GameController/jsonPersonen",
+        url: "/ICTProjects3/GameController/jsonPersonen",
+//        url: "/GameController/jsonPersonen",
         dataType: 'json',
         data: {TournooiID: ID, Type: 'tourney'},
         success: function(data) {

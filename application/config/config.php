@@ -17,7 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-$config['base_url'] = 'http://www.bowlingcomp.tk/';
+//$config['base_url'] = 'http://www.bowlingcomp.tk/';
+$config['base_url'] = 'http://localhost/ICTProjects3/';
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ $config['base_url'] = 'http://www.bowlingcomp.tk/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
+//$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

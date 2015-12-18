@@ -19,7 +19,7 @@ class OAuthController extends CI_Controller
 //You can get it from : https://console.developers.google.com/
         $client_id = '452281875900-3mmee3tiiu38kp4a2s6lerokmg22r20r.apps.googleusercontent.com';
         $client_secret = 'hfok_9MOqFGP--y5i0yJjzY0';
-        $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
+        //$redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
 
 //Als je lokaal werkt , onderstaande link uit commentaar halen en de andere link in commentaar zetten.
        $redirect_uri = 'http://localhost/ICTProjects3/OAuthController';
