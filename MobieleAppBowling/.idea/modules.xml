@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MobieleAppBowling.iml" filepath="$PROJECT_DIR$/MobieleAppBowling.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../xamppfiles/htdocs/ICTProjects3/MobieleAppBowling/app/app.iml" filepath="$PROJECT_DIR$/../../../xamppfiles/htdocs/ICTProjects3/MobieleAppBowling/app/app.iml" />
     </modules>
   </component>
 </project>
