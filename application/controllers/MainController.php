@@ -23,11 +23,15 @@ class MainController extends CI_Controller {
         $this->load->library('navbar');
         $this->load->library('popup');
         
+        $this->form_validation->set_rules('nicknameText', 'Name','required|is_unique[person.Nickname]');
         
         if(isset($_POST['nicknameText'])){
         $newNickname = $_POST['nicknameText'];
-        $this->Main_model->setNickname($googleID,$newNickname);
+        if($this->form_validation->run()==FALSE){
         
+        }else{
+        $this->Main_model->setNickname($googleID,$newNickname);
+            }
         }
         
         
@@ -38,7 +42,7 @@ class MainController extends CI_Controller {
        
         if($result == NULL){
             $data['popup'] = $this->popup->get_Popup();
-            $this->form_validation->set_rules('nicknameText', 'Name','required|is_unique');
+            
         }  else {
             $data['popup'] = '';    
         }
