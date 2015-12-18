@@ -24,7 +24,7 @@ class TournamentController extends CI_Controller{
               $currentDate = date("Y-m-d");
                 
               
-              if ((strtotime($startDate) > strtotime($currentDate)) && (strtotime($endDate) > strtotime($currentDate)))
+              if ((strtotime(date_format($startDate,"Y-m-d")) > strtotime($currentDate)) && (strtotime(date_format($endDate,"Y-m-d")) > strtotime($currentDate)) && (strtotime(date_format($startDate,"Y-m-d")) < strtotime(date_format($endDate,"Y-m-d"))))
               {
                 $personen = $this->input->post('Personen[]');
 
@@ -41,6 +41,10 @@ class TournamentController extends CI_Controller{
                 $data['alert'] = "<div class='alert alert-success' role='alert'>Toernooi succesvol aangemaakt!</div>";
                 $this->load->view('TournamentView', $data);
               }
+              else{
+                  $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
+                  return FALSE;
+        }   
             }
         }else{
             
