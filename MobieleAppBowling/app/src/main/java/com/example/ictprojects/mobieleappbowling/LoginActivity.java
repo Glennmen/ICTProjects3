@@ -121,6 +121,7 @@ public class LoginActivity extends AppCompatActivity implements
                 }
             });
         }
+
     }
 
     // [START onActivityResult]
@@ -145,6 +146,7 @@ public class LoginActivity extends AppCompatActivity implements
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
             mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
+            googleID = acct.getId();
             updateUI(true);
         } else {
             // Signed out, show unauthenticated UI.
@@ -260,7 +262,7 @@ public class LoginActivity extends AppCompatActivity implements
             case R.id.disconnect_button:
                 if(checkInternetConnection()) {
 
-                    new HttpAsyncTask().execute("http://192.168.43.48/ICTProjects3/OAuthController/MobileApp");
+                    new HttpAsyncTask().execute("http://www.bowlingcomp.tk/OAuthController/MobileApp");
 
 
                 }

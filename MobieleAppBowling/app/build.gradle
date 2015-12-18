@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'MyAndroidKey'
             keyPassword 'eloict'
-            storeFile file('C:/xampp/htdocs/ICTProjects3/MobieleAppBowling/app/MyReleaseKey.jks')
+            storeFile file('/xampp/htdocs/ICTProjects3/MobieleAppBowling/app/MyReleaseKey.jks')
             storePassword 'eloict'
         }
     }

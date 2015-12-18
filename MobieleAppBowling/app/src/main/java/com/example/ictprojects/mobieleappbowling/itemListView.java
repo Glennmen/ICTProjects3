@@ -54,8 +54,8 @@ public class itemListView extends AppCompatActivity
 
         if(isConnected()){                                                                          //contacting server if the device is connected to a network
 
-                new HttpAsyncTask().execute("http://192.168.43.48/ICTProjects3/TournamentListController/MobileApp",
-                                            "http://192.168.43.48/ICTProjects3/GameController/MobileApp");
+                new HttpAsyncTask().execute("http://www.bowlingcomp.tk/TournamentListController/MobileApp",
+                                            "http://www.bowlingcomp.tk/GameController/MobileApp");
         }
     }
 
