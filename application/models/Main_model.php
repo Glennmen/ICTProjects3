@@ -68,5 +68,11 @@ class Main_model extends CI_Model {
     }
         
     }
+    
+    public function getAllNicknames(){
+        $this->load->database();
+        $anicknames = $this->db->query("Select Nickname FROM person");
+        return $anicknames->result();
+    }
             
 }

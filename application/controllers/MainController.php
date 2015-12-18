@@ -23,15 +23,15 @@ class MainController extends CI_Controller {
         $this->load->library('navbar');
         $this->load->library('popup');
         
-        $this->form_validation->set_rules('nicknameText', 'Name','required|is_unique[person.Nickname]');
+        $this->form_validation->set_rules('nicknameText', 'Name','required|callback_nicknameCheck');
         
         if(isset($_POST['nicknameText'])){
         $newNickname = $_POST['nicknameText'];
         if($this->form_validation->run()==FALSE){
         
         }else{
-        $this->Main_model->setNickname($googleID,$newNickname);
-            }
+            $this->Main_model->setNickname($googleID,$newNickname);
+         }
         }
         
         
@@ -56,6 +56,20 @@ class MainController extends CI_Controller {
         $this->load->view('MainView', $data);
         
        
+    }
+    
+    public function nicknameCheck($newNickname){
+        
+        $this->load->model('Main_model');
+        $aNicknames = $this->Main_model->getAllNicknames();
+        foreach($aNicknames as $sNickname){
+            if ($sNickname->Nickname == $newNickname){
+                $this->form_validation->set_message('nicknameCheck', 'Nickname is niet uniek');
+                return false;
+            }
+        }
+        return true;
+        
     }
 
 }
