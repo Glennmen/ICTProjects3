@@ -142,9 +142,15 @@ class OAuthController extends CI_Controller
         $aMobileData = json_decode(file_get_contents('php://input'),true);
         
         if($aMobileData['req'] == "UserExist"){
-            $result = $this->OAuth_model->CheckIfUserExist($this->input->post('GoogleID'));
+            $result = $this->OAuth_model->userExistsApp($aMobileData["Google_ID"]);
         }
-        echo json_encode($result);  // 0 if user doesn't exists
+        
+        if($result != 0){
+            $status = array("status"=>"succes");
+        }else{
+            $status = array("status"=>"faild");
+        }
+        echo json_encode($status); 
     }
 }
 

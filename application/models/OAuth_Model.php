@@ -16,6 +16,19 @@ class OAuth_model extends CI_Model
 
         return $user_count;
     }
+    
+    public function  userExistsApp($id){
+        $this->load->database();
+
+        $result = $this->db->query("SELECT COUNT(Google_ID) as usercount FROM person WHERE Google_ID=$id");
+
+        if ($result) {
+            $user_count = $result->row()->usercount; //will return 0 if user doesn't exist
+        }
+
+        return $user_count;
+        
+    }
 
     public function RegisterUser($user)
     {
@@ -31,6 +44,8 @@ class OAuth_model extends CI_Model
         $this->db->insert('person', $data);
 
     }
+    
+    
     
     public function UpdateProfile($user){
        try{ $this->load->database();
