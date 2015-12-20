@@ -112,6 +112,8 @@ class InvitesController extends CI_Controller{
         }else if($aMobileData['state'] == "decline"){
             $result = $this->Invites_model->AllNotAcceptedTournaments($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
             $status = array("status"=>"geweigerd");
+        }else{
+            $status = array("status" => "undifined");
         }
         
         echo json_encode($status);

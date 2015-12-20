@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:text="@string/decline"
         android:id="@+id/btnDecline"
-        android:layout_alignTop="@+id/button"
+        android:layout_alignTop="@+id/btnaccept"
         android:layout_alignRight="@+id/TournamentName"
         android:layout_alignEnd="@+id/TournamentName" />
 

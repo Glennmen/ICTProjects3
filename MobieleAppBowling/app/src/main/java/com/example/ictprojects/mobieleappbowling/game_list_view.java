@@ -23,6 +23,7 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
     private String tournamentID;
     private ListView itemList;
     private TextView titleTextView;
+    private String googleID;
     ArrayList<GameObj> gameList;
 
     //handlers
@@ -37,16 +38,18 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
         Intent intent = getIntent();
 
         tournamentID = intent.getStringExtra("TournamentID");
+        googleID = intent.getStringExtra("googleID");
 
         titleTextView = (TextView) findViewById(R.id.titleTextView);                                //binding view items
         itemList = (ListView)findViewById(R.id.itemlist);
+        itemList.setOnItemClickListener(this);
 
         api = new ApiHandler();
         parser = new JsonParser();
 
         if(Connected()){                                                                          //contacting server if the device is connected to a network
 
-            new HttpAsyncTask().execute("http://192.168.43.48/ICTProjects3/GameController/MobileApp");
+            new HttpAsyncTask().execute("http://www.bowlingcomp.tk/GameController/MobileApp");
         }
     }
 
@@ -56,7 +59,7 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
             JSONObject jsonObject = new JSONObject();                                               //object containing the json post request
 
             try {
-                jsonObject.accumulate("Google_ID",1);
+                jsonObject.accumulate("Google_ID",googleID);
                 jsonObject.accumulate("Tournament_ID", tournamentID);                               // ADD GOOGLE ID to the json object
                 jsonObject.accumulate("req" ,"tourneyGames");
             } catch (Exception ex) {
@@ -72,9 +75,9 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
 
         gameList = parser.parseTournyGameList(result);
         title="Games";
-        for(GameObj obj: gameList){                                                        //looping trought the list of tournaments
-            HashMap<String,String> map =new HashMap<String,String>();                           //new hashmap for each tournament
-            String combinedDate = obj.getDate() + "  " + obj.getTime();              //containing the dates and name
+        for(GameObj obj: gameList){                                                                 //looping trought the list of tournaments
+            HashMap<String,String> map =new HashMap<String,String>();                               //new hashmap for each tournament
+            String combinedDate = obj.getDate() + "  " + obj.getTime();                             //containing the dates and name
             map.put("name",obj.getGame_Name());
             map.put("date", combinedDate);
 
@@ -87,11 +90,11 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
 
     public  void updateDisplay( ArrayList<HashMap<String,String>> data , String title){
         if(data.isEmpty()){
-            titleTextView.setText("could not reach the server :(");
+            titleTextView.setText("Er zijn geen games voor dit tournooi");
             return;
         }
 
-        titleTextView.setText(title);                                                          //setting the Title
+        titleTextView.setText(title);                                                                 //setting the Title
 
         //recources for the list adapter
         int resource = R.layout.listview_item;
@@ -116,6 +119,14 @@ public class game_list_view extends AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        GameObj obj = gameList.get(position);
 
+        Intent intent = new Intent(this , AddScoreActivity.class);
+
+        intent.putExtra("GameID" , obj.getGame_ID());
+        intent.putExtra("GoogleID" , obj.getGoogle_ID());
+        intent.putExtra("gameName" , obj.getGame_Name());
+
+        this.startActivity(intent);
     }
 }

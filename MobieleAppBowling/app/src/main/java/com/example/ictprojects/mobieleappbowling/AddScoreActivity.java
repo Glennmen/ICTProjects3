@@ -37,7 +37,6 @@ public class AddScoreActivity extends AppCompatActivity
     EditText editTotaleScore;
     EditText editAantalStrikes;
     EditText editAantalspares;
-    TextView isConnected;
     TextView title;
     Button submitScoreButton;
     ScoreData score;
@@ -65,23 +64,12 @@ public class AddScoreActivity extends AppCompatActivity
         editAantalStrikes = (EditText) findViewById(R.id.editAantalStrikes);
         editAantalspares = (EditText) findViewById(R.id.editAantalspares);
         submitScoreButton = (Button) findViewById(R.id.submitScoreButton);
-        isConnected = (TextView) findViewById(R.id.isConnected);
 
         editTotaleScore.setFilters(new InputFilter[] {new InputFilterMinMax("0", "300")});
         editAantalspares.setFilters(new InputFilter[] {new InputFilterMinMax("0", "10")});
         editAantalStrikes.setFilters(new InputFilter[] {new InputFilterMinMax("0", "12")});
 
         title.setText(GameName);
-
-        if(isConnected())
-        {
-            isConnected.setBackgroundColor(0xFF00CC00);
-            isConnected.setText("Connected");
-        }
-        else
-        {
-            isConnected.setText("No connection");
-        }
 
         submitScoreButton.setOnClickListener(this);
     }

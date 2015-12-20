@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +24,8 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
 
     private TextView Title;
     private TextView Date;
+    private Button accept;
+    private Button dicline;
 
     private  ApiHandler api;
 
@@ -42,6 +45,11 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
 
         Title = (TextView) findViewById(R.id.TournamentName);
         Date = (TextView) findViewById(R.id.Date);
+        accept = (Button) findViewById(R.id.btnaccept);
+        dicline = (Button) findViewById(R.id.btnDecline);
+
+        accept.setOnClickListener(this);
+        dicline.setOnClickListener(this);
 
         api = new ApiHandler();
 
@@ -57,7 +65,7 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
             JSONObject jsonObject = new JSONObject();
 
             try {
-                jsonObject.accumulate("Google_ID",1);
+                jsonObject.accumulate("Google_ID",GoogleID);
                 jsonObject.accumulate("tournamentID" , tournamentID);
                 jsonObject.accumulate("state",state);
             } catch (JSONException e) {
@@ -86,7 +94,7 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.btnaccept:
                 state = "accept";
-                new HttpAsyncTask().execute("http://192.168.43.48/ICTProjects3/InvitesController/MobileApp");
+                new HttpAsyncTask().execute("http://www.bowlingcomp.tk/InvitesController/MobileApp");
                 break;
             case R.id.btnDecline:
                 state = "decline";

@@ -148,6 +148,7 @@ public class itemListView extends AppCompatActivity
             Intent intent = new Intent(this , game_list_view.class);
 
             intent.putExtra("TournamentID",obj.getTournament_ID());
+            intent.putExtra("googleID",googleID);
 
             this.startActivity(intent);
 
@@ -157,7 +158,7 @@ public class itemListView extends AppCompatActivity
             Intent intent = new Intent(this , AddScoreActivity.class);
 
             intent.putExtra("GameID" , obj.getGame_ID());
-            intent.putExtra("GoogleID" , obj.getGoogle_ID());
+            intent.putExtra("GoogleID" , googleID);
             intent.putExtra("gameName" , obj.getGame_Name());
 
             this.startActivity(intent);
@@ -168,7 +169,7 @@ public class itemListView extends AppCompatActivity
             Intent intent = new Intent(this , tournamentView.class);
 
             intent.putExtra("TournamentID" , obj.getTournament_ID());
-            intent.putExtra("GoogleID" , obj.getGoogle_ID());
+            intent.putExtra("GoogleID" , googleID);
             intent.putExtra("StartDate" , obj.getStart_Date());
             intent.putExtra("EndDate" , obj.getEnd_Date());
             intent.putExtra("TournamentName" , obj.getTournament_Name());

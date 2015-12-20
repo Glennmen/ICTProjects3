@@ -263,8 +263,6 @@ public class LoginActivity extends AppCompatActivity implements
                 if(checkInternetConnection()) {
 
                     new HttpAsyncTask().execute("http://www.bowlingcomp.tk/OAuthController/MobileApp");
-
-
                 }
                 else
                     Toast.makeText(getApplicationContext(), "Geen internet Toegang.",
@@ -295,16 +293,21 @@ public class LoginActivity extends AppCompatActivity implements
 
             if(!parser.parseExistUser(result))
             {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
-                        Uri.parse("http://www.google.com"));
-                startActivity(browserIntent);
-            }else{
-                Toast.makeText(getApplicationContext(), "Nog geen user op site aangemaakt.",
+                Toast.makeText(getApplicationContext(), "welkom terug.",
                         Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra("id", googleID);
                 startActivity(intent);
+            }else{
+                Toast.makeText(getApplicationContext(), "maak een account aan op de site.",
+                        Toast.LENGTH_LONG).show();
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW,
+                        Uri.parse("http://www.bowlingcomp.tk"));
+                startActivity(browserIntent);
+                Uri.parse("http://www.google.com");
+
             }
 
         }

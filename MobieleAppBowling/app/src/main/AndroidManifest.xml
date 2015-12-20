@@ -14,13 +14,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/bowling"
+        android:label="Bowling app"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".LoginActivity"
-            android:label="@string/title_activity_login" >
+            android:label="Bowling app" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,7 +29,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="Bowling App"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity android:name=".AddScoreActivity" >

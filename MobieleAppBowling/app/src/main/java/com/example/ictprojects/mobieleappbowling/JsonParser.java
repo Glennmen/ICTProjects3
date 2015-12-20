@@ -24,12 +24,11 @@ public class JsonParser {
 
                 TournamentObj tourObj = new TournamentObj();
 
-                tourObj.setGoogle_ID(obj.getString("Google_ID"));
+                tourObj.setGoogle_ID(obj.getString("Nickname"));
                 tourObj.setTournament_ID(obj.getString("Tournament_ID"));
                 tourObj.setStart_Date(obj.getString("Start_Date"));
                 tourObj.setEnd_Date(obj.getString("End_Date"));
                 tourObj.setTournament_Name(obj.getString("Tournament_Name"));
-                tourObj.setStatus(obj.getInt("Status"));
 
                 list.add(tourObj);
             }
@@ -83,6 +82,9 @@ public class JsonParser {
                 gameObj.setGame_Name(obj.getString("Game_Name"));
                 gameObj.setLocation(obj.getString("Location"));
                 gameObj.setTime(obj.getString("Time"));
+                gameObj.setGoogle_ID(obj.getString("Google_ID"));
+
+
 
                 list.add(gameObj);
             }
@@ -94,29 +96,26 @@ public class JsonParser {
         return  list;
     }
     public Boolean parseExistUser(String stringObj){
+        String stat = "";
+
         try{
             JSONArray jsonArray = new JSONArray(stringObj);
 
             for(int i = 0; i < jsonArray.length(); i++){
                 JSONObject obj = jsonArray.getJSONObject(i);
 
-                GameObj gameObj = new GameObj();
-
-//// TODO: 11/12/2015 fiddler moet zijn als result == 0 geef false anders geen true
-                gameObj.setDate(obj.getString("Date"));
-                gameObj.setGame_ID(obj.getString("Game_ID"));
-                gameObj.setGame_Name(obj.getString("Game_Name"));
-                gameObj.setLocation(obj.getString("Location"));
-                gameObj.setTime(obj.getString("Time"));
-
-                //list.add(gameObj);
+                stat = obj.getString("status");
             }
 
         }catch (Exception e){
             Log.d("parser", e.toString());
         }
 
-        return  true;
+        if(stat.equals("succes")){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 
