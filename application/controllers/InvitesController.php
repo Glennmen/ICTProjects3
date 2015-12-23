@@ -107,10 +107,10 @@ class InvitesController extends CI_Controller{
         $aMobileData = json_decode(file_get_contents('php://input'),true);
         
         if($aMobileData['state'] == "accept"){
-            $result = $this->Invites_model->AllAcceptedTournaments($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
+            $result = $this->Invites_model->Accepted($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
             $status = array("status"=>"geaccepteerd");
         }else if($aMobileData['state'] == "decline"){
-            $result = $this->Invites_model->AllNotAcceptedTournaments($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
+            $result = $this->Invites_model->Declined($aMobileData['Google_ID'],$aMobileData['tournamentID']); 
             $status = array("status"=>"geweigerd");
         }else{
             $status = array("status" => "undifined");

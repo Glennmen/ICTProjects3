@@ -1,7 +1,10 @@
 package com.example.ictprojects.mobieleappbowling;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,8 +27,6 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
 
     private TextView Title;
     private TextView Date;
-    private Button accept;
-    private Button dicline;
 
     private  ApiHandler api;
 
@@ -45,11 +46,15 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
 
         Title = (TextView) findViewById(R.id.TournamentName);
         Date = (TextView) findViewById(R.id.Date);
-        accept = (Button) findViewById(R.id.btnaccept);
-        dicline = (Button) findViewById(R.id.btnDecline);
+
+
+        FloatingActionButton accept = (FloatingActionButton) findViewById(R.id.btnaccept);
+        FloatingActionButton decline = (FloatingActionButton) findViewById(R.id.btndecline);
+        accept.setBackgroundTintList(getColorState());
+        decline.setBackgroundTintList(getColorState());
 
         accept.setOnClickListener(this);
-        dicline.setOnClickListener(this);
+        decline.setOnClickListener(this);
 
         api = new ApiHandler();
 
@@ -94,11 +99,32 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()){
             case R.id.btnaccept:
                 state = "accept";
-                new HttpAsyncTask().execute("http://www.bowlingcomp.tk/InvitesController/MobileApp");
+                new HttpAsyncTask().execute("http://www.bowlingcomp.tk/InvitesController/mobileApp");
                 break;
-            case R.id.btnDecline:
+            case R.id.btndecline:
                 state = "decline";
                 break;
         }
+    }
+
+
+    private ColorStateList getColorState(){
+        int[][] states =  new int[][]{
+                new int[] { android.R.attr.state_enabled}, // enabled
+                new int[] {-android.R.attr.state_enabled}, // disabled
+                new int[] {-android.R.attr.state_checked}, // unchecked
+                new int[] { android.R.attr.state_pressed}  // pressed
+        };
+
+        int[] colors = new int[] {
+                Color.DKGRAY,
+                Color.DKGRAY,
+                Color.DKGRAY,
+                Color.DKGRAY
+        };
+
+        ColorStateList myList = new ColorStateList(states, colors);
+
+        return myList;
     }
 }
