@@ -3,27 +3,30 @@ if(!defined('BASEPATH'))exit('No direct acces allowed');
 
 
 class InvitesController extends CI_Controller{
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->helper('url');
-        $this->require_login();
-        
-        // Allow some methods?
+
+        if (empty($_SESSION['Google_ID'])) {
+
+
+            // Allow some methods?
             $allowed = array(
-                'mobileApp'
+                'MobileApp',
             );
-            if ( ! in_array($this->router->fetch_method(), $allowed))
-            {
-                
+            if (!in_array($this->router->fetch_method(), $allowed)) {
+
+                redirect('../OAuthController', 'refresh');
             }
-        
+        }
     }
 
-    protected function require_login() {
+    /*protected function require_login() {
         if(empty($_SESSION['Google_ID'])) {
             redirect('../OAuthController', 'refresh');
         }
-    }
+    }*/
 
     
     public function index(){
