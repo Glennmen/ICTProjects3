@@ -77,7 +77,7 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
                 Log.d("tournamentView",e.toString());
             }
 
-            return api.GET(url[0] , jsonObject);
+            return api.GET(url[0] ,jsonObject );
         }
         @Override
         protected void onPostExecute(String result) {
@@ -103,6 +103,7 @@ public class tournamentView extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.btndecline:
                 state = "decline";
+                new HttpAsyncTask().execute("http://www.bowlingcomp.tk/InvitesController/mobileApp");
                 break;
         }
     }

@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity{
 
     GridView gv;
     public static String [] nameList={"Tournament score","Game Score","uitnodigingen","profiel"};
-    public static int [] imageList ={R.drawable.red , R.drawable.purpel , R.drawable.redish ,R.drawable.brownish};
+    public static int [] imageList ={R.drawable.orange , R.drawable.dorange , R.drawable.dorange ,R.drawable.orange};
     private String googleID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

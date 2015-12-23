@@ -123,7 +123,7 @@ public class itemListView extends AppCompatActivity
 
     public  void updateDisplay( ArrayList<HashMap<String,String>> data , String title){
         if(data.isEmpty()){
-                titleTextView.setText("could not reach the server :(");
+                titleTextView.setText("niets nieuws hier ...");
             return;
         }
 

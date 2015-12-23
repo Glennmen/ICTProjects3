@@ -30,19 +30,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:drawable/ic_menu_close_clear_cancel"
-        android:layout_alignTop="@+id/btnaccept"
-        android:layout_toRightOf="@+id/Date"
-        android:layout_toEndOf="@+id/Date" />
+       android:layout_below="@id/Date"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="80dp"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnaccept"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_menu_mark"
-        android:layout_below="@+id/Date"
-        android:layout_alignLeft="@+id/TournamentName"
-        android:layout_alignStart="@+id/TournamentName"
-        android:layout_marginTop="94dp" />
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/Date"
+        android:layout_marginLeft="180dp"
+        />
 
 
 </RelativeLayout>
