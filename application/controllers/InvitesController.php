@@ -13,7 +13,7 @@ class InvitesController extends CI_Controller{
 
             // Allow some methods?
             $allowed = array(
-                'MobileApp',
+                ' mobileApp',
             );
             if (!in_array($this->router->fetch_method(), $allowed)) {
 

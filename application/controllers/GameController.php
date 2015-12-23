@@ -10,7 +10,6 @@ class GameController extends CI_Controller{
         parent::__construct();
         if(empty($_SESSION['Google_ID'])) {
 
-
             // Allow some methods?
             $allowed = array(
                 'MobileApp',
