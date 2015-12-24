@@ -109,7 +109,7 @@ class OAuthController extends CI_Controller
             $user_count = $this->OAuth_model->CheckIfUserExist($user);
 
 
-            if ($user_count) //if user already exist change greeting text to "Welcome"
+            if ($user_count)
             {
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
@@ -133,6 +133,8 @@ class OAuthController extends CI_Controller
                 $_SESSION["Last_Name"] = $user['givenName'];
             }
         }
+
+
     }
     
     
