@@ -19,12 +19,11 @@ class OAuthController extends CI_Controller
 //You can get it from : https://console.developers.google.com/
         $client_id = '452281875900-3mmee3tiiu38kp4a2s6lerokmg22r20r.apps.googleusercontent.com';
         $client_secret = 'hfok_9MOqFGP--y5i0yJjzY0';
-        $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
 
 //Als je lokaal werkt , onderstaande link uit commentaar halen en de andere link in commentaar zetten.
        //$redirect_uri = 'http://localhost/ICTProjects3/OAuthController';
 // Als je op de server werkt , onderstaande link uit commentaar halen en bovenstaande link in commentaar zetten.
-    //    $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
+        $redirect_uri = 'http://www.bowlingcomp.tk/OAuthController';
 
 //incase of logout request, just unset the session var
         if (isset($_GET['logout'])) {
@@ -85,7 +84,7 @@ class OAuthController extends CI_Controller
         if (isset($authUrl)) {
             //show login url
             $sContent .= '<div align="center">';
-            $sContent .= '<h3>Login with Google</h3>';
+            $sContent .= '<h3>Bowling Competition</h3>';
             $sContent .= '<p><div>Please click login button to connect to the Bowling WebApplication with Google.</div><p>';
             $sContent .= '<a class="login" href="' . $authUrl . '"><img src="assets/images/google-login-button.png" /></a>';
 
@@ -131,6 +130,8 @@ class OAuthController extends CI_Controller
                 $_SESSION["Google_ID"] = $user['id'];
                 $_SESSION["First_Name"] = $user['familyName'];
                 $_SESSION["Last_Name"] = $user['givenName'];
+
+                redirect("MainController");
             }
         }
 
