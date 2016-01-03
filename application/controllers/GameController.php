@@ -45,10 +45,10 @@ class GameController extends CI_Controller{
             }else{
                 
             $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));               
-            if ($this->input->post('type') == 'free') {
+            if ($data['type'] == 'free') {
                     $ID = 0;
                 }
-                else if ($this->input->post('type') == 'tourney') {
+                else if ($data['type'] == 'tourney') {
                     $ID = $this->input->post('Tourney');
                 }
             $personen = $this->input->post('Personen[]');
