@@ -44,9 +44,7 @@ class GameController extends CI_Controller{
                 $this->load->view('GameView1', $data);
             }else{
                 
-            $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));     
-            
-            $ID = "";
+            $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));               
             if ($data['type'] == 'free') {
                     $ID = 0;
                 }
