@@ -1,9 +1,0 @@
-<resources>
-    <string name="app_name">MobileAPPOpdracht2</string>
-    <string name="action_Add">Add Appointment</string>
-    <string name="Client_Name">client name</string>
-    <string name="StartDate">star date</string>
-    <string name="EndDate">end date</string>
-    <string name="OnMaps">Find on GoogleMaps</string>
-    <string name="Edit">edit</string>
-</resources>
