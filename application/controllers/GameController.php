@@ -84,8 +84,8 @@ class GameController extends CI_Controller{
            $data['type']= "free";
            $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
            
-           $today = getdate();
-          $Date2 = date('Y/m/d',  strtotime($strNewDate));
+           $currentDate = date("Y-m-d");
+           $Date2 = date('Y/m/d',  strtotime($strNewDate));
           
           if(checkdate ( $values[1] , $values[0] , $values[2] )){
               if(strtotime(date_format($Date2,"Y-m-d")) <= strtotime($currentDate)){
@@ -104,7 +104,7 @@ class GameController extends CI_Controller{
           $data['type'] = "tourney";
           $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
           
-          $today = getdate();
+          $currentDate = date("Y-m-d");
           $Date2 = date('Y/m/d',  strtotime($strNewDate));
           $startDate = date('Y/m/d', strtotime($this->Game_model->getStartDate($googleID,$tournamentID)));
           $endDate = date('Y/m/d', strtotime($this->Game_model->getEndDate($googleID,$tournamentID)));
