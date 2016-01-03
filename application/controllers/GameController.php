@@ -88,7 +88,12 @@ class GameController extends CI_Controller{
           $Date2 = date('Y/m/d',  strtotime($strNewDate));
           
           if(checkdate ( $values[1] , $values[0] , $values[2] )){
-              return true;
+              if(strtotime(date_format($Date2,"Y-m-d")) <= strtotime($currentDate)){
+                  $this->form_validation->set_message('startDateCheck', "Tournament start date can't be in the past");
+                   return FALSE;
+              }else{
+                  return true;
+              }
           }else{
               $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
               return false;
@@ -106,7 +111,12 @@ class GameController extends CI_Controller{
        
           if(checkdate ( $values[1] , $values[0] , $values[2] )){
              if ($Date2 > $startDate && $Date2 < $endDate){
-                return true;
+                if(strtotime(date_format($Date2,"Y-m-d")) <= strtotime($currentDate)){
+                  $this->form_validation->set_message('startDateCheck', "Tournament start date can't be in the past");
+                   return FALSE;
+              }else{
+                  return true;
+              }
              } else {
                 $this->form_validation->set_message('dateCheck', "Date not between tournament dates -- date:".$Date2." startdate:".$startDate." enddate:".$endDate);
                 return FALSE;
