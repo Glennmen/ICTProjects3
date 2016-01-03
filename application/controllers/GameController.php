@@ -29,7 +29,7 @@ class GameController extends CI_Controller{
         
         $data['nav'] = $this->navbar->get_navbar();
         $data['alert'] = "";
-        $data["type"] = "";
+        $data['type'] = "";
         
         
         $this->form_validation->set_rules('gameName', 'Name','required');
@@ -45,10 +45,10 @@ class GameController extends CI_Controller{
             }else{
                 
             $Date = DateTime::createFromFormat('d/m/Y', $this->input->post('gameDate'));               
-            if ($data["type"] == 'free') {
+            if ($data['type'] == 'free') {
                     $ID = 0;
                 }
-                else if ($data["type"] == 'tourney') {
+                else if ($data['type'] == 'tourney') {
                     $ID = $this->input->post('Tourney');
                 }
             $personen = $this->input->post('Personen[]');
@@ -79,6 +79,7 @@ class GameController extends CI_Controller{
        
        if($this->input->post('type') == "free"){
            $tournamentID = 0;
+           $data['type']= "free";
            $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
            
            $today = getdate();
@@ -93,6 +94,7 @@ class GameController extends CI_Controller{
          
        }else if($this->input->post('type') == "tourney"){
           $tournamentID = $this->input->post('Tourney');
+          $data['type'] = "tourney";
           $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
           
           $today = getdate();
