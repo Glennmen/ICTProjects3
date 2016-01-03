@@ -74,36 +74,55 @@ class GameController extends CI_Controller{
     } 
     public function dateCheck($strDate){
         $googleID = $_SESSION['Google_ID'];
-        $tournamentID = "";
         $values = explode("/", $strDate);
-       $this->load->model('Game_model');
+        $this->load->model('Game_model');
        
        if($this->input->post('type') == "free"){
            $tournamentID = 0;
+           $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
+           
+           $today = getdate();
+          $Date2 = date('Y/m/d',  strtotime($strNewDate));
+          
+          if(checkdate ( $values[1] , $values[0] , $values[2] )){
+              if($Date2 < $today){
+                    $this->form_validation->set_message('dateCheck', "Date can not be in the past.");
+                    return false;
+                }else{
+                    return true;
+                }
+          }else{
+              $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
+              return false;
+          }
+         
        }else if($this->input->post('type') == "tourney"){
-           $tournamentID = $this->input->post('Tourney');
-       }
+          $tournamentID = $this->input->post('Tourney');
+          $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
+          
+          $today = getdate();
+          $Date2 = date('Y/m/d',  strtotime($strNewDate));
+          $startDate = date('Y/m/d', strtotime($this->Game_model->getStartDate($googleID,$tournamentID)));
+          $endDate = date('Y/m/d', strtotime($this->Game_model->getEndDate($googleID,$tournamentID)));
        
-        
-        $strNewDate = $values[1].'/'.$values[0].'/'.$values[2];
-       
-        $Date2 = date('Y/m/d',  strtotime($strNewDate));
-       $startDate = date('Y/m/d', strtotime($this->Game_model->getStartDate($googleID,$tournamentID)));
-       $endDate = date('Y/m/d', strtotime($this->Game_model->getEndDate($googleID,$tournamentID)));
-       
-        if(checkdate ( $values[1] , $values[0] , $values[2] )){
+          if(checkdate ( $values[1] , $values[0] , $values[2] )){
              if ($Date2 > $startDate && $Date2 < $endDate){
-                return true;
-            } else {
-                
+                if($Date2 < $today){
+                    $this->form_validation->set_message('dateCheck', "Date can not be in the past.");
+                    return false;
+                }else{
+                    return true;
+                }
+             } else {
                 $this->form_validation->set_message('dateCheck', "Date not between tournament dates -- date:".$Date2." startdate:".$startDate." enddate:".$endDate);
-               
-            return FALSE;
-            }
-        }else{
+                return FALSE;
+             }
+          }else{
             $this->form_validation->set_message('dateCheck', 'Enter a valid date ');
             return FALSE;
-        }   
+          } 
+              
+       }      
     }
     
     public function timeCheck($strTime){
