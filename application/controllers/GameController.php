@@ -113,7 +113,7 @@ class GameController extends CI_Controller{
        
           if(checkdate ( $values[1] , $values[0] , $values[2] )){
              if ($Date2 > $startDate && $Date2 < $endDate){
-                if(strtotime(date_format($beginDate,"Y-m-d")) <= strtotime($currentDate)){
+                if(strtotime(date_format($beginDate,"Y-m-d")) < strtotime($currentDate)){
                     $this->form_validation->set_message('dateCheck', 'Date can\'t be in the past. ');
                    return FALSE;
               }else{
