@@ -11,13 +11,15 @@ class popup {
                     <div class="modal-header">
                        <h4 class="modal-title">Enter nickname </h4>
                     </div>
-                    <div class="modal-body">'.
+                    <div class="modal-body row">'.
                     validation_errors().
                     '<div id="alert" class="alert alert-info" role="alert" style="display: none">Verplicht nickname in te voeren.</div>
-                      <input type="text" name="nicknameText" id="nicknameText" onchange="button()" required>
+                        <div class="col-xs-4">
+                      <input type="text" name="nicknameText" class="form-control" id="nicknameText" required>
+                      </div>
                     </div>
                     <div class="modal-footer">
-                      <input type="submit" id="btnSubmit" class="btn btn-default" data-dismiss="modal" value="Save" disabled />
+                      <input type="submit" id="btnSubmit" class="btn btn-default" data-dismiss="modal" value="Save" />
                     </div>
                 </form>
               </div>

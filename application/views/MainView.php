@@ -32,21 +32,9 @@
     <script src="<?php echo base_url('assets/js/TimeOut.js'); ?>"></script>
     <script>
         $(window).load(function(){$("#myModal").modal("show");});
-        document.getElementById("alert").style.display = "none";
-        function button(){
-           personen = document.getElementById('nicknameText');
-           if (personen.value) {
-               document.getElementById("alert").style.display = "none";
-               $("#btnSubmit").prop('disabled', false);
-           }
-           else{
-               document.getElementById("alert").style.display = "block";
-               $("#btnSubmit").prop('disabled', true);
-           } 
-           $('#btnSubmit').click(function(){
-               $('#nicknameform').submit();
-           });
-         }
-        </script>
+        $('#btnSubmit').click(function(){
+            $('#nicknameform').submit();
+        });
+    </script>
 </body>
 </html>

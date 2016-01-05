@@ -107,13 +107,13 @@ class GameController extends CI_Controller{
           
           $currentDate = date("Y-m-d");
           $Date2 = date('Y/m/d',  strtotime($strNewDate));
-          $startDate = DateTime::createFromFormat('d/m/Y', $strDate);
+          $beginDate = DateTime::createFromFormat('d/m/Y', $strDate);
           $startDate = date('Y/m/d', strtotime($this->Game_model->getStartDate($googleID,$tournamentID)));
           $endDate = date('Y/m/d', strtotime($this->Game_model->getEndDate($googleID,$tournamentID)));
        
           if(checkdate ( $values[1] , $values[0] , $values[2] )){
              if ($Date2 > $startDate && $Date2 < $endDate){
-                if(strtotime(date_format($startDate,"Y-m-d")) <= strtotime($currentDate)){
+                if(strtotime(date_format($beginDate,"Y-m-d")) <= strtotime($currentDate)){
                     $this->form_validation->set_message('dateCheck', 'Date can\'t be in the past. ');
                    return FALSE;
               }else{
