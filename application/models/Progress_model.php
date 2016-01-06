@@ -6,7 +6,7 @@ class Progress_model extends CI_Model {
     {
         $this->load->database();  
 
-        $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM Score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$gameID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
+        $aProgressData = $this->db->query("SELECT score.Google_ID, Nickname, Total, Strikes, Spares FROM score INNER JOIN person ON score.Google_ID = person.Google_ID WHERE Game_ID =".$gameID." ORDER BY Total DESC, Strikes DESC, Spares DESC");
 
         return $aProgressData->result();
     }
